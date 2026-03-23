@@ -42,7 +42,7 @@ class ApplicationReview extends Component
         $this->approveRate   = (string) $this->application->interest_rate;
         $this->approveTenure = $this->application->tenure_months;
         $this->disburseDate  = now()->toDateString();
-        $this->hydrateDocumentNotes();
+        $this->loadDocumentNotes();
     }
 
     public function approve(): void
@@ -244,10 +244,10 @@ class ApplicationReview extends Component
             'reviewer',
         ]);
 
-        $this->hydrateDocumentNotes();
+        $this->loadDocumentNotes();
     }
 
-    private function hydrateDocumentNotes(): void
+    private function loadDocumentNotes(): void
     {
         $this->documentNotes = $this->application->documents
             ->mapWithKeys(fn (Document $document) => [$document->id => $document->review_notes ?? ''])
