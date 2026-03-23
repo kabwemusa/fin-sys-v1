@@ -1,58 +1,94 @@
 <div>
 
     {{-- ═══════════════════════════════════════════════════════
-         §1  HERO — Cinematic story opener
+         §1  HERO — Calculator + floating organic blob photos
          ═══════════════════════════════════════════════════════ --}}
-    <section class="relative min-h-screen flex items-center overflow-hidden bg-[#071520]">
+    <section id="hero" class="relative min-h-screen flex items-center overflow-hidden bg-[#071520]">
 
         {{-- Subtle dot-grid texture --}}
         <div class="absolute inset-0 pointer-events-none"
              style="background-image:radial-gradient(circle, rgba(78,168,217,.12) 1px, transparent 1px); background-size:44px 44px;"></div>
 
         {{-- Atmospheric glow blobs --}}
-        <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-[#2E86C1]/10 blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-[#166534]/8 blur-3xl pointer-events-none"></div>
         <div class="absolute bottom-1/4 right-1/5 w-72 h-72 rounded-full bg-[#F39C12]/6 blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/2 right-1/4 w-80 h-80 rounded-full bg-[#1B4F72]/8 blur-3xl pointer-events-none"></div>
 
-        <div class="relative max-w-6xl mx-auto px-5 py-28 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="relative max-w-6xl mx-auto px-5 py-10 md:py-12 lg:py-10 w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center">
 
             {{-- ── LEFT: Narrative copy ── --}}
-            <div>
+            <div class="order-2 lg:order-1 relative">
+
+                {{-- Floating image TOP RIGHT --}}
+                <div class="absolute -top-4 right-0 lg:right-4 w-28 sm:w-32 md:w-36 pointer-events-none z-0 floating-img-top">
+                    <div class="relative aspect-[10/11]">
+                        <div class="absolute inset-0 rounded-[3rem] bg-[#edf4e5] opacity-95"></div>
+                        <div class="absolute inset-[0.75rem] rounded-[2.5rem] bg-[#c9dda0]"></div>
+                        <div class="absolute inset-[1.5rem] rounded-[2rem] bg-[#a7c862]"></div>
+                        <div class="absolute inset-[2.3rem] rounded-[1.5rem] bg-[#84af38]"></div>
+                        <div class="absolute left-[0.8rem] right-[0.3rem] top-[1rem] bottom-0 overflow-hidden rounded-[2rem] shadow-2xl shadow-black/35">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80"
+                                 alt="" class="w-full h-full object-cover object-center"
+                                 loading="eager" fetchpriority="high" decoding="async">
+                            <div class="absolute inset-0 bg-linear-to-t from-[#071520]/10 via-transparent to-transparent"></div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Floating image BOTTOM RIGHT --}}
+                <div class="absolute -bottom-4 right-8 lg:right-16 w-24 sm:w-28 md:w-32 pointer-events-none z-0 floating-img-bottom">
+                    <div class="relative aspect-[10/11]">
+                        <div class="absolute inset-0 rounded-[2.5rem] bg-[#e8f4e8] opacity-95"></div>
+                        <div class="absolute inset-[0.65rem] rounded-[2rem] bg-[#b8dba8]"></div>
+                        <div class="absolute inset-[1.3rem] rounded-[1.5rem] bg-[#96c476]"></div>
+                        <div class="absolute inset-[2rem] rounded-[1.2rem] bg-[#74a844]"></div>
+                        <div class="absolute left-[0.7rem] right-[0.25rem] top-[0.85rem] bottom-0 overflow-hidden rounded-[1.5rem] shadow-2xl shadow-black/35">
+                            <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=400&q=80"
+                                 alt="" class="w-full h-full object-cover object-center"
+                                 loading="lazy" decoding="async">
+                            <div class="absolute inset-0 bg-linear-to-t from-[#071520]/15 via-transparent to-transparent"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative z-10">
+
                 {{-- Status pill --}}
-                <div class="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full bg-white/5 border border-white/10 hero-up">
+                <div class="inline-flex items-center gap-2 mb-7 px-4 py-2 rounded-full bg-white/5 border border-white/10 hero-up">
                     <span class="w-2 h-2 rounded-full bg-[#F39C12] animate-pulse shrink-0"></span>
                     <span class="text-[#F39C12] text-xs font-medium tracking-[0.15em] uppercase">Applications Open · Fast Approval</span>
                 </div>
 
                 {{-- Main headline --}}
-                <h1 class="text-[2.8rem] md:text-[3.8rem] lg:text-[4.2rem] font-semibold leading-[1.04] text-white mb-6 hero-up d1">
+                <h1 class="text-[1.9rem] sm:text-[2.8rem] md:text-[3.6rem] lg:text-[3.8rem] font-semibold leading-[1.08] text-white mb-5 hero-up d1">
                     Your dreams<br>
                     <span class="hero-squiggle text-[#4EA8D9]">deserve funding</span><br>
                     today.
                 </h1>
 
-                <p class="text-slate-400 text-base md:text-lg leading-relaxed mb-9 max-w-md font-light hero-up d2">
-                    One form. No prior registration. Submit your details, get reviewed within 48 hours,
+                <p class="text-slate-400 text-sm md:text-base leading-relaxed mb-7 max-w-md font-light hero-up d2">
+                    One form. No prior registration. Get reviewed within 48 hours
                     and funds land directly in your account.
                 </p>
 
-                {{-- Product CTA buttons --}}
-                <div class="flex flex-wrap gap-3 mb-10 hero-up d3">
-                    @foreach($products as $product)
-                        <a href="{{ route('loan.apply', $product->slug) }}"
-                           class="group inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl text-sm font-medium transition-all duration-300
-                                  {{ $loop->first
-                                        ? 'bg-[#F39C12] text-white hover:bg-[#e08c10] shadow-xl shadow-[#F39C12]/30 hover:shadow-[#F39C12]/50 hover:-translate-y-0.5'
-                                        : 'bg-white/8 text-white border border-white/15 hover:bg-white/14 hover:border-white/30 hover:-translate-y-0.5' }}">
-                            {{ $product->name }}
-                            <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                {{-- Trust signals --}}
+                <div class="flex flex-wrap gap-x-5 gap-y-2.5 mb-8 hero-up d2">
+                    @foreach([
+                        ['M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', 'Verified Lender'],
+                        ['M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z', 'Zero Hidden Fees'],
+                        ['M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', '48-Hour Turnaround'],
+                    ] as [$icon, $label])
+                        <div class="flex items-center gap-1.5">
+                            <svg class="w-3.5 h-3.5 text-[#16a34a] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $icon }}"/>
                             </svg>
-                        </a>
+                            <span class="text-xs text-slate-400 font-light">{{ $label }}</span>
+                        </div>
                     @endforeach
                 </div>
 
                 {{-- Social proof row --}}
-                <div class="flex items-center gap-3 hero-up d4">
+                <div class="flex items-center gap-3 hero-up d3">
                     <div class="flex -space-x-2.5">
                         @foreach([
                             'photo-1494790108377-be9c29b29330',
@@ -71,79 +107,81 @@
                         <p class="text-slate-500 text-xs font-light">across Zambia</p>
                     </div>
                 </div>
+                </div>
             </div>
 
-            {{-- ── RIGHT: Stacked photo cluster with floating stat cards ── --}}
-            <div class="relative hidden lg:block h-[540px] hero-up d3">
+            {{-- ── RIGHT: Calculator panel + floating organic blob rectangle photos ── --}}
+            <div class="order-1 lg:order-2 relative hero-up d2">
 
-                {{-- Photo layer 3 — farthest back, tilted left --}}
-                <div class="float-a absolute right-10 top-10 w-44 h-56 opacity-40" style="transform:rotate(-8deg);">
-                    <div class="w-full h-full rounded-[2rem] overflow-hidden shadow-2xl">
-                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=400&q=80"
-                             alt="" class="w-full h-full object-cover scale-110" loading="lazy" decoding="async">
-                        <div class="absolute inset-0 bg-[#1B4F72]/50"></div>
-                    </div>
-                </div>
+                {{-- Photo 1 — top-left corner, floats behind the calc card --}}
+                <div class="hidden">
+                    <div class="relative aspect-[10/11]">
+                        <div class="absolute inset-0 rounded-[3.75rem] bg-[#eff5e7] opacity-95"></div>
+                        <div class="absolute inset-[0.9rem] rounded-[3.15rem] bg-[#c7d99b]"></div>
+                        <div class="absolute inset-[2rem] rounded-[2.5rem] bg-[#aac968]"></div>
+                        <div class="absolute inset-[3.1rem] rounded-[2rem] bg-[#87b03d]"></div>
 
-                {{-- Photo layer 2 — mid depth --}}
-                <div class="float-b absolute right-24 top-2 w-56 opacity-70" style="transform:rotate(4deg); height:320px;">
-                    <div class="w-full h-full rounded-[2.5rem] overflow-hidden shadow-2xl">
-                        <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?auto=format&fit=crop&w=500&q=80"
-                             alt="" class="w-full h-full object-cover" loading="lazy" decoding="async">
-                        <div class="absolute inset-0 bg-[#0c2336]/25"></div>
-                    </div>
-                </div>
-
-                {{-- Photo layer 1 — front, nearly straight --}}
-                <div class="float-c absolute right-2 top-16 w-64" style="transform:rotate(-1.5deg); height:380px;">
-                    <div class="w-full h-full rounded-[2.5rem] overflow-hidden shadow-2xl shadow-black/50">
-                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=600&q=80"
-                             alt="" class="w-full h-full object-cover" loading="eager" fetchpriority="high" decoding="async">
-                        <div class="absolute inset-0 bg-linear-to-t from-[#071520]/70 via-[#071520]/10 to-transparent"></div>
-                        <div class="absolute bottom-5 left-5 right-5">
-                            <p class="text-white text-xs font-medium opacity-80">Your financial story</p>
-                            <div class="flex gap-1 mt-2">
-                                @foreach([85,95,70,90,100] as $w)
-                                    <div class="flex-1 h-1 rounded-full bg-white/15 overflow-hidden">
-                                        <div class="h-full rounded-full bg-[#4EA8D9]/80" style="width:{{ $w }}%"></div>
-                                    </div>
-                                @endforeach
-                            </div>
+                        <div class="absolute left-[1rem] right-[0.35rem] top-[1.2rem] bottom-0 overflow-hidden rounded-[2.75rem] shadow-2xl shadow-black/35">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=700&q=80"
+                                 alt="" class="w-full h-full object-cover object-center"
+                                 loading="eager" fetchpriority="high" decoding="async">
+                            <div class="absolute inset-0 bg-linear-to-t from-[#071520]/12 via-transparent to-transparent"></div>
                         </div>
                     </div>
                 </div>
 
-                {{-- Floating stat card: Approval Rate --}}
-                <div class="float-r absolute left-0 top-16 bg-white/96 backdrop-blur-xl rounded-2xl px-4 py-3.5 shadow-2xl shadow-black/20 hero-up d4">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-[#1B4F72]/10 flex items-center justify-center shrink-0">
-                            <svg class="w-5 h-5 text-[#1B4F72]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                {{-- Photo 2 — bottom-right corner, floats behind the calc card --}}
+                <div class="hidden">
+                    <div class="photo-float-img">
+                        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=300&q=80"
+                             alt="" class="w-full h-full object-cover object-center"
+                             loading="lazy" decoding="async">
+                        <div class="absolute inset-0 bg-[#071520]/18"></div>
+                    </div>
+                </div>
+
+                {{-- Calculator card --}}
+                <div class="relative z-20 rounded-3xl bg-[#071622] border border-slate-700/40
+                            shadow-2xl shadow-black/60 p-6 lg:p-8 hero-up d3">
+
+                    {{-- Card header --}}
+                    <div class="flex items-center justify-between mb-5">
+                        <div>
+                            <p class="text-[10px] text-[#F39C12] uppercase tracking-[0.18em] font-medium mb-0.5">Loan Calculator</p>
+                            <p class="text-white text-base font-semibold leading-tight">Know your numbers first</p>
+                        </div>
+                        <div class="w-9 h-9 rounded-xl bg-[#166534]/20 border border-[#166534]/30 flex items-center justify-center shrink-0">
+                            <svg class="w-5 h-5 text-[#16a34a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                                      d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    {{-- Embedded calculator --}}
+                    <livewire:public.loan-calculator theme="dark" />
+                </div>
+
+                {{-- Floating approval stat — peeks out right of the card --}}
+                <div class="float-r absolute right-3 xl:-right-1 top-24
+                            bg-white/96 backdrop-blur-xl rounded-2xl px-3.5 py-3
+                            shadow-2xl shadow-black/20 z-30 hidden lg:block hero-up d4">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-8 h-8 rounded-xl bg-[#166534]/10 flex items-center justify-center shrink-0">
+                            <svg class="w-4 h-4 text-[#166534]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
                         </div>
                         <div>
-                            <p class="text-xs text-gray-400 font-light">Approval Rate</p>
-                            <p class="text-xl font-bold text-gray-800 leading-tight">98%</p>
+                            <p class="text-[10px] text-gray-400 font-light">Approval Rate</p>
+                            <p class="text-lg font-bold text-gray-800 leading-tight">98%</p>
                         </div>
                     </div>
                 </div>
 
-                {{-- Floating stat card: Turnaround --}}
-                <div class="float-a absolute left-3 bottom-16 bg-[#1B4F72] rounded-2xl px-4 py-3.5 shadow-2xl shadow-[#1B4F72]/50 hero-up d5">
-                    <p class="text-xs text-[#4EA8D9] font-light mb-0.5">Avg. Disbursement</p>
-                    <p class="text-white font-semibold text-sm">Under 48 hrs</p>
-                    <div class="flex gap-0.5 mt-2.5">
-                        @foreach([70,90,100,85,95] as $w)
-                            <div class="flex-1 h-1.5 rounded-full bg-white/15 overflow-hidden">
-                                <div class="h-full rounded-full bg-[#4EA8D9]" style="width:{{ $w }}%"></div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-
-                {{-- Decorative rings --}}
-                <div class="absolute right-0 bottom-8 w-36 h-36 rounded-full border border-[#2E86C1]/15 pointer-events-none"></div>
-                <div class="absolute right-8 bottom-16 w-16 h-16 rounded-full border border-[#F39C12]/12 pointer-events-none"></div>
+                {{-- Decorative ring — bottom-left accent --}}
+                <div class="absolute left-8 bottom-2 w-20 h-20 rounded-full border border-[#166534]/20 pointer-events-none hidden lg:block"></div>
             </div>
         </div>
 
@@ -192,7 +230,7 @@
     {{-- ═══════════════════════════════════════════════════════
          §3  PRODUCTS — Stacked card deck
          ═══════════════════════════════════════════════════════ --}}
-    <section id="products" class="bg-gray-50 py-24 px-5 relative overflow-hidden">
+    <section id="products" class="bg-gray-50 py-14 md:py-24 px-5 relative overflow-hidden">
 
         {{-- Decorative blob --}}
         <div class="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-[#2E86C1]/5 blur-3xl pointer-events-none"></div>
@@ -315,7 +353,7 @@
     {{-- ═══════════════════════════════════════════════════════
          §4  HOW IT WORKS — Alternating story timeline
          ═══════════════════════════════════════════════════════ --}}
-    <section class="bg-[#071520] py-28 px-5 relative overflow-hidden">
+    <section class="bg-[#071520] py-16 lg:py-28 px-5 relative overflow-hidden">
 
         {{-- Background texture --}}
         <div class="absolute inset-0 pointer-events-none opacity-[0.025]"
@@ -327,7 +365,7 @@
 
         <div class="max-w-6xl mx-auto relative">
 
-            <div class="text-center mb-20 reveal">
+            <div class="text-center mb-12 md:mb-20 reveal">
                 <span class="inline-block text-[#F39C12] text-xs font-medium tracking-[0.2em] uppercase mb-3 px-4 py-1.5 bg-[#F39C12]/10 rounded-full border border-[#F39C12]/20">
                     The Journey
                 </span>
@@ -343,7 +381,8 @@
                         'num'   => '01',
                         'title' => 'Apply Online',
                         'body'  => 'Fill our intuitive multi-step form with your personal, employment and banking details. Upload supporting documents digitally — no branch visits, no queues.',
-                        'img'   => 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=700&q=80',
+                        'img'   => 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&crop=faces,center&w=700&q=80',
+                        'pos'   => 'object-top',
                         'icon'  => 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
                         'cta'   => true,
                         'shape' => '60% 40% 55% 45% / 45% 55% 45% 55%',
@@ -352,7 +391,8 @@
                         'num'   => '02',
                         'title' => 'Get Reviewed',
                         'body'  => 'Our team verifies your documents typically within 24 hours. We may request additional information through your secure portal — no unnecessary delays.',
-                        'img'   => 'https://images.unsplash.com/photo-1551836022-deb4988cc6c0?auto=format&fit=crop&w=700&q=80',
+                        'img'   => 'https://images.unsplash.com/photo-1551836022-deb4988cc6c0?auto=format&fit=crop&crop=faces,center&w=700&q=80',
+                        'pos'   => 'object-top',
                         'icon'  => 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4',
                         'cta'   => false,
                         'shape' => '45% 55% 40% 60% / 55% 45% 55% 45%',
@@ -362,6 +402,7 @@
                         'title' => 'Receive Funds',
                         'body'  => 'Once approved, funds are disbursed directly to your bank account — typically within 48 hours. Track every step live from your personal customer portal.',
                         'img'   => 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=700&q=80',
+                        'pos'   => 'object-center',
                         'icon'  => 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z',
                         'cta'   => false,
                         'shape' => '50% 50% 45% 55% / 55% 45% 55% 45%',
@@ -369,7 +410,7 @@
                 ];
             @endphp
 
-            <div class="space-y-20 md:space-y-28">
+            <div class="space-y-14 md:space-y-28">
                 @foreach($steps as $i => $step)
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center">
 
@@ -420,8 +461,8 @@
                             <div class="absolute inset-8 bg-[#2E86C1]/20 blur-2xl rounded-full pointer-events-none"></div>
 
                             {{-- Organic blob image --}}
-                            <div class="relative overflow-hidden shadow-2xl shadow-black/50" style="height:300px; border-radius:{{ $step['shape'] }};">
-                                <img src="{{ $step['img'] }}" alt="{{ $step['title'] }}" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                            <div class="relative overflow-hidden shadow-2xl shadow-black/50 h-52 md:h-75" style="border-radius:{{ $step['shape'] }};">
+                                <img src="{{ $step['img'] }}" alt="{{ $step['title'] }}" class="w-full h-full object-cover {{ $step['pos'] ?? 'object-top' }}" loading="lazy" decoding="async">
                                 <div class="absolute inset-0 bg-[#071520]/30"></div>
                             </div>
 
@@ -454,7 +495,7 @@
     {{-- ═══════════════════════════════════════════════════════
          §5  CALCULATOR — Clean bright section
          ═══════════════════════════════════════════════════════ --}}
-    <section class="bg-white py-24 px-5 relative overflow-hidden">
+    <section class="bg-white py-14 md:py-24 px-5 relative overflow-hidden">
 
         <div class="absolute inset-0 bg-linear-to-br from-slate-50 via-white to-blue-50/30 pointer-events-none"></div>
         <div class="absolute top-0 right-1/4 w-96 h-96 rounded-full bg-[#4EA8D9]/5 blur-3xl pointer-events-none"></div>
@@ -518,7 +559,7 @@
     {{-- ═══════════════════════════════════════════════════════
          §6  WHY CHOOSE US — Feature grid on navy
          ═══════════════════════════════════════════════════════ --}}
-    <section class="bg-[#1B4F72] py-24 px-5 relative overflow-hidden">
+    <section class="bg-[#1B4F72] py-14 md:py-24 px-5 relative overflow-hidden">
 
         {{-- Dot pattern --}}
         <div class="absolute inset-0 pointer-events-none opacity-[0.045]"
@@ -560,7 +601,7 @@
     {{-- ═══════════════════════════════════════════════════════
          §7  CTA — Bold, dramatic closer
          ═══════════════════════════════════════════════════════ --}}
-    <section class="relative bg-gray-950 py-32 px-5 overflow-hidden">
+    <section class="relative bg-gray-950 py-20 md:py-32 px-5 overflow-hidden">
 
         {{-- Background image --}}
         <div class="absolute inset-0">

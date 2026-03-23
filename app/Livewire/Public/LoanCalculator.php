@@ -16,6 +16,8 @@ class LoanCalculator extends Component
         $productsJson = $products->map(fn($p) => [
             'id'            => $p->id,
             'name'          => $p->name,
+            'slug'          => $p->slug,
+            'apply_url'     => route('loan.apply', $p->slug),
             'interest_rate' => (float) $p->interest_rate,
             'min_amount'    => (float) $p->min_amount,
             'max_amount'    => (float) $p->max_amount,
