@@ -48,9 +48,13 @@ class Dashboard extends Component
             ->limit(5)
             ->get();
 
-        return view('livewire.admin.dashboard', compact(
-            'totalPending', 'totalDisbursed', 'overdue', 'approvalRate',
-            'monthlyStats', 'recentApplications'
-        ))->layout('components.layouts.admin', ['title' => 'Dashboard']);
+        return view('livewire.admin.dashboard', [
+            'totalPending' => $totalPending,
+            'totalDisbursed' => $totalDisbursed,
+            'overdue' => $overdue,
+            'approvalRate' => $approvalRate,
+            'monthlyStats' => $monthlyStats,
+            'recentApplications' => $recentApplications,
+        ])->layout('components.layouts.admin', ['title' => 'Dashboard']);
     }
 }

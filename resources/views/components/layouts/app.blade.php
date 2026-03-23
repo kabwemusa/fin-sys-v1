@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $title ?? 'Loan System' }}</title>
+    <title>{{ $title ?? 'Credence Systems' }}</title>
+    <link rel="dns-prefetch" href="//images.unsplash.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
@@ -90,6 +92,22 @@
             border-radius: 9px;
             opacity:.55;
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .reveal,
+            .reveal-left,
+            .reveal-right {
+                opacity: 1;
+                transform: none;
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen bg-white font-sans antialiased">
@@ -99,7 +117,7 @@
     <nav class="fixed top-0 inset-x-0 z-50 bg-[#071520]/90 backdrop-blur-md border-b border-white/5">
         <div class="max-w-6xl mx-auto px-5 flex items-center justify-between h-16">
             <a href="{{ route('home') }}" class="font-semibold text-white text-xl tracking-tight">
-                <span class="text-[#4EA8D9]">Loan</span>System
+                <span class="text-[#4EA8D9]">Credence</span>Systems
             </a>
             <div class="flex items-center gap-3">
                 <a href="{{ route('login') }}" class="text-sm text-gray-400 hover:text-white transition-colors px-3 py-1.5 rounded-lg hover:bg-white/5">Sign in</a>
@@ -116,6 +134,23 @@
         // Scroll-reveal via IntersectionObserver — handles reveal, reveal-left, reveal-right
         (function () {
             var selectors = '.reveal:not(.revealed), .reveal-left:not(.revealed), .reveal-right:not(.revealed)';
+            var revealAll = function () {
+                document.querySelectorAll(selectors).forEach(function (el) {
+                    el.classList.add('revealed');
+                });
+            };
+
+            if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', revealAll);
+                } else {
+                    revealAll();
+                }
+
+                document.addEventListener('livewire:navigated', revealAll);
+                return;
+            }
+
             var io = new IntersectionObserver(function (entries) {
                 entries.forEach(function (e) {
                     if (e.isIntersecting) {

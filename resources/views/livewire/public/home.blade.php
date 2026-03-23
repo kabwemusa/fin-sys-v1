@@ -62,7 +62,7 @@
                         ] as $photo)
                             <div class="w-9 h-9 rounded-full border-2 border-[#071520] overflow-hidden ring-1 ring-white/10 shrink-0">
                                 <img src="https://images.unsplash.com/{{ $photo }}?auto=format&fit=crop&w=72&h=72&q=80"
-                                     class="w-full h-full object-cover" loading="lazy" alt="">
+                                     class="w-full h-full object-cover" loading="lazy" decoding="async" width="72" height="72" alt="">
                             </div>
                         @endforeach
                     </div>
@@ -80,7 +80,7 @@
                 <div class="float-a absolute right-10 top-10 w-44 h-56 opacity-40" style="transform:rotate(-8deg);">
                     <div class="w-full h-full rounded-[2rem] overflow-hidden shadow-2xl">
                         <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=400&q=80"
-                             alt="" class="w-full h-full object-cover scale-110">
+                             alt="" class="w-full h-full object-cover scale-110" loading="lazy" decoding="async">
                         <div class="absolute inset-0 bg-[#1B4F72]/50"></div>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
                 <div class="float-b absolute right-24 top-2 w-56 opacity-70" style="transform:rotate(4deg); height:320px;">
                     <div class="w-full h-full rounded-[2.5rem] overflow-hidden shadow-2xl">
                         <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?auto=format&fit=crop&w=500&q=80"
-                             alt="" class="w-full h-full object-cover">
+                             alt="" class="w-full h-full object-cover" loading="lazy" decoding="async">
                         <div class="absolute inset-0 bg-[#0c2336]/25"></div>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
                 <div class="float-c absolute right-2 top-16 w-64" style="transform:rotate(-1.5deg); height:380px;">
                     <div class="w-full h-full rounded-[2.5rem] overflow-hidden shadow-2xl shadow-black/50">
                         <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=600&q=80"
-                             alt="" class="w-full h-full object-cover">
+                             alt="" class="w-full h-full object-cover" loading="eager" fetchpriority="high" decoding="async">
                         <div class="absolute inset-0 bg-linear-to-t from-[#071520]/70 via-[#071520]/10 to-transparent"></div>
                         <div class="absolute bottom-5 left-5 right-5">
                             <p class="text-white text-xs font-medium opacity-80">Your financial story</p>
@@ -421,7 +421,7 @@
 
                             {{-- Organic blob image --}}
                             <div class="relative overflow-hidden shadow-2xl shadow-black/50" style="height:300px; border-radius:{{ $step['shape'] }};">
-                                <img src="{{ $step['img'] }}" alt="{{ $step['title'] }}" class="w-full h-full object-cover">
+                                <img src="{{ $step['img'] }}" alt="{{ $step['title'] }}" class="w-full h-full object-cover" loading="lazy" decoding="async">
                                 <div class="absolute inset-0 bg-[#071520]/30"></div>
                             </div>
 
@@ -496,7 +496,7 @@
                 {{-- Image teaser --}}
                 <div class="relative rounded-2xl overflow-hidden h-36">
                     <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=700&q=80"
-                         alt="" class="w-full h-full object-cover">
+                         alt="" class="w-full h-full object-cover" loading="lazy" decoding="async">
                     <div class="absolute inset-0 bg-linear-to-r from-[#1B4F72]/60 to-[#1B4F72]/10"></div>
                     <div class="absolute inset-0 flex items-center px-6">
                         <p class="text-white font-semibold text-sm">Transparent. Fair. Simple.</p>
@@ -565,7 +565,7 @@
         {{-- Background image --}}
         <div class="absolute inset-0">
             <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=80"
-                 alt="" class="w-full h-full object-cover opacity-[0.07]">
+                 alt="" class="w-full h-full object-cover opacity-[0.07]" loading="lazy" decoding="async">
         </div>
 
         {{-- Gradient overlay --}}

@@ -10,16 +10,7 @@ $statusConfig = [
     'cancelled'      => ['color' => 'text-gray-400',   'bg' => 'bg-gray-50',    'border' => 'border-gray-100',  'label' => 'Cancelled'],
 ];
 $sc = $statusConfig[$application->status] ?? $statusConfig['pending'];
-
-$docLabels = [
-    'nrc'                => 'NRC Copy',
-    'payslip'            => 'Payslip',
-    'bank_statement'     => 'Bank Statement',
-    'employment_letter'  => 'Employment Letter',
-    'collateral_proof'   => 'Collateral Proof',
-    'selfie'             => 'Selfie with NRC',
-    'additional'         => 'Additional Document',
-];
+$documents = $application->activeDocuments();
 @endphp
 
 <div class="p-6 lg:p-8 max-w-4xl mx-auto space-y-6">
@@ -107,11 +98,11 @@ $docLabels = [
                 </div>
             </div>
             <div class="divide-y divide-gray-50">
-                @foreach($application->repayments->sortByDesc('paid_at') as $repayment)
+                @foreach($application->repayments->sortByDesc('payment_date') as $repayment)
                     <div class="flex items-center justify-between px-6 py-3">
                         <div>
                             <p class="text-sm font-medium text-gray-700">ZMW {{ number_format($repayment->amount, 2) }}</p>
-                            <p class="text-xs text-gray-400">{{ $repayment->paid_at?->format('d M Y') ?? 'Pending' }}</p>
+                            <p class="text-xs text-gray-400">{{ $repayment->payment_date?->format('d M Y') ?? 'Pending' }}</p>
                         </div>
                         <span class="text-xs text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full font-medium">Paid</span>
                     </div>
@@ -120,12 +111,51 @@ $docLabels = [
         </div>
     @endif
 
+    {{-- Document checklist --}}
+    <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="px-6 py-4 border-b border-gray-50 flex items-center gap-2">
+            <svg class="w-4 h-4 text-[#1B4F72]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m-7-8h8m-9 12h10a2 2 0 002-2V6a2 2 0 00-2-2H7a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <h3 class="text-sm font-semibold text-gray-600 uppercase tracking-wider">Document Checklist</h3>
+        </div>
+        <div class="divide-y divide-gray-50">
+            @foreach($documentChecklist as $item)
+                <div class="px-6 py-3 flex items-start justify-between gap-3">
+                    <div>
+                        <p class="text-sm font-medium text-gray-700">{{ $item['label'] }}</p>
+                        <p class="text-xs text-gray-400">{{ $item['required'] ? 'Required' : 'Recommended' }}</p>
+                    </div>
+                    @if($item['approved'])
+                        <span class="text-xs bg-emerald-50 text-emerald-600 border border-emerald-100 px-2.5 py-1 rounded-full font-medium">Approved</span>
+                    @elseif($item['needs_resubmission'])
+                        <span class="text-xs bg-orange-50 text-orange-600 border border-orange-100 px-2.5 py-1 rounded-full font-medium">Needs update</span>
+                    @elseif($item['submitted'])
+                        <span class="text-xs bg-blue-50 text-blue-600 border border-blue-100 px-2.5 py-1 rounded-full font-medium">Submitted</span>
+                    @elseif($item['required'])
+                        <span class="text-xs bg-red-50 text-red-600 border border-red-100 px-2.5 py-1 rounded-full font-medium">Missing</span>
+                    @else
+                        <span class="text-xs bg-gray-50 text-gray-500 border border-gray-100 px-2.5 py-1 rounded-full font-medium">Optional</span>
+                    @endif
+                </div>
+            @endforeach
+        </div>
+    </div>
+
     {{-- Upload document (when info requested) --}}
     @if($application->status === 'info_requested')
         <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-6">
             <h3 class="text-sm font-semibold text-gray-600 uppercase tracking-wider mb-4">Upload Additional Document</h3>
             <form wire:submit.prevent="uploadDocument" class="space-y-4">
                 <div>
+                    <label class="block text-xs font-medium text-gray-600 mb-1.5">Document Type</label>
+                    <select wire:model="replacement_document_type"
+                        class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1B4F72] mb-4">
+                        @foreach($requestedDocumentTypes as $type => $label)
+                            <option value="{{ $type }}">{{ $label }} (requested)</option>
+                        @endforeach
+                        <option value="other">Other supporting document</option>
+                    </select>
+                    @error('replacement_document_type') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+
                     <label class="block text-xs font-medium text-gray-600 mb-1.5">Document File (PDF / JPG / PNG, max 5 MB)</label>
                     <input wire:model="extra_document" type="file" accept=".pdf,.jpg,.jpeg,.png"
                         class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0
@@ -143,29 +173,40 @@ $docLabels = [
     @endif
 
     {{-- Documents --}}
-    @if($application->documents->count())
+        @if($documents->count())
         <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
             <div class="px-6 py-4 border-b border-gray-50 flex items-center gap-2">
                 <svg class="w-4 h-4 text-[#1B4F72]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
                 <h3 class="text-sm font-semibold text-gray-600 uppercase tracking-wider">Documents</h3>
             </div>
             <div class="divide-y divide-gray-50">
-                @foreach($application->documents as $doc)
+                @foreach($documents as $doc)
                     <div class="flex items-center justify-between px-6 py-3">
                         <div class="flex items-center gap-3">
                             <div class="w-8 h-8 rounded-lg bg-gray-50 flex items-center justify-center">
                                 <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                             </div>
                             <div>
-                                <p class="text-sm font-medium text-gray-700">{{ $docLabels[$doc->type] ?? ucfirst(str_replace('_', ' ', $doc->type)) }}</p>
+                                <p class="text-sm font-medium text-gray-700">{{ $doc->label() }}</p>
                                 <p class="text-xs text-gray-400">{{ $doc->original_filename }}</p>
+                                @if($doc->review_notes)
+                                    <p class="text-xs text-gray-500 mt-1">{{ $doc->review_notes }}</p>
+                                @endif
                             </div>
                         </div>
-                        @if($doc->is_verified)
-                            <span class="text-xs text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full font-medium">Verified</span>
-                        @else
-                            <span class="text-xs text-gray-400 bg-gray-50 px-2.5 py-1 rounded-full font-medium">Pending</span>
-                        @endif
+                        <div class="flex items-center gap-2">
+                            <a href="{{ route('documents.preview', $doc) }}" target="_blank"
+                                class="text-xs text-[#1B4F72] bg-blue-50 px-2.5 py-1 rounded-full font-medium hover:bg-blue-100 transition-colors">
+                                Preview
+                            </a>
+                            <a href="{{ route('documents.download', $doc) }}"
+                                class="text-xs text-gray-600 bg-gray-100 px-2.5 py-1 rounded-full font-medium hover:bg-gray-200 transition-colors">
+                                Download
+                            </a>
+                            <span class="text-xs border px-2.5 py-1 rounded-full font-medium {{ $doc->statusClasses() }}">
+                                {{ $doc->statusLabel() }}
+                            </span>
+                        </div>
                     </div>
                 @endforeach
             </div>

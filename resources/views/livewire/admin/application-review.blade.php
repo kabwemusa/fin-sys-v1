@@ -8,7 +8,8 @@ $statusConfig = [
     'info_requested' => ['color'=>'text-orange-500', 'bg'=>'bg-orange-50',  'border'=>'border-orange-100','label'=>'Info Requested'],
 ];
 $sc = $statusConfig[$application->status] ?? $statusConfig['pending'];
-$docLabels = ['nrc'=>'NRC','payslip'=>'Payslip','bank_statement'=>'Bank Statement','employment_letter'=>'Employment Letter','collateral_proof'=>'Collateral Proof','selfie'=>'Selfie','additional'=>'Additional'];
+$documentChecklist = $application->documentChecklist();
+$documents = $application->activeDocuments();
 @endphp
 
 <div x-data="{ modal: '' }" class="p-6 lg:p-8 max-w-7xl mx-auto space-y-6">
@@ -104,20 +105,50 @@ $docLabels = ['nrc'=>'NRC','payslip'=>'Payslip','bank_statement'=>'Bank Statemen
                     <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Documents</h3>
                 </div>
                 <div class="divide-y divide-gray-50">
-                    @forelse($application->documents as $doc)
-                        <div class="flex items-center justify-between px-5 py-3">
-                            <div>
-                                <p class="text-sm font-medium text-gray-700">{{ $docLabels[$doc->type] ?? ucfirst(str_replace('_',' ',$doc->type)) }}</p>
-                                <p class="text-xs text-gray-400">{{ $doc->original_filename }}</p>
+                    @forelse($documents as $doc)
+                        <div class="px-5 py-4 space-y-3">
+                            <div class="flex items-start justify-between gap-3">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700">{{ $doc->label() }}</p>
+                                    <p class="text-xs text-gray-400">{{ $doc->original_filename }}</p>
+                                    @if($doc->reviewed_at)
+                                        <p class="text-[11px] text-gray-400 mt-1">Reviewed {{ $doc->reviewed_at->format('d M Y H:i') }}</p>
+                                    @endif
+                                </div>
+                                <span class="text-xs border px-2.5 py-1 rounded-full font-medium {{ $doc->statusClasses() }}">
+                                    {{ $doc->statusLabel() }}
+                                </span>
                             </div>
-                            <div class="flex items-center gap-2">
-                                @if($doc->is_verified)
-                                    <span class="text-xs text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full font-medium">Verified</span>
-                                @else
-                                    <button wire:click="verifyDocument({{ $doc->id }})"
-                                        class="text-xs text-[#1B4F72] bg-blue-50 px-2.5 py-1 rounded-full font-medium hover:bg-blue-100 transition-colors">
-                                        Mark Verified
-                                    </button>
+
+                            <div class="flex flex-wrap items-center gap-2">
+                                <a href="{{ route('documents.preview', $doc) }}" target="_blank"
+                                    class="text-xs text-[#1B4F72] bg-blue-50 px-2.5 py-1 rounded-full font-medium hover:bg-blue-100 transition-colors">
+                                    Preview
+                                </a>
+                                <a href="{{ route('documents.download', $doc) }}"
+                                    class="text-xs text-gray-600 bg-gray-100 px-2.5 py-1 rounded-full font-medium hover:bg-gray-200 transition-colors">
+                                    Download
+                                </a>
+                                <button wire:click="approveDocument({{ $doc->id }})"
+                                    class="text-xs text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full font-medium hover:bg-emerald-100 transition-colors">
+                                    Approve
+                                </button>
+                                <button wire:click="requestDocumentResubmission({{ $doc->id }})"
+                                    class="text-xs text-orange-700 bg-orange-50 px-2.5 py-1 rounded-full font-medium hover:bg-orange-100 transition-colors">
+                                    Request Update
+                                </button>
+                            </div>
+
+                            <div>
+                                <label class="block text-[11px] font-medium text-gray-500 uppercase tracking-wider mb-1.5">Reviewer Note</label>
+                                <textarea wire:model.blur="documentNotes.{{ $doc->id }}" rows="2"
+                                    class="w-full px-3 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1B4F72] resize-none"
+                                    placeholder="Add context for approval or explain what the customer should fix..."></textarea>
+                                @error("documentNotes.$doc->id")
+                                    <p class="text-xs text-red-500 mt-1">{{ $message }}</p>
+                                @enderror
+                                @if($doc->review_notes)
+                                    <p class="text-xs text-gray-500 mt-2">{{ $doc->review_notes }}</p>
                                 @endif
                             </div>
                         </div>
@@ -130,6 +161,35 @@ $docLabels = ['nrc'=>'NRC','payslip'=>'Payslip','bank_statement'=>'Bank Statemen
 
         {{-- RIGHT: Loan info + actions --}}
         <div class="space-y-4">
+
+            {{-- Document checklist --}}
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="px-5 py-3.5 border-b border-gray-50 flex items-center gap-2">
+                    <svg class="w-4 h-4 text-[#1B4F72]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m-7-8h8m-9 12h10a2 2 0 002-2V6a2 2 0 00-2-2H7a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Document Checklist</h3>
+                </div>
+                <div class="divide-y divide-gray-50">
+                    @foreach($documentChecklist as $item)
+                        <div class="px-5 py-3 flex items-start justify-between gap-3">
+                            <div>
+                                <p class="text-sm font-medium text-gray-700">{{ $item['label'] }}</p>
+                                <p class="text-xs text-gray-400">{{ $item['required'] ? 'Required' : 'Recommended' }}</p>
+                            </div>
+                            @if($item['approved'])
+                                <span class="text-xs bg-emerald-50 text-emerald-600 border border-emerald-100 px-2.5 py-1 rounded-full font-medium">Approved</span>
+                            @elseif($item['needs_resubmission'])
+                                <span class="text-xs bg-orange-50 text-orange-600 border border-orange-100 px-2.5 py-1 rounded-full font-medium">Needs update</span>
+                            @elseif($item['submitted'])
+                                <span class="text-xs bg-blue-50 text-blue-600 border border-blue-100 px-2.5 py-1 rounded-full font-medium">Submitted</span>
+                            @elseif($item['required'])
+                                <span class="text-xs bg-red-50 text-red-600 border border-red-100 px-2.5 py-1 rounded-full font-medium">Missing</span>
+                            @else
+                                <span class="text-xs bg-gray-50 text-gray-500 border border-gray-100 px-2.5 py-1 rounded-full font-medium">Optional</span>
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
+            </div>
 
             {{-- Loan details --}}
             <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">

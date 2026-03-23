@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
 
 class LoanApplication extends Model
 {
@@ -93,4 +94,53 @@ class LoanApplication extends Model
     public function isApproved(): bool { return $this->status === 'approved'; }
     public function isDisbursed(): bool { return $this->status === 'disbursed'; }
     public function isRejected(): bool { return $this->status === 'rejected'; }
+
+    public function activeDocuments(): Collection
+    {
+        $documents = $this->relationLoaded('documents')
+            ? $this->documents
+            : $this->documents()->get();
+
+        return $documents
+            ->filter(fn (Document $document) => $document->isActive())
+            ->sortByDesc('created_at')
+            ->values();
+    }
+
+    public function latestDocumentForType(string $type): ?Document
+    {
+        return $this->activeDocuments()
+            ->first(fn (Document $document) => $document->type === $type);
+    }
+
+    public function documentChecklist(): array
+    {
+        $product = $this->relationLoaded('loanProduct')
+            ? $this->loanProduct
+            : $this->loanProduct()->first();
+
+        if (! $product) {
+            return [];
+        }
+
+        return collect($product->documentChecklist())
+            ->map(function (array $item) {
+                $document = $this->latestDocumentForType($item['type']);
+
+                return array_merge($item, [
+                    'document' => $document,
+                    'submitted' => (bool) $document,
+                    'approved' => $document?->isApproved() ?? false,
+                    'needs_resubmission' => $document?->needsResubmission() ?? false,
+                ]);
+            })
+            ->all();
+    }
+
+    public function outstandingDocumentRequests(): Collection
+    {
+        return $this->activeDocuments()
+            ->filter(fn (Document $document) => $document->needsResubmission())
+            ->values();
+    }
 }

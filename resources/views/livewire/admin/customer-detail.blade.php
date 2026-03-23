@@ -19,10 +19,29 @@ $statusConfig = ['pending'=>['bg'=>'bg-amber-50','text'=>'text-amber-600','label
                     <p class="text-sm text-gray-400">{{ $customer->user->email }} &middot; {{ $customer->user->phone ?? '—' }}</p>
                 </div>
             </div>
-            <button wire:click="resetPassword" wire:confirm="Reset this customer's password?"
-                class="px-4 py-2 text-sm font-medium text-orange-600 bg-orange-50 border border-orange-100 rounded-xl hover:bg-orange-100 transition-colors">
-                Reset Password
-            </button>
+            <div class="flex items-center gap-2 flex-wrap">
+                {{-- Sends a secure reset link — customer sets their own password --}}
+                <button wire:click="sendPasswordResetLink"
+                        wire:confirm="Send a password reset link to {{ $customer->user->email }}?"
+                        wire:loading.attr="disabled"
+                        class="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-[#1B4F72] bg-blue-50 border border-blue-100 rounded-xl hover:bg-blue-100 transition-colors disabled:opacity-50">
+                    <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    Send Reset Link
+                </button>
+
+                {{-- Generates a temp password and emails it — use when reset link also fails --}}
+                <button wire:click="resetPassword"
+                        wire:confirm="Generate a temporary password and email it to {{ $customer->user->email }}?"
+                        wire:loading.attr="disabled"
+                        class="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-orange-600 bg-orange-50 border border-orange-100 rounded-xl hover:bg-orange-100 transition-colors disabled:opacity-50">
+                    <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/>
+                    </svg>
+                    Reset Password
+                </button>
+            </div>
         </div>
     </div>
 

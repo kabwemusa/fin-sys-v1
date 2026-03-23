@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DocumentController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,6 +12,7 @@ Route::get('/apply/confirmation/{reference}', App\Livewire\Public\Confirmation::
 
 // ============ AUTH ROUTES ============
 Route::get('/login', App\Livewire\Auth\Login::class)->name('login')->middleware('guest');
+Route::get('/reset-password/{token}', App\Livewire\Auth\PasswordReset::class)->name('password.reset')->middleware('guest');
 Route::post('/logout', function () {
     Auth::logout();
     request()->session()->invalidate();
@@ -41,4 +43,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 // ============ PASSWORD CHANGE ============
 Route::middleware(['auth'])->group(function () {
     Route::get('/change-password', App\Livewire\Auth\ChangePassword::class)->name('password.change');
+    Route::prefix('documents')->name('documents.')->group(function () {
+        Route::get('/{document}/preview', [DocumentController::class, 'preview'])->name('preview');
+        Route::get('/{document}/download', [DocumentController::class, 'download'])->name('download');
+    });
 });

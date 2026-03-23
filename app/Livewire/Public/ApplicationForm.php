@@ -11,6 +11,7 @@ use App\Notifications\ApplicationSubmitted;
 use App\Notifications\NewApplicationForAdmin;
 use App\Services\AccountGeneratorService;
 use App\Services\LoanCalculatorService;
+use App\Services\NotificationDeliveryService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -21,6 +22,15 @@ use Livewire\WithFileUploads;
 class ApplicationForm extends Component
 {
     use WithFileUploads;
+
+    private const DOCUMENT_FIELD_MAP = [
+        'nrc' => 'document_nrc',
+        'payslip' => 'document_payslip',
+        'bank_statement' => 'document_bank_statement',
+        'employment_letter' => 'document_employment_letter',
+        'collateral_proof' => 'document_collateral_proof',
+        'selfie' => 'document_selfie',
+    ];
 
     public int $currentStep = 1;
     public int $totalSteps = 6;
@@ -176,6 +186,7 @@ class ApplicationForm extends Component
                         'original_filename'   => $file->getClientOriginalName(),
                         'file_path'           => $path,
                         'file_size'           => $fileSize,
+                        'status'              => 'pending',
                     ]);
                 }
 
@@ -199,25 +210,40 @@ class ApplicationForm extends Component
                 ];
             });
 
-            // ── Post-commit: fire notifications ──────────────────────────────
-            // Wrapped in its own try/catch so a mailer failure never surfaces
-            // as a submission error to the applicant.
-            try {
-                if ($notifyData['plain_password']) {
-                    $notifyData['user']->notify(
-                        new ApplicationSubmitted($notifyData['application'], $notifyData['plain_password'])
-                    );
-                }
+            // Post-commit notifications run after the application is safely stored.
+            $deliveryService = app(NotificationDeliveryService::class);
 
-                $admins = User::where('role', 'admin')->get();
-                foreach ($admins as $admin) {
-                    $admin->notify(new NewApplicationForAdmin($notifyData['application']));
-                }
-            } catch (\Throwable $mailException) {
-                Log::warning('Application notifications failed after successful submission', [
-                    'application_id' => $application?->id,
-                    'error'          => $mailException->getMessage(),
-                ]);
+            $customerMailDelivered = $deliveryService->send(
+                $notifyData['user'],
+                new ApplicationSubmitted($notifyData['application'], $notifyData['plain_password']),
+                [
+                    'application_id' => $notifyData['application']->id,
+                    'loan_reference' => $notifyData['application']->reference,
+                    'audience' => 'customer',
+                ]
+            );
+
+            $admins = User::where('role', 'admin')->get();
+            foreach ($admins as $admin) {
+                $deliveryService->send(
+                    $admin,
+                    new NewApplicationForAdmin($notifyData['application']),
+                    [
+                        'application_id' => $notifyData['application']->id,
+                        'loan_reference' => $notifyData['application']->reference,
+                        'audience' => 'admin',
+                        'admin_id' => $admin->id,
+                    ]
+                );
+            }
+
+            session()->flash('portal_access_mode', $notifyData['plain_password'] ? 'new_account' : 'existing_account');
+
+            if (! $customerMailDelivered) {
+                session()->flash(
+                    'mail_delivery_warning',
+                    'We received your application, but we could not confirm email delivery. If the message does not arrive shortly, contact support with your reference number.'
+                );
             }
 
             $this->redirect(route('loan.confirmation', $application->reference));
@@ -291,9 +317,15 @@ class ApplicationForm extends Component
             'tenure_months' => "required|integer|min:{$this->loanProduct->min_tenure_months}|max:{$this->loanProduct->max_tenure_months}",
         ];
 
-        $stepRules[$docsStep] = [
-            'document_nrc' => 'required|file|mimes:pdf,jpg,jpeg,png|max:5120',
-        ];
+        $stepRules[$docsStep] = [];
+
+        foreach ($this->loanProduct->requiredDocumentTypes() as $type) {
+            $field = self::DOCUMENT_FIELD_MAP[$type] ?? null;
+
+            if ($field) {
+                $stepRules[$docsStep][$field] = 'required|file|mimes:pdf,jpg,jpeg,png|max:5120';
+            }
+        }
 
         if (isset($stepRules[$this->currentStep])) {
             $this->validate($stepRules[$this->currentStep]);

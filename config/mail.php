@@ -45,8 +45,22 @@ return [
             'port' => env('MAIL_PORT', 2525),
             'username' => env('MAIL_USERNAME'),
             'password' => env('MAIL_PASSWORD'),
-            'timeout' => null,
-            'local_domain' => env('MAIL_EHLO_DOMAIN', parse_url((string) env('APP_URL', 'http://localhost'), PHP_URL_HOST)),
+            'timeout' => env('MAIL_TIMEOUT', 15),
+            'local_domain' => env('MAIL_EHLO_DOMAIN', (static function (): string {
+                $appHost = parse_url((string) env('APP_URL', ''), PHP_URL_HOST);
+
+                if (is_string($appHost) && $appHost !== '' && ! in_array($appHost, ['localhost', '127.0.0.1'], true)) {
+                    return $appHost;
+                }
+
+                $fromAddress = (string) env('MAIL_FROM_ADDRESS', '');
+
+                if (str_contains($fromAddress, '@')) {
+                    return (string) substr(strrchr($fromAddress, '@'), 1);
+                }
+
+                return 'localhost';
+            })()),
         ],
 
         'ses' => [

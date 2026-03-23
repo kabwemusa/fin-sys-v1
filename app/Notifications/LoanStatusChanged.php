@@ -3,7 +3,6 @@
 namespace App\Notifications;
 
 use App\Models\LoanApplication;
-use App\Services\SmsService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
@@ -25,9 +24,7 @@ class LoanStatusChanged extends Notification
 
     public function toMail(object $notifiable): MailMessage
     {
-        [$subject, $body, $smsBody] = $this->buildContent();
-
-        app(SmsService::class)->send($notifiable->phone ?? '', $smsBody);
+        [$subject, $body] = $this->buildContent();
 
         $mail = (new MailMessage)
             ->subject($subject)
@@ -39,6 +36,13 @@ class LoanStatusChanged extends Notification
         }
 
         return $mail;
+    }
+
+    public function smsMessage(object $notifiable): string
+    {
+        [, , $smsBody] = $this->buildContent();
+
+        return $smsBody;
     }
 
     public function toArray(object $notifiable): array

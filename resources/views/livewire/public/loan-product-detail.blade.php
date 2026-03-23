@@ -3,7 +3,7 @@
     {{-- ── Hero banner ── --}}
     <div class="relative bg-[#0c2336] overflow-hidden">
         <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=80"
-             alt="" class="absolute inset-0 w-full h-full object-cover opacity-15" loading="eager">
+             alt="" class="absolute inset-0 w-full h-full object-cover opacity-15" loading="eager" fetchpriority="high" decoding="async">
         <div class="absolute inset-0 bg-gradient-to-r from-[#0c2336]/98 via-[#0c2336]/85 to-[#0c2336]/40"></div>
 
         <div class="relative max-w-4xl mx-auto px-5 py-16">

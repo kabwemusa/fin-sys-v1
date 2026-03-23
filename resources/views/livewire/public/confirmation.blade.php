@@ -62,14 +62,28 @@
             </div>
         </div>
 
-        {{-- Email notice --}}
-        <div class="flex items-start gap-3 bg-blue-50 border border-blue-100 rounded-2xl p-4 mb-6">
-            <svg class="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-            <div>
-                <p class="text-xs font-medium text-blue-700 mb-0.5">Check your email & SMS</p>
-                <p class="text-xs text-blue-600 font-light leading-relaxed">Your account has been created. Login credentials have been sent to your email and phone number.</p>
+        @if (session('mail_delivery_warning'))
+            <div class="flex items-start gap-3 bg-amber-50 border border-amber-100 rounded-2xl p-4 mb-6">
+                <svg class="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01M4.93 19h14.14c1.54 0 2.5-1.67 1.73-3L13.73 4c-.77-1.33-2.69-1.33-3.46 0L3.2 16c-.77 1.33.19 3 1.73 3z"/></svg>
+                <div>
+                    <p class="text-xs font-medium text-amber-700 mb-0.5">Email follow-up needed</p>
+                    <p class="text-xs text-amber-700 font-light leading-relaxed">{{ session('mail_delivery_warning') }}</p>
+                </div>
             </div>
-        </div>
+        @else
+            <div class="flex items-start gap-3 bg-blue-50 border border-blue-100 rounded-2xl p-4 mb-6">
+                <svg class="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                <div>
+                    @if (session('portal_access_mode') === 'existing_account')
+                        <p class="text-xs font-medium text-blue-700 mb-0.5">Use your existing portal account</p>
+                        <p class="text-xs text-blue-600 font-light leading-relaxed">Sign in with your current customer portal password to track this application.</p>
+                    @else
+                        <p class="text-xs font-medium text-blue-700 mb-0.5">Check your email</p>
+                        <p class="text-xs text-blue-600 font-light leading-relaxed">Your portal sign-in details have been sent by email so you can track your application online.</p>
+                    @endif
+                </div>
+            </div>
+        @endif
 
         {{-- Thin decorative divider --}}
         <div class="flex items-center gap-3 mb-6">

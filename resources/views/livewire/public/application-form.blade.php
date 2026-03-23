@@ -5,26 +5,6 @@
         ? ['Personal', 'Employment', 'Collateral', 'Banking', 'Loan Details', 'Documents', 'Review']
         : ['Personal', 'Employment', 'Banking', 'Loan Details', 'Documents', 'Review'];
 
-    $stepImages = $isCollateral
-        ? [
-            'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=80',
-            'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=700&q=80',
-            'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=700&q=80',
-            'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=700&q=80',
-            'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=700&q=80',
-            'https://images.unsplash.com/photo-1568992688065-536aad8a12f6?auto=format&fit=crop&w=700&q=80',
-            'https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=700&q=80',
-          ]
-        : [
-            'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=80',
-            'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=700&q=80',
-            'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=700&q=80',
-            'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=700&q=80',
-            'https://images.unsplash.com/photo-1568992688065-536aad8a12f6?auto=format&fit=crop&w=700&q=80',
-            'https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=700&q=80',
-          ];
-
-    // Story-driven metadata per step label
     $stepMeta = [
         'Personal'     => ['story' => 'Tell us who you are',          'sub' => 'The first step to your financial goal',    'icon' => 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z'],
         'Employment'   => ['story' => 'Show us your income',           'sub' => 'Help us verify your repayment capacity',   'icon' => 'M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'],
@@ -37,155 +17,89 @@
 
     $currentLabel = $stepLabels[$currentStep - 1];
     $meta         = $stepMeta[$currentLabel] ?? ['story' => $currentLabel, 'sub' => '', 'icon' => 'M9 5l7 7-7 7'];
-    $currentImg   = $stepImages[$currentStep - 1] ?? $stepImages[0];
     $progressPct  = round(($currentStep / $totalSteps) * 100);
+    $documentChecklist = $loanProduct->documentChecklist();
 
     $dateOnly   = ['dateFormat' => 'Y-m-d', 'altInput' => true, 'altFormat' => 'F j, Y', 'enableTime' => false];
     $dobConfig  = array_merge($dateOnly, ['maxDate' => now()->subYears(18)->format('Y-m-d')]);
     $pastConfig = array_merge($dateOnly, ['maxDate' => 'today']);
 @endphp
 
-<div class="min-h-screen bg-[#071520]">
+<div class="min-h-screen bg-[#071520] flex flex-col">
 
     {{-- ═══════════════════════════════════════════════════
-         HERO HEADER BAND — Dark, cinematic, story-driven
+         COMPACT PAGE HEADER — back · product · step progress
          ═══════════════════════════════════════════════════ --}}
-    <div class="relative overflow-hidden border-b border-white/5">
+    <div class="bg-[#071520] border-b border-white/8 sticky top-0 z-20">
+        <div class="max-w-5xl mx-auto px-5">
 
-        {{-- Atmospheric image bleed --}}
-        <div class="absolute inset-0">
-            <img src="{{ $currentImg }}" alt="" class="w-full h-full object-cover opacity-10 transition-opacity duration-700" loading="lazy">
-        </div>
-        <div class="absolute inset-0 bg-linear-to-r from-[#071520]/98 via-[#071520]/90 to-[#071520]/70"></div>
-
-        {{-- Dot-grid texture --}}
-        <div class="absolute inset-0 pointer-events-none opacity-[0.03]"
-             style="background-image:radial-gradient(circle, #4EA8D9 1px, transparent 1px); background-size:40px 40px;"></div>
-
-        <div class="relative max-w-5xl mx-auto px-5 py-8">
-
-            {{-- Top row: back link --}}
-            <a href="{{ route('home') }}"
-               class="inline-flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-300 transition-colors mb-6 group">
-                <svg class="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                </svg>
-                Back to home
-            </a>
-
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-5">
-
-                <div>
-                    {{-- Product badge --}}
-                    <div class="inline-flex items-center gap-2 mb-4 px-3 py-1.5 rounded-full bg-[#F39C12]/10 border border-[#F39C12]/20">
+                {{-- Row 1: back · product badge · step fraction + mini progress --}}
+                <div class="flex items-center gap-3 py-2.5 border-b border-white/5">
+                    <a href="{{ route('home') }}"
+                       class="inline-flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-300 transition-colors group shrink-0">
+                        <svg class="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                        </svg>
+                        <span class="hidden sm:inline">Back</span>
+                    </a>
+                    <span class="w-px h-4 bg-white/10 shrink-0"></span>
+                    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#F39C12]/10 border border-[#F39C12]/20">
                         <span class="w-1.5 h-1.5 rounded-full bg-[#F39C12] animate-pulse shrink-0"></span>
                         <span class="text-[#F39C12] text-xs font-medium tracking-[0.12em] uppercase">{{ $loanProduct->name }}</span>
                     </div>
-
-                    {{-- Story headline --}}
-                    <h1 class="text-2xl md:text-3xl font-semibold text-white mb-1">{{ $meta['story'] }}</h1>
-                    <p class="text-slate-500 text-sm font-light">{{ $meta['sub'] }}</p>
-                </div>
-
-                {{-- Big progress dial --}}
-                <div class="flex items-center gap-5">
-
-                    {{-- Step counter pills --}}
-                    <div class="hidden sm:flex items-center gap-2">
-                        <span class="text-xs text-slate-500 font-light">Step</span>
-                        <span class="text-white font-semibold text-sm">{{ $currentStep }}</span>
-                        <span class="text-slate-600 text-xs">/</span>
+                    <div class="ml-auto flex items-center gap-2.5 shrink-0">
+                        <span class="text-xs text-slate-500 font-light hidden sm:inline">Step</span>
+                        <span class="text-white text-xs font-semibold">{{ $currentStep }}</span>
+                        <span class="text-slate-600 text-[10px]">/</span>
                         <span class="text-slate-500 text-xs font-light">{{ $totalSteps }}</span>
-                    </div>
-
-                    {{-- Circular progress --}}
-                    <div class="relative w-16 h-16 shrink-0">
-                        <svg class="w-16 h-16 -rotate-90" viewBox="0 0 64 64">
-                            <circle cx="32" cy="32" r="26" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="5"/>
-                            <circle cx="32" cy="32" r="26" fill="none" stroke="#4EA8D9" stroke-width="5"
-                                    stroke-linecap="round"
-                                    stroke-dasharray="{{ round(2 * 3.14159 * 26) }}"
-                                    stroke-dashoffset="{{ round(2 * 3.14159 * 26 * (1 - $progressPct / 100)) }}"
-                                    style="transition: stroke-dashoffset 0.7s cubic-bezier(.16,1,.3,1)"/>
-                        </svg>
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-white font-semibold text-sm">{{ $progressPct }}<span class="text-[10px] text-slate-400">%</span></span>
+                        <div class="w-16 h-1 bg-white/8 rounded-full overflow-hidden">
+                            <div class="h-full bg-linear-to-r from-[#1B4F72] to-[#4EA8D9] rounded-full transition-all duration-700"
+                                 style="width:{{ $progressPct }}%"></div>
                         </div>
                     </div>
                 </div>
-            </div>
+
+                {{-- Row 2: Horizontal stepper --}}
+                <div class="py-2.5 overflow-x-auto">
+                    <div class="relative flex items-center gap-0 min-w-max md:min-w-0 md:justify-between">
+
+                        {{-- Track --}}
+                        <div class="absolute top-3.25 left-3 right-3 h-px bg-white/8 z-0 hidden md:block"></div>
+                        <div class="absolute top-3.25 left-3 h-px bg-linear-to-r from-[#1B4F72] to-[#4EA8D9] z-0 hidden md:block transition-all duration-700"
+                             style="width: calc({{ max(0, ($currentStep - 1) / max(1, $totalSteps - 1) * 100) }}% - 1.5rem)"></div>
+
+                        @foreach($stepLabels as $i => $label)
+                            @php $n = $i + 1; $isDone = $currentStep > $n; $isActive = $currentStep === $n; @endphp
+                            <div class="relative flex flex-col items-center gap-1 z-10 px-2.5 md:px-0 first:pl-0 last:pr-0">
+                                <div class="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-semibold transition-all duration-300 shrink-0
+                                     {{ $isDone ? 'bg-[#4EA8D9] text-white shadow-md shadow-[#4EA8D9]/30'
+                                                : ($isActive ? 'bg-white text-[#1B4F72] shadow-lg ring-4 ring-[#4EA8D9]/20'
+                                                             : 'bg-white/6 text-white/25 border border-white/10') }}">
+                                    @if($isDone)
+                                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                    @else
+                                        {{ $n }}
+                                    @endif
+                                </div>
+                                <span class="text-[9px] font-medium whitespace-nowrap transition-colors duration-300
+                                     {{ $isActive ? 'text-white' : ($isDone ? 'text-[#4EA8D9]/70' : 'text-white/20') }}">
+                                    {{ $label }}
+                                </span>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
         </div>
     </div>
 
 
     {{-- ═══════════════════════════════════════════════════
-         HORIZONTAL STEPPER — Pill style, scrollable on mobile
+         MAIN FORM CARD
          ═══════════════════════════════════════════════════ --}}
-    <div class="bg-[#0a1d2e] border-b border-white/5 overflow-x-auto">
-        <div class="max-w-5xl mx-auto px-5 py-4">
-            <div class="relative flex items-center gap-0 min-w-max md:min-w-0 md:justify-between">
-
-                {{-- Background track --}}
-                <div class="absolute top-[18px] left-4 right-4 h-px bg-white/8 z-0 hidden md:block"></div>
-
-                {{-- Progress fill track --}}
-                <div class="absolute top-[18px] left-4 h-px bg-linear-to-r from-[#1B4F72] to-[#4EA8D9] z-0 hidden md:block transition-all duration-700"
-                     style="width: calc({{ max(0, ($currentStep - 1) / max(1, $totalSteps - 1) * 100) }}% - 2rem)"></div>
-
-                @foreach($stepLabels as $i => $label)
-                    @php
-                        $n        = $i + 1;
-                        $isDone   = $currentStep > $n;
-                        $isActive = $currentStep === $n;
-                    @endphp
-                    <div class="relative flex flex-col items-center gap-1.5 z-10 px-3 md:px-0 first:pl-0 last:pr-0">
-                        {{-- Circle node --}}
-                        <div class="w-9 h-9 rounded-full flex items-center justify-center text-xs font-semibold transition-all duration-300 shrink-0
-                             {{ $isDone   ? 'bg-[#4EA8D9] text-white shadow-lg shadow-[#4EA8D9]/30'
-                                          : ($isActive ? 'bg-white text-[#1B4F72] shadow-xl ring-4 ring-[#4EA8D9]/20'
-                                                       : 'bg-white/6 text-white/25 border border-white/10') }}">
-                            @if($isDone)
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
-                                </svg>
-                            @else
-                                {{ $n }}
-                            @endif
-                        </div>
-                        {{-- Label --}}
-                        <span class="text-[10px] font-medium whitespace-nowrap transition-colors duration-300
-                             {{ $isActive ? 'text-white' : ($isDone ? 'text-[#4EA8D9]/70' : 'text-white/20') }}">
-                            {{ $label }}
-                        </span>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-
-
-    {{-- ═══════════════════════════════════════════════════
-         MAIN FORM CARD — Floats on dark canvas
-         ═══════════════════════════════════════════════════ --}}
-    <div class="max-w-5xl mx-auto px-4 py-8 pb-16">
-
-        {{-- Mobile: compact loan summary bar --}}
-        <div class="lg:hidden mb-4 bg-[#0c2336] rounded-2xl px-5 py-4 flex items-center justify-between border border-white/5">
-            <div>
-                <p class="text-[10px] text-slate-500 uppercase tracking-wider mb-0.5">Applying for</p>
-                <p class="text-white font-semibold text-sm">{{ $loanProduct->name }}</p>
-            </div>
-            <div class="flex items-center gap-5">
-                <div class="text-center">
-                    <p class="text-[#4EA8D9] font-bold text-base">{{ $loanProduct->interest_rate }}%</p>
-                    <p class="text-[10px] text-slate-500">/ month</p>
-                </div>
-                <div class="text-center">
-                    <p class="text-white font-medium text-sm">ZMW {{ number_format($loanProduct->max_amount/1000,0) }}K</p>
-                    <p class="text-[10px] text-slate-500">max</p>
-                </div>
-            </div>
-        </div>
+    <div class="flex-1 max-w-5xl mx-auto w-full px-4 py-4 pb-10">
 
         <div class="bg-white rounded-3xl overflow-hidden shadow-2xl shadow-black/40">
 
@@ -197,21 +111,12 @@
 
             <div class="flex flex-col lg:flex-row">
 
-                {{-- ── SIDEBAR — immersive, story-driven ── --}}
-                <div class="hidden lg:flex w-64 shrink-0 flex-col relative overflow-hidden bg-[#071520] min-h-[580px]">
-
-                    {{-- Background image --}}
-                    <img src="{{ $currentImg }}" alt=""
-                         class="absolute inset-0 w-full h-full object-cover opacity-30 transition-all duration-700" loading="lazy">
-                    <div class="absolute inset-0 bg-linear-to-b from-[#071520]/75 via-[#071520]/55 to-[#071520]/95"></div>
-
-                    {{-- Subtle dot texture --}}
-                    <div class="absolute inset-0 opacity-[0.04] pointer-events-none"
-                         style="background-image:radial-gradient(circle, #fff 1px, transparent 1px); background-size:28px 28px;"></div>
+                {{-- ── SIDEBAR ── --}}
+                <div class="hidden lg:flex w-52 shrink-0 flex-col bg-[#071520]">
 
                     {{-- Top: Step icon + name --}}
-                    <div class="relative p-7 pt-8">
-                        <div class="w-11 h-11 rounded-2xl bg-[#F39C12]/15 border border-[#F39C12]/25 flex items-center justify-center mb-5">
+                    <div class="p-5">
+                        <div class="w-9 h-9 rounded-2xl bg-[#F39C12]/15 border border-[#F39C12]/25 flex items-center justify-center mb-4">
                             <svg class="w-5 h-5 text-[#F39C12]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="{{ $meta['icon'] }}"/>
                             </svg>
@@ -224,8 +129,8 @@
                         <div class="mt-4 h-px bg-linear-to-r from-[#4EA8D9]/40 to-transparent"></div>
                     </div>
 
-                    {{-- Loan summary glass card --}}
-                    <div class="relative mx-5 mb-6 bg-white/6 border border-white/10 rounded-2xl px-4 py-4 backdrop-blur-sm">
+                    {{-- Loan summary --}}
+                    <div class="mx-4 mb-5 bg-white/6 border border-white/10 rounded-2xl px-4 py-3">
                         <p class="text-[9px] text-slate-500 uppercase tracking-wider mb-3">Loan Summary</p>
                         <div class="space-y-2">
                             <div class="flex justify-between items-center">
@@ -247,45 +152,15 @@
                         </div>
                     </div>
 
-                    {{-- Vertical step list --}}
-                    <div class="relative px-7 pb-8 mt-auto">
-                        @foreach($stepLabels as $i => $label)
-                            @php $n = $i + 1; $isDone = $currentStep > $n; $isActive = $currentStep === $n; @endphp
-                            <div class="flex items-stretch gap-3">
-                                <div class="flex flex-col items-center">
-                                    <div class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 transition-all duration-300
-                                         {{ $isDone ? 'bg-[#4EA8D9] text-white' : ($isActive ? 'bg-[#F39C12] text-white' : 'bg-white/8 text-white/20') }}">
-                                        @if($isDone)
-                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
-                                            </svg>
-                                        @else
-                                            <span class="text-[9px] font-semibold">{{ $n }}</span>
-                                        @endif
-                                    </div>
-                                    @if(!$loop->last)
-                                        <div class="w-px h-5 my-0.5 transition-colors duration-300
-                                             {{ $isDone ? 'bg-[#4EA8D9]/40' : 'bg-white/8' }}"></div>
-                                    @endif
-                                </div>
-                                <div class="flex items-start pb-0.5">
-                                    <span class="text-xs leading-5
-                                         {{ $isActive ? 'text-white font-medium' : ($isDone ? 'text-slate-400' : 'text-white/20') }}">
-                                        {{ $label }}
-                                    </span>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
                 </div>
 
 
                 {{-- ── FORM CONTENT AREA ── --}}
                 <div class="flex-1 flex flex-col">
-                    <div class="flex-1 p-7 lg:p-10">
+                    <div class="flex-1 p-5 lg:p-8">
 
                         {{-- Step header --}}
-                        <div class="flex items-start gap-4 mb-7">
+                        <div class="flex items-start gap-3 mb-4">
                             <div class="w-10 h-10 rounded-2xl bg-[#1B4F72]/8 flex items-center justify-center shrink-0 mt-0.5">
                                 <svg class="w-5 h-5 text-[#1B4F72]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="{{ $meta['icon'] }}"/>
@@ -404,15 +279,28 @@
                                     <svg class="w-4 h-4 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
                                     </svg>
-                                    <p class="text-xs text-amber-700 font-light leading-relaxed">NRC copy is <strong>mandatory</strong>. Additional documents strengthen your application and speed up approval. PDF, JPG, PNG — max 5 MB each.</p>
+                                    <p class="text-xs text-amber-700 font-light leading-relaxed">Upload the documents listed below. Required items block submission, while recommended items help the review move faster. PDF, JPG, PNG — max 5 MB each.</p>
                                 </div>
                                 <div class="space-y-3">
+                                    <div class="mb-2 grid gap-3 sm:grid-cols-2">
+                                        @foreach($documentChecklist as $item)
+                                            <div class="rounded-2xl border {{ $item['required'] ? 'border-[#1B4F72]/15 bg-[#1B4F72]/5' : 'border-gray-100 bg-gray-50' }} px-4 py-3">
+                                                <div class="flex items-center justify-between gap-3">
+                                                    <p class="text-sm font-medium {{ $item['required'] ? 'text-[#1B4F72]' : 'text-gray-700' }}">{{ $item['label'] }}</p>
+                                                    <span class="text-[10px] uppercase tracking-wider font-semibold {{ $item['required'] ? 'text-[#1B4F72]' : 'text-gray-400' }}">
+                                                        {{ $item['required'] ? 'Required' : 'Recommended' }}
+                                                    </span>
+                                                </div>
+                                                <p class="text-xs text-gray-500 font-light mt-1.5 leading-relaxed">{{ $item['hint'] }}</p>
+                                            </div>
+                                        @endforeach
+                                    </div>
                                     <x-mary-file wire:model="document_nrc"               label="NRC Copy (Required)"             accept="image/*,.pdf" hint="Front and back of your National Registration Card" />
                                     <x-mary-file wire:model="document_payslip"           label="Latest Payslip"                  accept="image/*,.pdf" hint="Most recent salary payslip" />
                                     <x-mary-file wire:model="document_bank_statement"    label="3-Month Bank Statement"          accept="image/*,.pdf" />
                                     <x-mary-file wire:model="document_employment_letter" label="Employment Letter"               accept="image/*,.pdf" />
                                     @if($loanProduct->requires_collateral)
-                                        <x-mary-file wire:model="document_collateral_proof" label="Collateral Proof (Title Deed / Log Book)" accept="image/*,.pdf" />
+                                        <x-mary-file wire:model="document_collateral_proof" label="Collateral Proof (Required)" accept="image/*,.pdf" hint="Title deed, log book, or other proof of ownership." />
                                     @endif
                                     <x-mary-file wire:model="document_selfie"            label="Selfie Holding NRC"              accept="image/*" hint="Clear photo of your face with NRC visible" />
                                 </div>
