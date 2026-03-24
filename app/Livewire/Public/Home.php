@@ -11,6 +11,6 @@ class Home extends Component
     {
         return view('livewire.public.home', [
             'products' => LoanProduct::active()->get(),
-        ])->layout('components.layouts.app', ['title' => 'Loan Management System']);
+        ])->layout('components.layouts.app', ['title' => 'Credence Systems']);
     }
 }

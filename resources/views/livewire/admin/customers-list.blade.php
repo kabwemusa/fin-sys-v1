@@ -7,11 +7,11 @@
             </div>
             <input wire:model.live.debounce.300ms="search" type="text" placeholder="Search name, email, phone, NRC…"
                 class="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-800
-                       focus:outline-none focus:ring-2 focus:ring-[#1B4F72]/20 focus:border-[#1B4F72] transition-all">
+                       focus:outline-none focus:ring-2 focus:ring-[#166534]/20 focus:border-[#166534] transition-all">
         </div>
     </div>
 
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+    <div class="portal-panel rounded-2xl overflow-hidden">
         <div class="hidden md:grid grid-cols-12 gap-3 px-6 py-3 bg-gray-50 border-b border-gray-100 text-xs font-medium text-gray-400 uppercase tracking-wider">
             <div class="col-span-4">Customer</div>
             <div class="col-span-2">Phone</div>
@@ -24,13 +24,13 @@
         <div class="divide-y divide-gray-50">
             @forelse($customers as $customer)
                 <a href="{{ route('admin.customer.detail', $customer->id) }}"
-                   class="grid grid-cols-12 gap-3 px-6 py-4 hover:bg-gray-50/60 transition-colors items-center group">
+                   class="portal-card-hover grid grid-cols-12 gap-3 px-6 py-4 hover:bg-gray-50/60 transition-colors items-center group">
                     <div class="col-span-12 md:col-span-4 flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-full bg-[#1B4F72]/10 flex items-center justify-center shrink-0">
-                            <span class="text-[#1B4F72] text-xs font-semibold">{{ strtoupper(substr($customer->user->name, 0, 1)) }}</span>
+                        <div class="w-8 h-8 rounded-full bg-[#166534]/10 flex items-center justify-center shrink-0">
+                            <span class="text-[#166534] text-xs font-semibold">{{ strtoupper(substr($customer->user->name, 0, 1)) }}</span>
                         </div>
                         <div>
-                            <p class="text-sm font-medium text-gray-800 group-hover:text-[#1B4F72] transition-colors">{{ $customer->user->name }}</p>
+                            <p class="text-sm font-medium text-gray-800 group-hover:text-[#166534] transition-colors">{{ $customer->user->name }}</p>
                             <p class="text-xs text-gray-400">{{ $customer->user->email }}</p>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                         <p class="text-xs text-gray-400">{{ $customer->created_at->format('d M Y') }}</p>
                     </div>
                     <div class="col-span-6 md:col-span-1 flex justify-end">
-                        <svg class="w-4 h-4 text-gray-300 group-hover:text-[#1B4F72] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4 text-gray-300 group-hover:text-[#166534] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                         </svg>
                     </div>

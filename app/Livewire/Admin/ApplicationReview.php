@@ -74,6 +74,7 @@ class ApplicationReview extends Component
         $customerNotified = $this->notifyCustomerStatusChange($old, 'approved');
         $this->refreshApplication();
         $this->dispatch('notify', type: $customerNotified ? 'success' : 'warning', message: $customerNotified ? 'Application approved.' : 'Application approved, but email delivery could not be confirmed.');
+        $this->dispatch('portal-action-finished');
     }
 
     public function reject(): void
@@ -92,6 +93,7 @@ class ApplicationReview extends Component
         $customerNotified = $this->notifyCustomerStatusChange($old, 'rejected');
         $this->refreshApplication();
         $this->dispatch('notify', type: $customerNotified ? 'success' : 'warning', message: $customerNotified ? 'Application rejected.' : 'Application rejected, but email delivery could not be confirmed.');
+        $this->dispatch('portal-action-finished');
     }
 
     public function requestInfo(): void
@@ -109,6 +111,7 @@ class ApplicationReview extends Component
         $customerNotified = $this->notifyCustomerStatusChange($old, 'info_requested');
         $this->refreshApplication();
         $this->dispatch('notify', type: $customerNotified ? 'success' : 'warning', message: $customerNotified ? 'Info requested from customer.' : 'Info requested from customer, but email delivery could not be confirmed.');
+        $this->dispatch('portal-action-finished');
     }
 
     public function disburse(): void
@@ -129,6 +132,7 @@ class ApplicationReview extends Component
         $customerNotified = $this->notifyCustomerStatusChange($old, 'disbursed');
         $this->refreshApplication();
         $this->dispatch('notify', type: $customerNotified ? 'success' : 'warning', message: $customerNotified ? 'Loan marked as disbursed.' : 'Loan marked as disbursed, but email delivery could not be confirmed.');
+        $this->dispatch('portal-action-finished');
     }
 
     public function markUnderReview(): void

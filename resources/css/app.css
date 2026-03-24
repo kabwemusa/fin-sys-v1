@@ -16,7 +16,7 @@
 }
 
 @plugin "daisyui/theme" {
-    name: "loansystem";
+    name: "CredenceSystems";
     default: true;
     color-scheme: light;
     --color-primary: #166534;
@@ -28,6 +28,98 @@
     --color-success: #16a34a;
     --color-warning: #f39c12;
     --color-error: #e74c3c;
+}
+
+:root {
+    --portal-ink: #071520;
+    --portal-surface: rgba(255, 255, 255, 0.92);
+    --portal-line: rgba(148, 163, 184, 0.16);
+    --portal-shadow: 0 22px 45px rgba(7, 21, 32, 0.08);
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+button:not(:disabled),
+[type="button"]:not(:disabled),
+[type="submit"]:not(:disabled),
+a[href],
+[role="button"],
+[wire\:click],
+[x-on\:click] {
+    cursor: pointer;
+}
+
+button:disabled,
+[aria-disabled="true"] {
+    cursor: not-allowed;
+}
+
+.portal-shell-bg {
+    background:
+        radial-gradient(circle at top left, rgba(78, 168, 217, 0.08), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(22, 101, 52, 0.08), transparent 30%),
+        linear-gradient(180deg, #f8fbfd 0%, #f2f6f9 100%);
+}
+
+.portal-sidebar-surface {
+    background:
+        linear-gradient(180deg, rgba(12, 35, 54, 0.96) 0%, rgba(7, 21, 32, 0.98) 100%);
+}
+
+.portal-topbar-surface {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(18px);
+}
+
+.portal-panel {
+    background: var(--portal-surface);
+    border: 1px solid var(--portal-line);
+    box-shadow: var(--portal-shadow);
+}
+
+.portal-card-hover,
+.portal-nav-link,
+.portal-action {
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        background-color 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease,
+        opacity 0.18s ease;
+}
+
+.portal-card-hover:hover,
+.portal-action:hover {
+    transform: translateY(-1px);
+}
+
+.portal-card-hover:hover {
+    box-shadow: 0 24px 44px rgba(7, 21, 32, 0.1);
+}
+
+.portal-progress-track {
+    position: relative;
+    overflow: hidden;
+}
+
+.portal-progress-runner {
+    animation: portal-progress-scan 1.15s ease-in-out infinite;
+}
+
+.portal-backdrop {
+    backdrop-filter: blur(14px);
+}
+
+@keyframes portal-progress-scan {
+    0% {
+        transform: translateX(-125%);
+    }
+    100% {
+        transform: translateX(325%);
+    }
 }
 
 /* Floating images animation for home hero section */
@@ -74,5 +166,18 @@
     }
     .floating-img-bottom {
         width: 20px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .portal-card-hover,
+    .portal-nav-link,
+    .portal-action,
+    .floating-img-top,
+    .floating-img-bottom,
+    .portal-progress-runner {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
     }
 }

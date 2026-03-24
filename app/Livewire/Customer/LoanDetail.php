@@ -78,6 +78,7 @@ class LoanDetail extends Component
         $this->application->refresh()->load(['loanProduct', 'documents', 'collaterals', 'repayments']);
         $this->replacement_document_type = array_key_first($this->requestedDocumentTypes()) ?? 'other';
         session()->flash('success', 'Document uploaded successfully.');
+        $this->dispatch('document-uploaded');
     }
 
     public function render()

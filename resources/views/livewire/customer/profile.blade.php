@@ -16,9 +16,9 @@
     <form wire:submit.prevent="save" class="space-y-6">
 
         {{-- Account Details --}}
-        <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="portal-panel rounded-3xl overflow-hidden">
             <div class="px-6 py-4 border-b border-gray-50 flex items-center gap-2">
-                <svg class="w-4 h-4 text-[#1B4F72]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                <svg class="w-4 h-4 text-[#166534]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
                 <h3 class="text-sm font-semibold text-gray-600 uppercase tracking-wider">Account Details</h3>
             </div>
             <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -26,21 +26,21 @@
                     <label class="block text-xs font-medium text-gray-600 mb-1.5">Full Name *</label>
                     <input wire:model="name" type="text" placeholder="John Banda"
                         class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-800 placeholder-gray-400
-                               focus:outline-none focus:ring-2 focus:ring-[#1B4F72]/20 focus:border-[#1B4F72] transition-all duration-200">
+                               focus:outline-none focus:ring-2 focus:ring-[#166534]/20 focus:border-[#166534] transition-all duration-200">
                     @error('name') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                 </div>
                 <div>
                     <label class="block text-xs font-medium text-gray-600 mb-1.5">Phone Number *</label>
                     <input wire:model="phone" type="text" placeholder="+260 97XXXXXXX"
                         class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-800 placeholder-gray-400
-                               focus:outline-none focus:ring-2 focus:ring-[#1B4F72]/20 focus:border-[#1B4F72] transition-all duration-200">
+                               focus:outline-none focus:ring-2 focus:ring-[#166534]/20 focus:border-[#166534] transition-all duration-200">
                     @error('phone') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                 </div>
                 <div class="md:col-span-2">
                     <label class="block text-xs font-medium text-gray-600 mb-1.5">Email Address *</label>
                     <input wire:model="email" type="email" placeholder="you@example.com"
                         class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-800 placeholder-gray-400
-                               focus:outline-none focus:ring-2 focus:ring-[#1B4F72]/20 focus:border-[#1B4F72] transition-all duration-200">
+                               focus:outline-none focus:ring-2 focus:ring-[#166534]/20 focus:border-[#166534] transition-all duration-200">
                     @error('email') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                 </div>
 
@@ -58,9 +58,9 @@
         </div>
 
         {{-- Address --}}
-        <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="portal-panel rounded-3xl overflow-hidden">
             <div class="px-6 py-4 border-b border-gray-50 flex items-center gap-2">
-                <svg class="w-4 h-4 text-[#1B4F72]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                <svg class="w-4 h-4 text-[#166534]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                 <h3 class="text-sm font-semibold text-gray-600 uppercase tracking-wider">Address</h3>
             </div>
             <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -68,21 +68,21 @@
                     <label class="block text-xs font-medium text-gray-600 mb-1.5">Residential Address</label>
                     <textarea wire:model="residential_address" rows="2" placeholder="House No. 12, Kabulonga Road..."
                         class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-800 placeholder-gray-400
-                               focus:outline-none focus:ring-2 focus:ring-[#1B4F72]/20 focus:border-[#1B4F72] transition-all duration-200 resize-none"></textarea>
+                               focus:outline-none focus:ring-2 focus:ring-[#166534]/20 focus:border-[#166534] transition-all duration-200 resize-none"></textarea>
                     @error('residential_address') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                 </div>
                 <div>
                     <label class="block text-xs font-medium text-gray-600 mb-1.5">City</label>
                     <input wire:model="city" type="text" placeholder="Lusaka"
                         class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-800 placeholder-gray-400
-                               focus:outline-none focus:ring-2 focus:ring-[#1B4F72]/20 focus:border-[#1B4F72] transition-all duration-200">
+                               focus:outline-none focus:ring-2 focus:ring-[#166534]/20 focus:border-[#166534] transition-all duration-200">
                     @error('city') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                 </div>
                 <div>
                     <label class="block text-xs font-medium text-gray-600 mb-1.5">Province</label>
                     <input wire:model="province" type="text" placeholder="Lusaka Province"
                         class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-800 placeholder-gray-400
-                               focus:outline-none focus:ring-2 focus:ring-[#1B4F72]/20 focus:border-[#1B4F72] transition-all duration-200">
+                               focus:outline-none focus:ring-2 focus:ring-[#166534]/20 focus:border-[#166534] transition-all duration-200">
                     @error('province') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                 </div>
             </div>
@@ -91,8 +91,8 @@
         {{-- Save button --}}
         <div class="flex justify-end">
             <button type="submit" wire:loading.attr="disabled" wire:loading.class="opacity-70 cursor-not-allowed"
-                class="inline-flex items-center gap-2 px-7 py-3 bg-[#1B4F72] text-white text-sm font-medium rounded-xl
-                       hover:bg-[#154060] transition-all duration-200 shadow-md shadow-blue-900/20">
+                class="portal-action inline-flex items-center gap-2 rounded-xl bg-[#166534] px-7 py-3 text-sm font-medium text-white
+                       shadow-md shadow-[#166534]/20 transition-all duration-200 hover:bg-[#14532d]">
                 <span wire:loading.remove>Save Changes</span>
                 <span wire:loading class="flex items-center gap-2">
                     <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>

@@ -8,7 +8,7 @@
 
         {{-- Top logo --}}
         <div class="relative p-10">
-            <a href="{{ route('home') }}" class="text-white font-semibold text-xl tracking-tight">LoanSystem</a>
+            <a href="{{ route('home') }}" class="text-white font-semibold text-xl tracking-tight">CredenceSystems</a>
         </div>
 
         {{-- Centre copy --}}
@@ -65,7 +65,7 @@
 
             {{-- Mobile logo --}}
             <div class="lg:hidden mb-8 text-center">
-                <a href="{{ route('home') }}" class="text-[#1B4F72] font-semibold text-xl">LoanSystem</a>
+                <a href="{{ route('home') }}" class="text-[#1B4F72] font-semibold text-xl">CredenceSystems</a>
             </div>
 
             {{-- Header --}}

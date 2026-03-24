@@ -29,7 +29,7 @@ $statusConfig = [
 
     @if($applications->isEmpty())
         {{-- Empty state --}}
-        <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-12 text-center">
+        <div class="portal-panel rounded-3xl p-12 text-center">
             <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gray-50 mb-4">
                 <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
@@ -38,13 +38,13 @@ $statusConfig = [
             <p class="text-gray-500 font-medium mb-1">No applications yet</p>
             <p class="text-sm text-gray-400 font-light mb-6">You haven't submitted any loan applications.</p>
             <a href="{{ route('home') }}#products"
-               class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1B4F72] text-white text-sm font-medium rounded-xl hover:bg-[#154060] transition-colors">
+               class="portal-action inline-flex items-center gap-2 rounded-xl bg-[#166534] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#14532d]">
                 Apply for a Loan
             </a>
         </div>
     @else
         {{-- Applications table --}}
-        <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="portal-panel rounded-3xl overflow-hidden">
             {{-- Header --}}
             <div class="hidden md:grid grid-cols-12 gap-4 px-6 py-3 bg-gray-50 border-b border-gray-100 text-xs font-medium text-gray-400 uppercase tracking-wider">
                 <div class="col-span-3">Reference</div>
@@ -60,10 +60,10 @@ $statusConfig = [
                 @foreach($applications as $app)
                     @php $sc = $statusConfig[$app->status] ?? $statusConfig['pending']; @endphp
                     <a href="{{ route('portal.loan.detail', $app->reference) }}"
-                       class="grid grid-cols-12 gap-4 px-6 py-4 hover:bg-gray-50/60 transition-colors items-center group">
+                       class="portal-card-hover grid grid-cols-12 items-center gap-4 px-6 py-4 transition-colors hover:bg-gray-50/60 group">
                         {{-- Reference --}}
                         <div class="col-span-12 md:col-span-3">
-                            <p class="text-sm font-medium text-[#1B4F72] group-hover:underline tracking-wide">{{ $app->reference }}</p>
+                            <p class="text-sm font-medium text-[#166534] group-hover:underline tracking-wide">{{ $app->reference }}</p>
                             <p class="text-xs text-gray-400 mt-0.5 md:hidden">{{ $app->loanProduct->name }}</p>
                         </div>
                         {{-- Product --}}
@@ -89,7 +89,7 @@ $statusConfig = [
                         </div>
                         {{-- Arrow --}}
                         <div class="col-span-2 md:col-span-1 flex justify-end">
-                            <svg class="w-4 h-4 text-gray-300 group-hover:text-[#1B4F72] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-4 h-4 text-gray-300 group-hover:text-[#166534] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                             </svg>
                         </div>
@@ -107,7 +107,7 @@ $statusConfig = [
 
         {{-- Apply again CTA --}}
         <div class="mt-4 text-center">
-            <a href="{{ route('home') }}#products" class="text-sm text-[#1B4F72] hover:underline font-medium">
+            <a href="{{ route('home') }}#products" class="portal-action text-sm font-medium text-[#166534] hover:underline">
                 + Apply for another loan
             </a>
         </div>

@@ -13,22 +13,22 @@ $statusConfig = [
 
     {{-- Metrics row --}}
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+        <div class="portal-panel rounded-2xl p-5">
             <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">Pending Review</p>
             <p class="text-3xl font-semibold text-amber-500">{{ $totalPending }}</p>
             <p class="text-xs text-gray-400 mt-1">applications awaiting action</p>
         </div>
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+        <div class="portal-panel rounded-2xl p-5">
             <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">Disbursed This Month</p>
-            <p class="text-2xl font-semibold text-[#1B4F72]">ZMW {{ number_format($totalDisbursed, 0) }}</p>
+            <p class="text-2xl font-semibold text-[#166534]">ZMW {{ number_format($totalDisbursed, 0) }}</p>
             <p class="text-xs text-gray-400 mt-1">total loan funds out</p>
         </div>
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+        <div class="portal-panel rounded-2xl p-5">
             <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">Overdue Loans</p>
             <p class="text-3xl font-semibold {{ $overdue > 0 ? 'text-red-500' : 'text-emerald-500' }}">{{ $overdue }}</p>
             <p class="text-xs text-gray-400 mt-1">past due date</p>
         </div>
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+        <div class="portal-panel rounded-2xl p-5">
             <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">Approval Rate</p>
             <p class="text-3xl font-semibold text-emerald-500">{{ $approvalRate }}%</p>
             <p class="text-xs text-gray-400 mt-1">this month</p>
@@ -38,7 +38,7 @@ $statusConfig = [
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
         {{-- Monthly applications bar chart --}}
-        <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+        <div class="portal-panel lg:col-span-2 rounded-2xl p-6">
             <h3 class="text-sm font-semibold text-gray-600 mb-5">Applications — Last 6 Months</h3>
             @if($monthlyStats->count())
                 @php $maxTotal = max(1, $monthlyStats->max('total')); @endphp
@@ -46,7 +46,7 @@ $statusConfig = [
                     @foreach($monthlyStats as $stat)
                         <div class="flex-1 flex flex-col items-center gap-1">
                             <div class="w-full flex flex-col justify-end h-28 gap-0.5">
-                                <div class="w-full bg-[#1B4F72] rounded-t-md transition-all duration-500"
+                                <div class="w-full rounded-t-md bg-linear-to-t from-[#166534] to-[#4EA8D9] transition-all duration-500"
                                      style="height: {{ max(4, round($stat->total / $maxTotal * 100)) }}%"></div>
                             </div>
                             <span class="text-[10px] text-gray-400">{{ $stat->month }}</span>
@@ -60,21 +60,21 @@ $statusConfig = [
         </div>
 
         {{-- Quick stats --}}
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 space-y-4">
+        <div class="portal-panel rounded-2xl p-6 space-y-4">
             <h3 class="text-sm font-semibold text-gray-600 mb-1">Quick Links</h3>
-            <a href="{{ route('admin.applications') }}?status=pending" class="flex items-center justify-between p-3 rounded-xl bg-amber-50 hover:bg-amber-100 transition-colors group">
+            <a href="{{ route('admin.applications') }}?status=pending" class="portal-action flex items-center justify-between rounded-xl bg-amber-50 p-3 transition-colors hover:bg-amber-100 group">
                 <span class="text-sm text-amber-700 font-medium">Pending Applications</span>
                 <span class="text-sm font-bold text-amber-600">{{ $totalPending }}</span>
             </a>
-            <a href="{{ route('admin.repayments') }}" class="flex items-center justify-between p-3 rounded-xl bg-blue-50 hover:bg-blue-100 transition-colors group">
-                <span class="text-sm text-blue-700 font-medium">Record Repayment</span>
-                <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            <a href="{{ route('admin.repayments') }}" class="portal-action flex items-center justify-between rounded-xl bg-[#4EA8D9]/10 p-3 transition-colors hover:bg-[#4EA8D9]/15 group">
+                <span class="text-sm font-medium text-[#1B4F72]">Record Repayment</span>
+                <svg class="w-4 h-4 text-[#4EA8D9]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>
-            <a href="{{ route('admin.products') }}" class="flex items-center justify-between p-3 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors group">
+            <a href="{{ route('admin.products') }}" class="portal-action flex items-center justify-between rounded-xl bg-gray-50 p-3 transition-colors hover:bg-gray-100 group">
                 <span class="text-sm text-gray-700 font-medium">Manage Products</span>
                 <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>
-            <a href="{{ route('admin.reports') }}" class="flex items-center justify-between p-3 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors group">
+            <a href="{{ route('admin.reports') }}" class="portal-action flex items-center justify-between rounded-xl bg-gray-50 p-3 transition-colors hover:bg-gray-100 group">
                 <span class="text-sm text-gray-700 font-medium">View Reports</span>
                 <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>
@@ -82,10 +82,10 @@ $statusConfig = [
     </div>
 
     {{-- Recent pending applications --}}
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+    <div class="portal-panel rounded-2xl overflow-hidden">
         <div class="px-6 py-4 border-b border-gray-50 flex items-center justify-between">
             <h3 class="text-sm font-semibold text-gray-600 uppercase tracking-wider">Recent Pending Applications</h3>
-            <a href="{{ route('admin.applications') }}" class="text-xs text-[#1B4F72] hover:underline">View all →</a>
+            <a href="{{ route('admin.applications') }}" class="portal-action text-xs text-[#166534] hover:underline">View all →</a>
         </div>
         @if($recentApplications->isEmpty())
             <p class="text-sm text-gray-400 text-center py-8">No pending applications</p>
@@ -94,10 +94,10 @@ $statusConfig = [
                 @foreach($recentApplications as $app)
                     @php $sc = $statusConfig[$app->status] ?? $statusConfig['pending']; @endphp
                     <a href="{{ route('admin.application.review', $app->id) }}"
-                       class="flex items-center justify-between px-6 py-3.5 hover:bg-gray-50 transition-colors group">
+                       class="portal-card-hover flex items-center justify-between px-6 py-3.5 transition-colors hover:bg-gray-50 group">
                         <div class="flex items-center gap-4">
                             <div>
-                                <p class="text-sm font-medium text-[#1B4F72] group-hover:underline">{{ $app->reference }}</p>
+                                <p class="text-sm font-medium text-[#166534] group-hover:underline">{{ $app->reference }}</p>
                                 <p class="text-xs text-gray-400">{{ $app->customer->user->name ?? '—' }} &middot; {{ $app->loanProduct->name }}</p>
                             </div>
                         </div>

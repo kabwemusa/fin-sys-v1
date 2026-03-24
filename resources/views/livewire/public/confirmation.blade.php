@@ -64,7 +64,7 @@
 
         @if (session('mail_delivery_warning'))
             <div class="flex items-start gap-3 bg-amber-50 border border-amber-100 rounded-2xl p-4 mb-6">
-                <svg class="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01M4.93 19h14.14c1.54 0 2.5-1.67 1.73-3L13.73 4c-.77-1.33-2.69-1.33-3.46 0L3.2 16c-.77 1.33.19 3 1.73 3z"/></svg>
+                <svg class="w-4 h-4 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01M4.93 19h14.14c1.54 0 2.5-1.67 1.73-3L13.73 4c-.77-1.33-2.69-1.33-3.46 0L3.2 16c-.77 1.33.19 3 1.73 3z"/></svg>
                 <div>
                     <p class="text-xs font-medium text-amber-700 mb-0.5">Email follow-up needed</p>
                     <p class="text-xs text-amber-700 font-light leading-relaxed">{{ session('mail_delivery_warning') }}</p>
@@ -72,7 +72,7 @@
             </div>
         @else
             <div class="flex items-start gap-3 bg-blue-50 border border-blue-100 rounded-2xl p-4 mb-6">
-                <svg class="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                <svg class="w-4 h-4 text-blue-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                 <div>
                     @if (session('portal_access_mode') === 'existing_account')
                         <p class="text-xs font-medium text-blue-700 mb-0.5">Use your existing portal account</p>
@@ -87,13 +87,13 @@
 
         {{-- Thin decorative divider --}}
         <div class="flex items-center gap-3 mb-6">
-            <div class="flex-1 h-px bg-gradient-to-r from-transparent to-gray-200"></div>
+            <div class="flex-1 h-px bg-linear-to-r from-transparent to-gray-200"></div>
             <div class="flex gap-1">
                 <div class="w-1 h-1 rounded-full bg-gray-300"></div>
                 <div class="w-1.5 h-1.5 rounded-full bg-gray-300"></div>
                 <div class="w-1 h-1 rounded-full bg-gray-300"></div>
             </div>
-            <div class="flex-1 h-px bg-gradient-to-l from-transparent to-gray-200"></div>
+            <div class="flex-1 h-px bg-linear-to-l from-transparent to-gray-200"></div>
         </div>
 
         {{-- Actions --}}

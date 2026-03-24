@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="loansystem">
+<html lang="en" data-theme="CredenceSystems">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -74,7 +74,7 @@
         }
 
         /* ── Timeline line draw ─────────────────────────────── */
-        .timeline-line { background: linear-gradient(to bottom, transparent, rgba(78,168,217,.25) 20%, rgba(78,168,217,.25) 80%, transparent); }
+        .timeline-line { background: linear-gradient(to bottom, transparent, rgba(22,101,52,.25) 20%, rgba(22,101,52,.25) 80%, transparent); }
 
         /* ── Misc ── */
         .card { border: none !important; }
@@ -109,6 +109,7 @@
            The ::before creates an offset solid beneath the image so the
            photo appears to levitate above a coloured organic solid.        */
         .photo-float-wrap {
+            position: relative;
             display: block;
             isolation: isolate;
         }
@@ -169,13 +170,13 @@
 
     {{-- Navbar --}}
     <nav class="fixed top-0 inset-x-0 z-50 bg-[#071520]/90 backdrop-blur-md border-b border-white/5">
-        <div class="max-w-6xl mx-auto px-5 flex items-center justify-between h-16">
-            <a href="{{ route('home') }}" class="font-semibold text-white text-xl tracking-tight">
+        <div class="max-w-6xl mx-auto h-16 px-4 sm:px-5 flex items-center justify-between gap-3 sm:gap-4 min-w-0">
+            <a href="{{ route('home') }}" class="font-semibold text-white text-lg sm:text-xl tracking-tight leading-none whitespace-nowrap shrink-0">
                 <span class="text-[#4EA8D9]">Credence</span>Systems
             </a>
-            <div class="flex items-center gap-3">
-                <a href="{{ route('login') }}" class="text-sm text-gray-400 hover:text-white transition-colors px-3 py-1.5 rounded-lg hover:bg-white/5">Sign in</a>
-                <a href="#products" class="text-sm bg-[#166534] text-white px-4 py-2 rounded-xl hover:bg-[#14532d] transition-colors shadow-md shadow-[#166534]/25">Apply Now</a>
+            <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+                <a href="{{ route('login') }}" class="inline-flex items-center whitespace-nowrap text-xs sm:text-sm text-gray-400 hover:text-white transition-colors px-2.5 sm:px-3 py-2 rounded-lg hover:bg-white/5">Sign in</a>
+                <a href="#products" class="inline-flex items-center whitespace-nowrap text-xs sm:text-sm bg-[#166534] text-white px-3 sm:px-4 py-2 rounded-xl hover:bg-[#14532d] transition-colors shadow-md shadow-[#166534]/25">Apply Now</a>
             </div>
         </div>
     </nav>

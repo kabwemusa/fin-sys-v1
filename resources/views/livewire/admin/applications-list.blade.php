@@ -21,10 +21,10 @@ $statusConfig = [
             </div>
             <input wire:model.live.debounce.300ms="search" type="text" placeholder="Search by reference or customer…"
                 class="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-800
-                       focus:outline-none focus:ring-2 focus:ring-[#1B4F72]/20 focus:border-[#1B4F72] transition-all">
+                       focus:outline-none focus:ring-2 focus:ring-[#166534]/20 focus:border-[#166534] transition-all">
         </div>
         <select wire:model.live="status"
-            class="px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 focus:outline-none focus:border-[#1B4F72]">
+            class="px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 focus:outline-none focus:border-[#166534]">
             <option value="">All statuses</option>
             <option value="pending">Pending</option>
             <option value="under_review">Under Review</option>
@@ -34,7 +34,7 @@ $statusConfig = [
             <option value="disbursed">Disbursed</option>
         </select>
         <select wire:model.live="productId"
-            class="px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 focus:outline-none focus:border-[#1B4F72]">
+            class="px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 focus:outline-none focus:border-[#166534]">
             <option value="">All products</option>
             @foreach($products as $product)
                 <option value="{{ $product->id }}">{{ $product->name }}</option>
@@ -43,15 +43,15 @@ $statusConfig = [
     </div>
 
     {{-- Table --}}
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+    <div class="portal-panel rounded-2xl overflow-hidden">
         <div class="hidden md:grid grid-cols-12 gap-3 px-6 py-3 bg-gray-50 border-b border-gray-100 text-xs font-medium text-gray-400 uppercase tracking-wider">
-            <button class="col-span-3 text-left flex items-center gap-1" wire:click="sort('reference')">
+            <button class="portal-action col-span-3 text-left flex items-center gap-1" wire:click="sort('reference')">
                 Reference
                 @if($sortBy === 'reference') <span class="{{ $sortDir === 'asc' ? 'rotate-180' : '' }} transition-transform">↓</span> @endif
             </button>
             <div class="col-span-3">Customer</div>
             <div class="col-span-2">Product</div>
-            <button class="col-span-2 text-right flex items-center justify-end gap-1" wire:click="sort('amount_requested')">
+            <button class="portal-action col-span-2 text-right flex items-center justify-end gap-1" wire:click="sort('amount_requested')">
                 Amount
                 @if($sortBy === 'amount_requested') <span class="{{ $sortDir === 'asc' ? 'rotate-180' : '' }} transition-transform">↓</span> @endif
             </button>
@@ -62,9 +62,9 @@ $statusConfig = [
             @forelse($applications as $app)
                 @php $sc = $statusConfig[$app->status] ?? $statusConfig['pending']; @endphp
                 <a href="{{ route('admin.application.review', $app->id) }}"
-                   class="grid grid-cols-12 gap-3 px-6 py-4 hover:bg-gray-50/60 transition-colors items-center group">
+                   class="portal-card-hover grid grid-cols-12 gap-3 px-6 py-4 hover:bg-gray-50/60 transition-colors items-center group">
                     <div class="col-span-12 md:col-span-3">
-                        <p class="text-sm font-medium text-[#1B4F72] group-hover:underline">{{ $app->reference }}</p>
+                        <p class="text-sm font-medium text-[#166534] group-hover:underline">{{ $app->reference }}</p>
                         <p class="text-xs text-gray-400">{{ $app->created_at->format('d M Y') }}</p>
                     </div>
                     <div class="hidden md:block col-span-3">

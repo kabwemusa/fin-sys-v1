@@ -3,194 +3,143 @@
     {{-- ═══════════════════════════════════════════════════════
          §1  HERO — Calculator + floating organic blob photos
          ═══════════════════════════════════════════════════════ --}}
-    <section id="hero" class="relative min-h-screen flex items-center overflow-hidden bg-[#071520]">
+    <section id="hero" class="relative overflow-hidden bg-[#071520]">
 
-        {{-- Subtle dot-grid texture --}}
         <div class="absolute inset-0 pointer-events-none"
              style="background-image:radial-gradient(circle, rgba(78,168,217,.12) 1px, transparent 1px); background-size:44px 44px;"></div>
 
-        {{-- Atmospheric glow blobs --}}
-        <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-[#166534]/8 blur-3xl pointer-events-none"></div>
-        <div class="absolute bottom-1/4 right-1/5 w-72 h-72 rounded-full bg-[#F39C12]/6 blur-3xl pointer-events-none"></div>
-        <div class="absolute top-1/2 right-1/4 w-80 h-80 rounded-full bg-[#1B4F72]/8 blur-3xl pointer-events-none"></div>
+        <div class="absolute left-[16%] top-1/4 h-[28rem] w-[28rem] rounded-full bg-[#166534]/8 blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 right-[12%] h-72 w-72 rounded-full bg-[#F39C12]/6 blur-3xl pointer-events-none"></div>
+        <div class="absolute right-[28%] top-1/3 h-80 w-80 rounded-full bg-[#1B4F72]/8 blur-3xl pointer-events-none"></div>
 
-        <div class="relative max-w-6xl mx-auto px-5 py-10 md:py-12 lg:py-10 w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center">
+        @php
+            $primaryApplyUrl = $products->first() ? route('loan.apply', $products->first()->slug) : '#products';
+        @endphp
 
-            {{-- ── LEFT: Narrative copy ── --}}
-            <div class="order-2 lg:order-1 relative">
+        <div class="relative z-10 mx-auto flex min-h-[calc(100svh-4rem)] max-w-6xl items-center px-4 py-8 sm:px-5 sm:py-10 lg:py-14">
+            <div class="grid w-full items-center gap-10 xl:grid-cols-[minmax(0,1fr)_minmax(0,520px)] xl:gap-12">
 
-                {{-- Floating image TOP RIGHT --}}
-                <div class="absolute -top-4 right-0 lg:right-4 w-28 sm:w-32 md:w-36 pointer-events-none z-0 floating-img-top">
-                    <div class="relative aspect-[10/11]">
-                        <div class="absolute inset-0 rounded-[3rem] bg-[#edf4e5] opacity-95"></div>
-                        <div class="absolute inset-[0.75rem] rounded-[2.5rem] bg-[#c9dda0]"></div>
-                        <div class="absolute inset-[1.5rem] rounded-[2rem] bg-[#a7c862]"></div>
-                        <div class="absolute inset-[2.3rem] rounded-[1.5rem] bg-[#84af38]"></div>
-                        <div class="absolute left-[0.8rem] right-[0.3rem] top-[1rem] bottom-0 overflow-hidden rounded-[2rem] shadow-2xl shadow-black/35">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80"
-                                 alt="" class="w-full h-full object-cover object-center"
-                                 loading="eager" fetchpriority="high" decoding="async">
-                            <div class="absolute inset-0 bg-linear-to-t from-[#071520]/10 via-transparent to-transparent"></div>
-                        </div>
+                <div class="max-w-xl">
+                    <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 hero-up">
+                        <span class="h-2 w-2 shrink-0 rounded-full bg-[#F39C12] animate-pulse"></span>
+                        <span class="text-xs font-medium uppercase tracking-[0.15em] text-[#F39C12]">Applications Open · Fast Approval</span>
                     </div>
-                </div>
 
-                {{-- Floating image BOTTOM RIGHT --}}
-                <div class="absolute -bottom-4 right-8 lg:right-16 w-24 sm:w-28 md:w-32 pointer-events-none z-0 floating-img-bottom">
-                    <div class="relative aspect-[10/11]">
-                        <div class="absolute inset-0 rounded-[2.5rem] bg-[#e8f4e8] opacity-95"></div>
-                        <div class="absolute inset-[0.65rem] rounded-[2rem] bg-[#b8dba8]"></div>
-                        <div class="absolute inset-[1.3rem] rounded-[1.5rem] bg-[#96c476]"></div>
-                        <div class="absolute inset-[2rem] rounded-[1.2rem] bg-[#74a844]"></div>
-                        <div class="absolute left-[0.7rem] right-[0.25rem] top-[0.85rem] bottom-0 overflow-hidden rounded-[1.5rem] shadow-2xl shadow-black/35">
-                            <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=400&q=80"
-                                 alt="" class="w-full h-full object-cover object-center"
-                                 loading="lazy" decoding="async">
-                            <div class="absolute inset-0 bg-linear-to-t from-[#071520]/15 via-transparent to-transparent"></div>
-                        </div>
-                    </div>
-                </div>
+                    <h1 class="mt-6 max-w-[15ch] text-[2.3rem] font-semibold leading-[0.98] text-white hero-up d1 sm:text-[3.15rem] md:text-[4rem]">
+                        <span class="block">You can</span>
+                        <span class="hero-squiggle block text-[#4EA8D9]">apply for a loan</span>
+                        <span class="block">today.</span>
+                    </h1>
 
-                <div class="relative z-10">
+                    <p class="mt-6 max-w-lg text-base font-light leading-8 text-slate-400 hero-up d2">
+                        One application. No prior registration. Clear terms, fast review, and direct disbursement into your account once approved.
+                    </p>
 
-                {{-- Status pill --}}
-                <div class="inline-flex items-center gap-2 mb-7 px-4 py-2 rounded-full bg-white/5 border border-white/10 hero-up">
-                    <span class="w-2 h-2 rounded-full bg-[#F39C12] animate-pulse shrink-0"></span>
-                    <span class="text-[#F39C12] text-xs font-medium tracking-[0.15em] uppercase">Applications Open · Fast Approval</span>
-                </div>
-
-                {{-- Main headline --}}
-                <h1 class="text-[1.9rem] sm:text-[2.8rem] md:text-[3.6rem] lg:text-[3.8rem] font-semibold leading-[1.08] text-white mb-5 hero-up d1">
-                    Your dreams<br>
-                    <span class="hero-squiggle text-[#4EA8D9]">deserve funding</span><br>
-                    today.
-                </h1>
-
-                <p class="text-slate-400 text-sm md:text-base leading-relaxed mb-7 max-w-md font-light hero-up d2">
-                    One form. No prior registration. Get reviewed within 48 hours
-                    and funds land directly in your account.
-                </p>
-
-                {{-- Trust signals --}}
-                <div class="flex flex-wrap gap-x-5 gap-y-2.5 mb-8 hero-up d2">
-                    @foreach([
-                        ['M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', 'Verified Lender'],
-                        ['M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z', 'Zero Hidden Fees'],
-                        ['M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', '48-Hour Turnaround'],
-                    ] as [$icon, $label])
-                        <div class="flex items-center gap-1.5">
-                            <svg class="w-3.5 h-3.5 text-[#16a34a] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $icon }}"/>
-                            </svg>
-                            <span class="text-xs text-slate-400 font-light">{{ $label }}</span>
-                        </div>
-                    @endforeach
-                </div>
-
-                {{-- Social proof row --}}
-                <div class="flex items-center gap-3 hero-up d3">
-                    <div class="flex -space-x-2.5">
+                    <div class="mt-7 flex flex-wrap gap-3 hero-up d2">
                         @foreach([
-                            'photo-1494790108377-be9c29b29330',
-                            'photo-1507003211169-0a1dd7228f2d',
-                            'photo-1500648767791-00dcc994a43e',
-                            'photo-1534528741775-53994a69daeb',
-                        ] as $photo)
-                            <div class="w-9 h-9 rounded-full border-2 border-[#071520] overflow-hidden ring-1 ring-white/10 shrink-0">
-                                <img src="https://images.unsplash.com/{{ $photo }}?auto=format&fit=crop&w=72&h=72&q=80"
-                                     class="w-full h-full object-cover" loading="lazy" decoding="async" width="72" height="72" alt="">
+                            ['M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', 'Verified lender'],
+                            ['M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z', 'Zero hidden fees'],
+                            ['M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', '24-48 hour review'],
+                        ] as [$icon, $label])
+                            <div class="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-3.5 py-2.5">
+                                <svg class="h-4 w-4 shrink-0 text-[#16a34a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $icon }}"/>
+                                </svg>
+                                <span class="text-xs font-light text-slate-300">{{ $label }}</span>
                             </div>
                         @endforeach
                     </div>
-                    <div>
-                        <p class="text-white text-sm font-medium">5,000+ people funded</p>
-                        <p class="text-slate-500 text-xs font-light">across Zambia</p>
-                    </div>
-                </div>
-                </div>
-            </div>
 
-            {{-- ── RIGHT: Calculator panel + floating organic blob rectangle photos ── --}}
-            <div class="order-1 lg:order-2 relative hero-up d2">
-
-                {{-- Photo 1 — top-left corner, floats behind the calc card --}}
-                <div class="hidden">
-                    <div class="relative aspect-[10/11]">
-                        <div class="absolute inset-0 rounded-[3.75rem] bg-[#eff5e7] opacity-95"></div>
-                        <div class="absolute inset-[0.9rem] rounded-[3.15rem] bg-[#c7d99b]"></div>
-                        <div class="absolute inset-[2rem] rounded-[2.5rem] bg-[#aac968]"></div>
-                        <div class="absolute inset-[3.1rem] rounded-[2rem] bg-[#87b03d]"></div>
-
-                        <div class="absolute left-[1rem] right-[0.35rem] top-[1.2rem] bottom-0 overflow-hidden rounded-[2.75rem] shadow-2xl shadow-black/35">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=700&q=80"
-                                 alt="" class="w-full h-full object-cover object-center"
-                                 loading="eager" fetchpriority="high" decoding="async">
-                            <div class="absolute inset-0 bg-linear-to-t from-[#071520]/12 via-transparent to-transparent"></div>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Photo 2 — bottom-right corner, floats behind the calc card --}}
-                <div class="hidden">
-                    <div class="photo-float-img">
-                        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=300&q=80"
-                             alt="" class="w-full h-full object-cover object-center"
-                             loading="lazy" decoding="async">
-                        <div class="absolute inset-0 bg-[#071520]/18"></div>
-                    </div>
-                </div>
-
-                {{-- Calculator card --}}
-                <div class="relative z-20 rounded-3xl bg-[#071622] border border-slate-700/40
-                            shadow-2xl shadow-black/60 p-6 lg:p-8 hero-up d3">
-
-                    {{-- Card header --}}
-                    <div class="flex items-center justify-between mb-5">
-                        <div>
-                            <p class="text-[10px] text-[#F39C12] uppercase tracking-[0.18em] font-medium mb-0.5">Loan Calculator</p>
-                            <p class="text-white text-base font-semibold leading-tight">Know your numbers first</p>
-                        </div>
-                        <div class="w-9 h-9 rounded-xl bg-[#166534]/20 border border-[#166534]/30 flex items-center justify-center shrink-0">
-                            <svg class="w-5 h-5 text-[#16a34a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
-                                      d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                    <div class="mt-7 flex flex-wrap items-center gap-3 hero-up d3">
+                        <a href="{{ $primaryApplyUrl }}"
+                           class="inline-flex items-center gap-2 rounded-2xl bg-[#166534] px-5 py-3 text-sm font-semibold text-white shadow-xl shadow-[#166534]/25 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#14532d]">
+                            Start Application
+                            <svg class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                             </svg>
-                        </div>
+                        </a>
+                        <a href="#products"
+                           class="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10">
+                            Browse products
+                        </a>
                     </div>
 
-                    {{-- Embedded calculator --}}
-                    <livewire:public.loan-calculator theme="dark" />
-                </div>
-
-                {{-- Floating approval stat — peeks out right of the card --}}
-                <div class="float-r absolute right-3 xl:-right-1 top-24
-                            bg-white/96 backdrop-blur-xl rounded-2xl px-3.5 py-3
-                            shadow-2xl shadow-black/20 z-30 hidden lg:block hero-up d4">
-                    <div class="flex items-center gap-2.5">
-                        <div class="w-8 h-8 rounded-xl bg-[#166534]/10 flex items-center justify-center shrink-0">
-                            <svg class="w-4 h-4 text-[#166534]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
+                    <div class="mt-8 flex flex-wrap items-center gap-3 hero-up d3">
+                        <div class="flex -space-x-2.5">
+                            @foreach([
+                                'photo-1494790108377-be9c29b29330',
+                                'photo-1507003211169-0a1dd7228f2d',
+                                'photo-1500648767791-00dcc994a43e',
+                                'photo-1534528741775-53994a69daeb',
+                            ] as $photo)
+                                <div class="h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-[#071520] ring-1 ring-white/10">
+                                    <img src="https://images.unsplash.com/{{ $photo }}?auto=format&fit=crop&w=72&h=72&q=80"
+                                         class="h-full w-full object-cover" loading="lazy" decoding="async" width="72" height="72" alt="">
+                                </div>
+                            @endforeach
                         </div>
                         <div>
-                            <p class="text-[10px] text-gray-400 font-light">Approval Rate</p>
-                            <p class="text-lg font-bold text-gray-800 leading-tight">98%</p>
+                            <p class="text-sm font-medium text-white">5,000+ people funded</p>
+                            <p class="text-xs font-light text-slate-500">Trusted across Zambia</p>
                         </div>
                     </div>
+
+                    {{-- <div class="mt-8 grid gap-4 md:grid-cols-3 hero-up d4">
+                        @foreach([
+                            ['48 hrs', 'Typical review', 'Fast enough to act without guessing what comes next.'],
+                            ['No account setup', 'Before applying', 'We create your profile automatically as part of the process.'],
+                            ['Clear product options', 'Salary and asset backed', 'Choose a structure that fits your income and repayment style.'],
+                        ] as [$value, $label, $body])
+                            <div class="rounded-[1.75rem] border border-white/10 bg-white/5 p-4">
+                                <p class="text-[11px] uppercase tracking-[0.18em] text-slate-500">{{ $label }}</p>
+                                <p class="mt-2 text-2xl font-semibold text-white">{{ $value }}</p>
+                                <p class="mt-2 text-sm font-light leading-6 text-slate-400">{{ $body }}</p>
+                            </div>
+                        @endforeach
+                    </div> --}}
                 </div>
 
-                {{-- Decorative ring — bottom-left accent --}}
-                <div class="absolute left-8 bottom-2 w-20 h-20 rounded-full border border-[#166534]/20 pointer-events-none hidden lg:block"></div>
-            </div>
-        </div>
+                <div class="w-full max-w-[520px] xl:justify-self-end hero-up d2">
+                    {{-- <div class="mb-4 grid gap-3 sm:grid-cols-2">
+                        <div class="rounded-2xl border border-white/70 bg-white/96 px-4 py-3 shadow-2xl shadow-black/15">
+                            <div class="flex items-center gap-3">
+                                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#166534]/10">
+                                    <svg class="h-5 w-5 text-[#166534]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-[11px] font-medium text-gray-400">Approval Rate</p>
+                                    <p class="text-2xl font-bold leading-none text-gray-800">98%</p>
+                                </div>
+                            </div>
+                        </div>
 
-        {{-- Animated scroll indicator --}}
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 hero-up d5">
-            <div class="w-5 h-9 rounded-full border border-white/20 flex items-start justify-center pt-2">
-                <div class="w-1 h-2.5 rounded-full bg-white/50 scroll-dot"></div>
+                        <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                            <p class="text-[11px] uppercase tracking-[0.18em] text-slate-500">Application flow</p>
+                            <p class="mt-2 text-base font-semibold text-white">Simple, digital, trackable</p>
+                            <p class="mt-1 text-sm font-light leading-6 text-slate-400">Review products, estimate payments, then apply with confidence.</p>
+                        </div>
+                    </div> --}}
+
+                    <div class="rounded-[2rem] border border-slate-700/40 bg-[#071622] p-6 shadow-2xl shadow-black/60 lg:p-8 hero-up d3">
+                        <div class="mb-5 flex items-center justify-between">
+                            <div>
+                                <p class="mb-1 text-[10px] font-medium uppercase tracking-[0.18em] text-[#F39C12]">Loan Calculator</p>
+                                <p class="text-2xl font-semibold leading-tight text-white sm:text-[1.9rem]">Know your numbers first</p>
+                            </div>
+                            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#166534]/30 bg-[#166534]/20">
+                                <svg class="h-5 w-5 text-[#16a34a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                                          d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <livewire:public.loan-calculator theme="dark" />
+                    </div>
+                </div>
             </div>
-            <span class="text-[9px] text-white/25 tracking-[0.2em] uppercase">Scroll</span>
         </div>
     </section>
 
@@ -218,8 +167,8 @@
             @endphp
             @foreach($ticker as $stat)
                 <div class="inline-flex items-center gap-3 px-9">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#F39C12] shrink-0"></span>
-                    <span class="text-base font-semibold text-[#1B4F72]">{{ $stat[0] }}</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#16a34a] shrink-0"></span>
+                    <span class="text-base font-semibold text-[#166534]">{{ $stat[0] }}</span>
                     <span class="text-sm text-gray-400 font-light">{{ $stat[1] }}</span>
                 </div>
             @endforeach
@@ -233,17 +182,17 @@
     <section id="products" class="bg-gray-50 py-14 md:py-24 px-5 relative overflow-hidden">
 
         {{-- Decorative blob --}}
-        <div class="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-[#2E86C1]/5 blur-3xl pointer-events-none"></div>
+        <div class="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-[#166534]/5 blur-3xl pointer-events-none"></div>
 
         <div class="max-w-5xl mx-auto relative">
 
             <div class="text-center mb-16 reveal">
-                <span class="inline-block text-[#2E86C1] text-xs font-medium tracking-[0.2em] uppercase mb-3 px-4 py-1.5 bg-blue-50 rounded-full border border-blue-100">
+                <span class="inline-block text-[#166534] text-xs font-medium tracking-[0.2em] uppercase mb-3 px-4 py-1.5 bg-green-50 rounded-full border border-green-100">
                     Loan Products
                 </span>
                 <h2 class="text-3xl md:text-4xl font-semibold text-gray-800 mt-4 leading-tight">
                     Choose your path to<br>
-                    <span class="text-[#1B4F72]">financial freedom</span>
+                    <span class="text-[#166534]">financial freedom</span>
                 </h2>
                 <p class="text-gray-400 mt-3 font-light max-w-sm mx-auto text-sm">Simple, transparent products built around your life.</p>
             </div>
@@ -262,7 +211,7 @@
                         <div class="group relative bg-white rounded-3xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-gray-200/80 stacked-card">
 
                             {{-- Color accent top bar --}}
-                            <div class="h-1.5 w-full {{ $loop->first ? 'bg-linear-to-r from-[#1B4F72] to-[#4EA8D9]' : 'bg-linear-to-r from-[#F39C12] to-[#e67e22]' }}"></div>
+                            <div class="h-1.5 w-full {{ $loop->first ? 'bg-linear-to-r from-[#166534] to-[#16a34a]' : 'bg-linear-to-r from-[#F39C12] to-[#e67e22]' }}"></div>
 
                             <div class="p-8 md:p-10">
                                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-center">
@@ -270,7 +219,7 @@
                                     {{-- Column 1: Product identity --}}
                                     <div>
                                         <div class="flex items-center gap-3 mb-5">
-                                            <div class="w-12 h-12 rounded-2xl {{ $loop->first ? 'bg-[#1B4F72]' : 'bg-[#F39C12]' }} flex items-center justify-center shrink-0 shadow-lg {{ $loop->first ? 'shadow-[#1B4F72]/30' : 'shadow-[#F39C12]/30' }}">
+                                            <div class="w-12 h-12 rounded-2xl {{ $loop->first ? 'bg-[#166534]' : 'bg-[#F39C12]' }} flex items-center justify-center shrink-0 shadow-lg {{ $loop->first ? 'shadow-[#166534]/30' : 'shadow-[#F39C12]/30' }}">
                                                 @if($loop->first)
                                                     <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
@@ -283,7 +232,7 @@
                                             </div>
                                             <div>
                                                 <h3 class="text-xl font-semibold text-gray-800">{{ $product->name }}</h3>
-                                                <span class="text-xs {{ $loop->first ? 'text-[#1B4F72] bg-blue-50' : 'text-[#c07a0a] bg-amber-50' }} px-2.5 py-0.5 rounded-full font-medium">
+                                                <span class="text-xs {{ $loop->first ? 'text-[#166534] bg-green-50' : 'text-[#c07a0a] bg-amber-50' }} px-2.5 py-0.5 rounded-full font-medium">
                                                     {{ $product->requires_collateral ? 'Asset-backed' : 'Salary-backed' }}
                                                 </span>
                                             </div>
@@ -295,7 +244,7 @@
                                     <div>
                                         <div class="grid grid-cols-3 gap-3 text-center">
                                             <div class="py-3 px-2 rounded-2xl bg-gray-50">
-                                                <p class="text-2xl font-bold {{ $loop->first ? 'text-[#1B4F72]' : 'text-[#F39C12]' }}">{{ $product->interest_rate }}%</p>
+                                                <p class="text-2xl font-bold {{ $loop->first ? 'text-[#166534]' : 'text-[#F39C12]' }}">{{ $product->interest_rate }}%</p>
                                                 <p class="text-[11px] text-gray-400 font-light mt-0.5 leading-tight">per month</p>
                                             </div>
                                             <div class="py-3 px-2 rounded-2xl bg-gray-50">
@@ -315,7 +264,7 @@
                                                 <span class="text-[11px] text-gray-500 font-medium">Max ZMW {{ number_format($product->max_amount/1000,0) }}K</span>
                                             </div>
                                             <div class="h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                                                <div class="h-full rounded-full {{ $loop->first ? 'bg-linear-to-r from-[#1B4F72] to-[#4EA8D9]' : 'bg-linear-to-r from-[#F39C12] to-[#e67e22]' }}" style="width:78%"></div>
+                                                <div class="h-full rounded-full {{ $loop->first ? 'bg-linear-to-r from-[#166534] to-[#16a34a]' : 'bg-linear-to-r from-[#F39C12] to-[#e67e22]' }}" style="width:78%"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -325,7 +274,7 @@
                                         <a href="{{ route('loan.apply', $product->slug) }}"
                                            class="group/btn flex items-center justify-center gap-2 w-full py-4 rounded-2xl text-sm font-semibold transition-all duration-300
                                                   {{ $loop->first
-                                                        ? 'bg-[#1B4F72] text-white hover:bg-[#154060] shadow-lg shadow-[#1B4F72]/25 hover:shadow-[#1B4F72]/40 hover:-translate-y-0.5'
+                                                        ? 'bg-[#166534] text-white hover:bg-[#14532d] shadow-lg shadow-[#166534]/25 hover:shadow-[#166534]/40 hover:-translate-y-0.5'
                                                         : 'bg-gray-900 text-white hover:bg-gray-700 shadow-lg shadow-gray-900/15 hover:-translate-y-0.5' }}">
                                             Apply Now
                                             <svg class="w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -360,7 +309,7 @@
              style="background-image:radial-gradient(circle, #fff 1px, transparent 1px); background-size:36px 36px;"></div>
         <div class="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent"></div>
         <div class="absolute bottom-0 inset-x-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent"></div>
-        <div class="absolute top-1/3 -right-20 w-80 h-80 rounded-full bg-[#2E86C1]/8 blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/3 -right-20 w-80 h-80 rounded-full bg-[#166534]/8 blur-3xl pointer-events-none"></div>
         <div class="absolute bottom-1/4 -left-20 w-64 h-64 rounded-full bg-[#F39C12]/5 blur-3xl pointer-events-none"></div>
 
         <div class="max-w-6xl mx-auto relative">
@@ -419,8 +368,8 @@
 
                             {{-- Step number + icon row --}}
                             <div class="flex items-center gap-4 mb-6">
-                                <div class="w-12 h-12 rounded-2xl bg-[#2E86C1]/15 border border-[#2E86C1]/25 flex items-center justify-center shrink-0">
-                                    <svg class="w-5 h-5 text-[#4EA8D9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div class="w-12 h-12 rounded-2xl bg-[#166534]/15 border border-[#166534]/25 flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5 text-[#16a34a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="{{ $step['icon'] }}"/>
                                     </svg>
                                 </div>
@@ -432,7 +381,7 @@
 
                             @if($step['cta'])
                                 <a href="{{ route('loan.apply', $products->first()?->slug) }}"
-                                   class="inline-flex items-center gap-2 mt-7 text-sm text-[#4EA8D9] hover:text-white transition-colors group font-medium">
+                                   class="inline-flex items-center gap-2 mt-7 text-sm text-[#16a34a] hover:text-white transition-colors group font-medium">
                                     Start your application
                                     <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -444,9 +393,9 @@
                             <div class="flex items-center gap-3 mt-8">
                                 @foreach($steps as $j => $_s)
                                     <div class="flex items-center gap-2">
-                                        <div class="w-2.5 h-2.5 rounded-full {{ $j === $i ? 'bg-[#F39C12] shadow-lg shadow-[#F39C12]/50' : ($j < $i ? 'bg-[#4EA8D9]/60' : 'bg-white/15') }} transition-all"></div>
+                                        <div class="w-2.5 h-2.5 rounded-full {{ $j === $i ? 'bg-[#F39C12] shadow-lg shadow-[#F39C12]/50' : ($j < $i ? 'bg-[#16a34a]/60' : 'bg-white/15') }} transition-all"></div>
                                         @if(!$loop->last)
-                                            <div class="w-8 h-px {{ $j < $i ? 'bg-[#4EA8D9]/40' : 'bg-white/10' }}"></div>
+                                            <div class="w-8 h-px {{ $j < $i ? 'bg-[#16a34a]/40' : 'bg-white/10' }}"></div>
                                         @endif
                                     </div>
                                 @endforeach
@@ -458,7 +407,7 @@
                         <div class="{{ $i % 2 === 1 ? 'md:order-1' : 'md:order-2' }} reveal-{{ $i % 2 === 1 ? 'left' : 'right' }} rd{{ $i+1 }} relative">
 
                             {{-- Glow under image --}}
-                            <div class="absolute inset-8 bg-[#2E86C1]/20 blur-2xl rounded-full pointer-events-none"></div>
+                            <div class="absolute inset-8 bg-[#166534]/15 blur-2xl rounded-full pointer-events-none"></div>
 
                             {{-- Organic blob image --}}
                             <div class="relative overflow-hidden shadow-2xl shadow-black/50 h-52 md:h-75" style="border-radius:{{ $step['shape'] }};">
@@ -480,7 +429,7 @@
                             <div class="flex-1 max-w-xs h-px bg-linear-to-r from-transparent to-white/10"></div>
                             <div class="flex gap-1.5">
                                 <div class="w-1 h-1 rounded-full bg-white/15"></div>
-                                <div class="w-1.5 h-1.5 rounded-full bg-[#4EA8D9]/40"></div>
+                                <div class="w-1.5 h-1.5 rounded-full bg-[#16a34a]/40"></div>
                                 <div class="w-1 h-1 rounded-full bg-white/15"></div>
                             </div>
                             <div class="flex-1 max-w-xs h-px bg-linear-to-l from-transparent to-white/10"></div>
@@ -492,79 +441,17 @@
     </section>
 
 
+    {{-- §5 Calculator removed — now embedded in the hero section --}}
     {{-- ═══════════════════════════════════════════════════════
-         §5  CALCULATOR — Clean bright section
+         §5  WHY CHOOSE US — Feature grid on navy
          ═══════════════════════════════════════════════════════ --}}
-    <section class="bg-white py-14 md:py-24 px-5 relative overflow-hidden">
 
-        <div class="absolute inset-0 bg-linear-to-br from-slate-50 via-white to-blue-50/30 pointer-events-none"></div>
-        <div class="absolute top-0 right-1/4 w-96 h-96 rounded-full bg-[#4EA8D9]/5 blur-3xl pointer-events-none"></div>
-
-        <div class="relative max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-
-            {{-- Left: explainer --}}
-            <div class="reveal-left">
-                <span class="inline-block text-[#2E86C1] text-xs font-medium tracking-[0.2em] uppercase mb-4 px-4 py-1.5 bg-blue-50 rounded-full border border-blue-100">
-                    Loan Calculator
-                </span>
-                <h2 class="text-3xl md:text-4xl font-semibold text-gray-800 mb-4 mt-3 leading-tight">
-                    Know your numbers<br>
-                    <span class="text-[#1B4F72]">before you commit</span>
-                </h2>
-                <p class="text-gray-500 font-light leading-relaxed mb-8 text-sm">
-                    Adjust the sliders to model your ideal loan. No surprises — the rate you calculate is the rate you pay.
-                </p>
-
-                {{-- Feature checklist --}}
-                <div class="space-y-3 mb-10">
-                    @foreach([
-                        'Instant monthly payment estimate',
-                        'Fixed flat rate — no variable surprises',
-                        'Flexible tenure up to 24 months',
-                        'No commitment to use the calculator',
-                    ] as $feat)
-                        <div class="flex items-center gap-3">
-                            <div class="w-5 h-5 rounded-full bg-[#1B4F72]/8 flex items-center justify-center shrink-0">
-                                <svg class="w-3 h-3 text-[#1B4F72]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
-                                </svg>
-                            </div>
-                            <span class="text-sm text-gray-600 font-light">{{ $feat }}</span>
-                        </div>
-                    @endforeach
-                </div>
-
-                {{-- Image teaser --}}
-                <div class="relative rounded-2xl overflow-hidden h-36">
-                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=700&q=80"
-                         alt="" class="w-full h-full object-cover" loading="lazy" decoding="async">
-                    <div class="absolute inset-0 bg-linear-to-r from-[#1B4F72]/60 to-[#1B4F72]/10"></div>
-                    <div class="absolute inset-0 flex items-center px-6">
-                        <p class="text-white font-semibold text-sm">Transparent. Fair. Simple.</p>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Right: calculator component --}}
-            <div class="reveal-right rd2">
-                <div class="rounded-3xl p-8 bg-[#071622] border border-slate-700/50 shadow-2xl shadow-[#071622]/30">
-                    <livewire:public.loan-calculator theme="dark" />
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-
-    {{-- ═══════════════════════════════════════════════════════
-         §6  WHY CHOOSE US — Feature grid on navy
-         ═══════════════════════════════════════════════════════ --}}
     <section class="bg-[#1B4F72] py-14 md:py-24 px-5 relative overflow-hidden">
 
         {{-- Dot pattern --}}
         <div class="absolute inset-0 pointer-events-none opacity-[0.045]"
              style="background-image:radial-gradient(circle, #fff 1px, transparent 1px); background-size:38px 38px;"></div>
-        <div class="absolute top-0 right-0 w-96 h-96 bg-[#4EA8D9]/10 rounded-full blur-3xl pointer-events-none translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute top-0 right-0 w-96 h-96 bg-[#16a34a]/10 rounded-full blur-3xl pointer-events-none translate-x-1/2 -translate-y-1/2"></div>
 
         <div class="relative max-w-6xl mx-auto">
 
@@ -618,7 +505,7 @@
         </div>
 
         {{-- Glow --}}
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full bg-[#1B4F72]/20 blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full bg-[#166534]/15 blur-3xl pointer-events-none"></div>
 
         <div class="relative max-w-4xl mx-auto text-center reveal">
 
@@ -640,7 +527,7 @@
                     <a href="{{ route('loan.apply', $product->slug) }}"
                        class="group inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl text-sm font-semibold transition-all duration-300
                               {{ $loop->first
-                                    ? 'bg-[#F39C12] text-white hover:bg-[#e08c10] shadow-2xl shadow-[#F39C12]/20 hover:shadow-[#F39C12]/40 hover:-translate-y-1'
+                                    ? 'bg-[#166534] text-white hover:bg-[#14532d] shadow-2xl shadow-[#166534]/25 hover:shadow-[#166534]/40 hover:-translate-y-1'
                                     : 'bg-white/8 text-white border border-white/15 hover:bg-white/14 hover:border-white/30 hover:-translate-y-1' }}">
                         Apply — {{ $product->name }}
                         <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -663,7 +550,7 @@
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-10">
                 <div>
                     <p class="font-semibold text-white text-xl tracking-tight">
-                        <span class="text-[#4EA8D9]">Loan</span>System
+                        <span class="text-[#4EA8D9]">Credence</span>Systems
                     </p>
                     <p class="text-xs text-gray-600 mt-1 font-light">Financial freedom, simplified.</p>
                 </div>
@@ -675,7 +562,7 @@
             </div>
             <div class="border-t border-white/5 pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
                 <p class="text-xs font-light">All amounts in Zambian Kwacha (ZMW)</p>
-                <p class="text-xs font-light">© {{ date('Y') }} LoanSystem · All rights reserved</p>
+                <p class="text-xs font-light">© {{ date('Y') }} CredenceSystems · All rights reserved</p>
             </div>
         </div>
     </footer>
