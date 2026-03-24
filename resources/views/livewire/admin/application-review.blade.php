@@ -1,11 +1,11 @@
 @php
 $statusConfig = [
-    'pending' => ['color' => 'text-amber-600', 'bg' => 'bg-amber-50', 'border' => 'border-amber-100', 'label' => 'Pending'],
+    'pending' => ['color' => 'text-amber-600', 'bg' => 'bg-[#FEF9E1]', 'border' => 'border-amber-100', 'label' => 'Pending'],
     'under_review' => ['color' => 'text-sky-600', 'bg' => 'bg-sky-50', 'border' => 'border-sky-100', 'label' => 'Under Review'],
     'approved' => ['color' => 'text-emerald-600', 'bg' => 'bg-emerald-50', 'border' => 'border-emerald-100', 'label' => 'Approved'],
     'rejected' => ['color' => 'text-red-500', 'bg' => 'bg-red-50', 'border' => 'border-red-100', 'label' => 'Rejected'],
-    'disbursed' => ['color' => 'text-green-600', 'bg' => 'bg-green-50', 'border' => 'border-green-100', 'label' => 'Disbursed'],
-    'info_requested' => ['color' => 'text-orange-600', 'bg' => 'bg-orange-50', 'border' => 'border-orange-100', 'label' => 'Info Requested'],
+    'disbursed' => ['color' => 'text-[#E98C00]', 'bg' => 'bg-[#FEF9E1]', 'border' => 'border-[#E98C00]', 'label' => 'Disbursed'],
+    'info_requested' => ['color' => 'text-[#E98C00]', 'bg' => 'bg-[#FEF9E1]', 'border' => 'border-[#E98C00]', 'label' => 'Info Requested'],
 ];
 $sc = $statusConfig[$application->status] ?? $statusConfig['pending'];
 $documentChecklist = $application->documentChecklist();
@@ -52,7 +52,7 @@ $documents = $application->activeDocuments();
         </div>
     </div>
 
-    <div wire:loading.flex wire:target="approve,reject,requestInfo,disburse,markUnderReview" class="items-center gap-3 rounded-2xl border border-[#4EA8D9]/15 bg-[#4EA8D9]/10 px-4 py-3 text-sm text-[#1B4F72]">
+    <div wire:loading.flex wire:target="approve,reject,requestInfo,disburse,markUnderReview" class="items-center gap-3 rounded-2xl border border-[#E98C00]/15 bg-[#E98C00]/10 px-4 py-3 text-sm text-[#E98C00]">
         <svg class="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
@@ -65,7 +65,7 @@ $documents = $application->activeDocuments();
             <div class="portal-panel rounded-3xl overflow-hidden">
                 <div class="border-b border-gray-100 px-5 py-4">
                     <div class="flex items-center gap-2">
-                        <div class="flex h-9 w-9 items-center justify-center rounded-2xl bg-[#4EA8D9]/10 text-[#4EA8D9]">
+                        <div class="flex h-9 w-9 items-center justify-center rounded-2xl bg-[#E98C00]/10 text-[#E98C00]">
                             <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                             </svg>
@@ -95,7 +95,7 @@ $documents = $application->activeDocuments();
             <div class="portal-panel rounded-3xl overflow-hidden">
                 <div class="border-b border-gray-100 px-5 py-4">
                     <div class="flex items-center gap-2">
-                        <div class="flex h-9 w-9 items-center justify-center rounded-2xl bg-[#4EA8D9]/10 text-[#4EA8D9]">
+                        <div class="flex h-9 w-9 items-center justify-center rounded-2xl bg-[#E98C00]/10 text-[#E98C00]">
                             <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                             </svg>
@@ -110,7 +110,7 @@ $documents = $application->activeDocuments();
                 <div class="grid grid-cols-1 gap-y-3 px-5 py-4 text-sm sm:grid-cols-2 sm:gap-x-6">
                     <span class="text-gray-400">Employer</span><span class="font-medium text-gray-700">{{ $c->employer_name ?? '-' }}</span>
                     <span class="text-gray-400">Job Title</span><span class="font-medium text-gray-700">{{ $c->job_title ?? '-' }}</span>
-                    <span class="text-gray-400">Monthly Income</span><span class="font-semibold text-[#166534]">ZMW {{ number_format($c->monthly_income ?? 0, 0) }}</span>
+                    <span class="text-gray-400">Monthly Income</span><span class="font-semibold text-[#E98C00]">ZMW {{ number_format($c->monthly_income ?? 0, 0) }}</span>
                     <span class="text-gray-400">Since</span><span class="font-medium text-gray-700">{{ $c->employment_date?->format('d M Y') ?? '-' }}</span>
                     <span class="text-gray-400">Bank</span><span class="font-medium text-gray-700">{{ $c->bank_name ?? '-' }}</span>
                     <span class="text-gray-400">Account</span><span class="font-medium text-gray-700">{{ $c->bank_account_number ?? '-' }}</span>
@@ -121,7 +121,7 @@ $documents = $application->activeDocuments();
                 <div class="portal-panel rounded-3xl overflow-hidden">
                     <div class="border-b border-gray-100 px-5 py-4">
                         <div class="flex items-center gap-2">
-                            <div class="flex h-9 w-9 items-center justify-center rounded-2xl bg-[#F39C12]/10 text-[#F39C12]">
+                            <div class="flex h-9 w-9 items-center justify-center rounded-2xl bg-[#E98C00]/10 text-[#E98C00]">
                                 <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5"/>
                                 </svg>
@@ -136,7 +136,7 @@ $documents = $application->activeDocuments();
                     @foreach($application->collaterals as $col)
                         <div class="grid grid-cols-1 gap-y-3 border-t border-gray-100 px-5 py-4 text-sm first:border-t-0 sm:grid-cols-2 sm:gap-x-6">
                             <span class="text-gray-400">Type</span><span class="font-medium text-gray-700">{{ ucfirst($col->type) }}</span>
-                            <span class="text-gray-400">Est. Value</span><span class="font-semibold text-[#166534]">ZMW {{ number_format($col->estimated_value, 0) }}</span>
+                            <span class="text-gray-400">Est. Value</span><span class="font-semibold text-[#E98C00]">ZMW {{ number_format($col->estimated_value, 0) }}</span>
                             <span class="text-gray-400">Reg. No.</span><span class="font-medium text-gray-700">{{ $col->registration_number ?? '-' }}</span>
                             <span class="border-t border-gray-100 pt-3 text-gray-400 sm:col-span-2">Description</span>
                             <span class="border-t border-gray-100 pt-3 font-medium text-gray-700 sm:col-span-2">{{ $col->description }}</span>
@@ -148,7 +148,7 @@ $documents = $application->activeDocuments();
             <div class="portal-panel rounded-3xl overflow-hidden">
                 <div class="border-b border-gray-100 px-5 py-4">
                     <div class="flex items-center gap-2">
-                        <div class="flex h-9 w-9 items-center justify-center rounded-2xl bg-[#4EA8D9]/10 text-[#4EA8D9]">
+                        <div class="flex h-9 w-9 items-center justify-center rounded-2xl bg-[#E98C00]/10 text-[#E98C00]">
                             <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/>
                             </svg>
@@ -176,7 +176,7 @@ $documents = $application->activeDocuments();
                                     @endif
                                 </div>
                                 <span class="inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium {{ $doc->statusClasses() }}">
-                                    <span class="h-1.5 w-1.5 rounded-full {{ str_contains($doc->statusClasses(), 'emerald') ? 'bg-emerald-500' : (str_contains($doc->statusClasses(), 'orange') ? 'bg-orange-500' : 'bg-slate-400') }}"></span>
+                                    <span class="h-1.5 w-1.5 rounded-full {{ str_contains($doc->statusClasses(), 'emerald') ? 'bg-emerald-500' : (str_contains($doc->statusClasses(), 'orange') ? 'bg-[#E98C00]' : 'bg-slate-400') }}"></span>
                                     {{ $doc->statusLabel() }}
                                 </span>
                             </div>
@@ -185,12 +185,12 @@ $documents = $application->activeDocuments();
                                 @if($doc->canPreviewInline())
                                     <button type="button"
                                             x-on:click="openViewer('{{ route('documents.preview', $doc) }}', @js($previewTitle), '{{ $previewKind }}')"
-                                            class="portal-action inline-flex items-center gap-2 rounded-full border border-[#4EA8D9]/15 bg-[#4EA8D9]/10 px-3 py-1.5 text-xs font-medium text-[#1B4F72] hover:bg-[#4EA8D9]/15">
+                                            class="portal-action inline-flex items-center gap-2 rounded-full border border-[#E98C00]/15 bg-[#E98C00]/10 px-3 py-1.5 text-xs font-medium text-[#E98C00] hover:bg-[#E98C00]/15">
                                         Preview
                                     </button>
                                 @endif
                                 <a href="{{ route('documents.download', $doc) }}"
-                                   class="portal-action inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-600 hover:bg-slate-200">
+                                   class="portal-action inline-flex items-center gap-2 rounded-full border border-slate-200 bg-[#FEF9E1] px-3 py-1.5 text-xs font-medium text-slate-600 hover:bg-slate-200">
                                     Download
                                 </a>
                                 <button wire:click="approveDocument({{ $doc->id }})"
@@ -209,7 +209,7 @@ $documents = $application->activeDocuments();
                                 <button wire:click="requestDocumentResubmission({{ $doc->id }})"
                                         wire:loading.attr="disabled"
                                         wire:target="requestDocumentResubmission({{ $doc->id }})"
-                                        class="portal-action inline-flex items-center gap-2 rounded-full border border-orange-100 bg-orange-50 px-3 py-1.5 text-xs font-medium text-orange-700 hover:bg-orange-100">
+                                        class="portal-action inline-flex items-center gap-2 rounded-full border border-[#E98C00] bg-[#FEF9E1] px-3 py-1.5 text-xs font-medium text-[#C97A00] hover:bg-[#FEF9E1]">
                                     <span wire:loading.remove wire:target="requestDocumentResubmission({{ $doc->id }})">Request Update</span>
                                     <span wire:loading.flex wire:target="requestDocumentResubmission({{ $doc->id }})" class="items-center gap-1.5">
                                         <svg class="h-3.5 w-3.5 animate-spin" fill="none" viewBox="0 0 24 24">
@@ -225,7 +225,7 @@ $documents = $application->activeDocuments();
                                 <label class="mb-1.5 block text-[11px] font-medium uppercase tracking-[0.16em] text-gray-500">Reviewer Note</label>
                                 <textarea wire:model.blur="documentNotes.{{ $doc->id }}"
                                           rows="2"
-                                          class="w-full rounded-2xl border border-gray-200 px-3 py-2.5 text-sm text-gray-700 transition-all resize-none focus:border-[#166534] focus:outline-none focus:ring-2 focus:ring-[#166534]/10"
+                                          class="w-full rounded-2xl border border-gray-200 px-3 py-2.5 text-sm text-gray-700 transition-all resize-none focus:border-[#E98C00] focus:outline-none focus:ring-2 focus:ring-[#E98C00]/10"
                                           placeholder="Add context for approval or tell the customer exactly what needs to be corrected..."></textarea>
                                 @error("documentNotes.$doc->id")
                                     <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
@@ -246,7 +246,7 @@ $documents = $application->activeDocuments();
             <div class="portal-panel rounded-3xl overflow-hidden">
                 <div class="border-b border-gray-100 px-5 py-4">
                     <div class="flex items-center gap-2">
-                        <div class="flex h-9 w-9 items-center justify-center rounded-2xl bg-[#166534]/10 text-[#166534]">
+                        <div class="flex h-9 w-9 items-center justify-center rounded-2xl bg-[#E98C00]/10 text-[#E98C00]">
                             <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m-7-8h8m-9 12h10a2 2 0 002-2V6a2 2 0 00-2-2H7a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                             </svg>
@@ -268,13 +268,13 @@ $documents = $application->activeDocuments();
                             @if($item['approved'])
                                 <span class="rounded-full border border-emerald-100 bg-emerald-50 px-2.5 py-1 text-xs font-medium text-emerald-600">Approved</span>
                             @elseif($item['needs_resubmission'])
-                                <span class="rounded-full border border-orange-100 bg-orange-50 px-2.5 py-1 text-xs font-medium text-orange-600">Needs update</span>
+                                <span class="rounded-full border border-[#E98C00] bg-[#FEF9E1] px-2.5 py-1 text-xs font-medium text-[#E98C00]">Needs update</span>
                             @elseif($item['submitted'])
                                 <span class="rounded-full border border-sky-100 bg-sky-50 px-2.5 py-1 text-xs font-medium text-sky-600">Submitted</span>
                             @elseif($item['required'])
                                 <span class="rounded-full border border-red-100 bg-red-50 px-2.5 py-1 text-xs font-medium text-red-600">Missing</span>
                             @else
-                                <span class="rounded-full border border-gray-100 bg-gray-50 px-2.5 py-1 text-xs font-medium text-gray-500">Optional</span>
+                                <span class="rounded-full border border-gray-100 bg-[#FEF9E1] px-2.5 py-1 text-xs font-medium text-gray-500">Optional</span>
                             @endif
                         </div>
                     @endforeach
@@ -284,7 +284,7 @@ $documents = $application->activeDocuments();
             <div class="portal-panel rounded-3xl overflow-hidden">
                 <div class="border-b border-gray-100 px-5 py-4">
                     <div class="flex items-center gap-2">
-                        <div class="flex h-9 w-9 items-center justify-center rounded-2xl bg-[#166534]/10 text-[#166534]">
+                        <div class="flex h-9 w-9 items-center justify-center rounded-2xl bg-[#E98C00]/10 text-[#E98C00]">
                             <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
@@ -297,7 +297,7 @@ $documents = $application->activeDocuments();
                 </div>
 
                 <div class="space-y-3 px-5 py-4 text-sm">
-                    <div class="flex justify-between gap-3"><span class="text-gray-400">Requested</span><span class="font-semibold text-[#166534]">ZMW {{ number_format($application->amount_requested, 0) }}</span></div>
+                    <div class="flex justify-between gap-3"><span class="text-gray-400">Requested</span><span class="font-semibold text-[#E98C00]">ZMW {{ number_format($application->amount_requested, 0) }}</span></div>
                     @if($application->amount_approved)
                         <div class="flex justify-between gap-3"><span class="text-gray-400">Approved</span><span class="font-semibold text-emerald-600">ZMW {{ number_format($application->amount_approved, 0) }}</span></div>
                     @endif
@@ -323,14 +323,14 @@ $documents = $application->activeDocuments();
                     <div class="mt-4 space-y-3">
                         @if(in_array($application->status, ['pending', 'under_review', 'info_requested']))
                             <button x-on:click="openModal('approve')"
-                                    class="portal-action flex w-full items-center justify-center gap-2 rounded-2xl bg-[#166534] py-3 text-sm font-semibold text-white shadow-lg shadow-[#166534]/20 hover:bg-[#14532d]">
+                                    class="portal-action flex w-full items-center justify-center gap-2 rounded-2xl bg-[#E98C00] py-3 text-sm font-semibold text-white shadow-lg shadow-[#E98C00]/20 hover:bg-[#C97A00]">
                                 <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                                 </svg>
                                 Approve
                             </button>
                             <button x-on:click="openModal('info')"
-                                    class="portal-action flex w-full items-center justify-center gap-2 rounded-2xl border border-orange-100 bg-orange-50 py-3 text-sm font-medium text-orange-600 hover:bg-orange-100">
+                                    class="portal-action flex w-full items-center justify-center gap-2 rounded-2xl border border-[#E98C00] bg-[#FEF9E1] py-3 text-sm font-medium text-[#E98C00] hover:bg-[#FEF9E1]">
                                 Request More Info
                             </button>
                             <button x-on:click="openModal('reject')"
@@ -341,7 +341,7 @@ $documents = $application->activeDocuments();
 
                         @if($application->status === 'approved')
                             <button x-on:click="openModal('disburse')"
-                                    class="portal-action flex w-full items-center justify-center gap-2 rounded-2xl bg-[#1B4F72] py-3 text-sm font-semibold text-white shadow-lg shadow-[#1B4F72]/20 hover:bg-[#163f5d]">
+                                    class="portal-action flex w-full items-center justify-center gap-2 rounded-2xl bg-[#E98C00] py-3 text-sm font-semibold text-white shadow-lg shadow-[#E98C00]/20 hover:bg-[#163f5d]">
                                 <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                 </svg>
@@ -357,15 +357,15 @@ $documents = $application->activeDocuments();
                     <h3 class="text-xs font-semibold uppercase tracking-[0.18em] text-gray-500">Repayment Summary</h3>
                     <div class="mt-4 space-y-2 text-sm">
                         <div class="flex justify-between gap-3"><span class="text-gray-400">Total Repaid</span><span class="font-medium text-emerald-600">ZMW {{ number_format($application->totalRepaid(), 2) }}</span></div>
-                        <div class="flex justify-between gap-3"><span class="text-gray-400">Outstanding</span><span class="font-semibold text-[#166534]">ZMW {{ number_format($application->outstandingBalance(), 2) }}</span></div>
+                        <div class="flex justify-between gap-3"><span class="text-gray-400">Outstanding</span><span class="font-semibold text-[#E98C00]">ZMW {{ number_format($application->outstandingBalance(), 2) }}</span></div>
                         <div class="flex justify-between gap-3"><span class="text-gray-400">Due Date</span><span class="font-medium text-gray-700">{{ $application->due_date?->format('d M Y') }}</span></div>
                     </div>
-                    <a href="{{ route('admin.repayments') }}" class="portal-action mt-4 inline-flex text-xs font-medium text-[#1B4F72] hover:underline">Record repayment</a>
+                    <a href="{{ route('admin.repayments') }}" class="portal-action mt-4 inline-flex text-xs font-medium text-[#E98C00] hover:underline">Record repayment</a>
                 </div>
             @endif
 
             @if($application->admin_notes)
-                <div class="portal-panel rounded-3xl bg-slate-50 p-4">
+                <div class="portal-panel rounded-3xl bg-[#FEF9E1] p-4">
                     <p class="text-xs font-medium uppercase tracking-[0.16em] text-gray-500">Admin Notes</p>
                     <p class="mt-2 text-sm text-gray-600">{{ $application->admin_notes }}</p>
                 </div>
@@ -381,7 +381,7 @@ $documents = $application->activeDocuments();
     </div>
 
     <div x-cloak x-show="modal === 'approve'" x-transition class="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div class="portal-backdrop absolute inset-0 bg-[#071520]/70" x-on:click="closeModal()"></div>
+        <div class="portal-backdrop absolute inset-0 bg-[#1a0800]/70" x-on:click="closeModal()"></div>
         <div class="relative w-full max-w-md rounded-[1.75rem] border border-white/10 bg-white p-7 shadow-2xl shadow-black/20">
             <h2 class="text-lg font-semibold text-gray-800">Approve Application</h2>
             <p class="mt-1 text-sm text-gray-400">Confirm the amount, rate, and tenure before the customer sees the decision.</p>
@@ -389,31 +389,31 @@ $documents = $application->activeDocuments();
             <div class="mt-5 space-y-4">
                 <div>
                     <label class="mb-1 block text-xs font-medium text-gray-600">Amount Approved (ZMW)</label>
-                    <input wire:model="approveAmount" type="number" class="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm transition-all focus:border-[#166534] focus:outline-none focus:ring-2 focus:ring-[#166534]/10">
+                    <input wire:model="approveAmount" type="number" class="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm transition-all focus:border-[#E98C00] focus:outline-none focus:ring-2 focus:ring-[#E98C00]/10">
                     @error('approveAmount') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="mb-1 block text-xs font-medium text-gray-600">Interest Rate (%/mo)</label>
-                        <input wire:model="approveRate" type="number" step="0.01" class="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm transition-all focus:border-[#166534] focus:outline-none focus:ring-2 focus:ring-[#166534]/10">
+                        <input wire:model="approveRate" type="number" step="0.01" class="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm transition-all focus:border-[#E98C00] focus:outline-none focus:ring-2 focus:ring-[#E98C00]/10">
                     </div>
                     <div>
                         <label class="mb-1 block text-xs font-medium text-gray-600">Tenure (months)</label>
-                        <input wire:model="approveTenure" type="number" class="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm transition-all focus:border-[#166534] focus:outline-none focus:ring-2 focus:ring-[#166534]/10">
+                        <input wire:model="approveTenure" type="number" class="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm transition-all focus:border-[#E98C00] focus:outline-none focus:ring-2 focus:ring-[#E98C00]/10">
                     </div>
                 </div>
                 <div>
                     <label class="mb-1 block text-xs font-medium text-gray-600">Admin Notes (internal)</label>
-                    <textarea wire:model="approveNotes" rows="2" class="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm transition-all resize-none focus:border-[#166534] focus:outline-none focus:ring-2 focus:ring-[#166534]/10"></textarea>
+                    <textarea wire:model="approveNotes" rows="2" class="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm transition-all resize-none focus:border-[#E98C00] focus:outline-none focus:ring-2 focus:ring-[#E98C00]/10"></textarea>
                 </div>
             </div>
 
             <div class="mt-6 flex gap-3">
-                <button type="button" x-on:click="closeModal()" class="portal-action flex-1 rounded-2xl border border-gray-200 py-3 text-sm font-medium text-gray-500 hover:bg-gray-50">Cancel</button>
+                <button type="button" x-on:click="closeModal()" class="portal-action flex-1 rounded-2xl border border-gray-200 py-3 text-sm font-medium text-gray-500 hover:bg-[#FEF9E1]">Cancel</button>
                 <button wire:click="approve"
                         wire:loading.attr="disabled"
                         wire:target="approve"
-                        class="portal-action flex flex-1 items-center justify-center gap-2 rounded-2xl bg-[#166534] py-3 text-sm font-semibold text-white hover:bg-[#14532d]">
+                        class="portal-action flex flex-1 items-center justify-center gap-2 rounded-2xl bg-[#E98C00] py-3 text-sm font-semibold text-white hover:bg-[#C97A00]">
                     <span wire:loading.remove wire:target="approve">Confirm Approval</span>
                     <span wire:loading.flex wire:target="approve" class="items-center gap-2">
                         <svg class="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24">
@@ -428,7 +428,7 @@ $documents = $application->activeDocuments();
     </div>
 
     <div x-cloak x-show="modal === 'reject'" x-transition class="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div class="portal-backdrop absolute inset-0 bg-[#071520]/70" x-on:click="closeModal()"></div>
+        <div class="portal-backdrop absolute inset-0 bg-[#1a0800]/70" x-on:click="closeModal()"></div>
         <div class="relative w-full max-w-md rounded-[1.75rem] border border-white/10 bg-white p-7 shadow-2xl shadow-black/20">
             <h2 class="text-lg font-semibold text-gray-800">Reject Application</h2>
             <p class="mt-1 text-sm text-gray-400">This reason is visible to the customer, so keep it specific and clear.</p>
@@ -441,12 +441,12 @@ $documents = $application->activeDocuments();
                 </div>
                 <div>
                     <label class="mb-1 block text-xs font-medium text-gray-600">Internal Notes</label>
-                    <textarea wire:model="rejectNotes" rows="2" class="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm transition-all resize-none focus:border-[#166534] focus:outline-none focus:ring-2 focus:ring-[#166534]/10"></textarea>
+                    <textarea wire:model="rejectNotes" rows="2" class="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm transition-all resize-none focus:border-[#E98C00] focus:outline-none focus:ring-2 focus:ring-[#E98C00]/10"></textarea>
                 </div>
             </div>
 
             <div class="mt-6 flex gap-3">
-                <button type="button" x-on:click="closeModal()" class="portal-action flex-1 rounded-2xl border border-gray-200 py-3 text-sm font-medium text-gray-500 hover:bg-gray-50">Cancel</button>
+                <button type="button" x-on:click="closeModal()" class="portal-action flex-1 rounded-2xl border border-gray-200 py-3 text-sm font-medium text-gray-500 hover:bg-[#FEF9E1]">Cancel</button>
                 <button wire:click="reject"
                         wire:loading.attr="disabled"
                         wire:target="reject"
@@ -465,23 +465,23 @@ $documents = $application->activeDocuments();
     </div>
 
     <div x-cloak x-show="modal === 'info'" x-transition class="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div class="portal-backdrop absolute inset-0 bg-[#071520]/70" x-on:click="closeModal()"></div>
+        <div class="portal-backdrop absolute inset-0 bg-[#1a0800]/70" x-on:click="closeModal()"></div>
         <div class="relative w-full max-w-md rounded-[1.75rem] border border-white/10 bg-white p-7 shadow-2xl shadow-black/20">
             <h2 class="text-lg font-semibold text-gray-800">Request More Information</h2>
             <p class="mt-1 text-sm text-gray-400">Explain exactly what the customer should upload or correct.</p>
 
             <div class="mt-5">
                 <label class="mb-1 block text-xs font-medium text-gray-600">Note to Customer <span class="text-red-400">*</span></label>
-                <textarea wire:model="infoNote" rows="4" placeholder="Please upload a clearer copy of the NRC and a recent payslip..." class="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm transition-all resize-none focus:border-[#166534] focus:outline-none focus:ring-2 focus:ring-[#166534]/10"></textarea>
+                <textarea wire:model="infoNote" rows="4" placeholder="Please upload a clearer copy of the NRC and a recent payslip..." class="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm transition-all resize-none focus:border-[#E98C00] focus:outline-none focus:ring-2 focus:ring-[#E98C00]/10"></textarea>
                 @error('infoNote') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
             </div>
 
             <div class="mt-6 flex gap-3">
-                <button type="button" x-on:click="closeModal()" class="portal-action flex-1 rounded-2xl border border-gray-200 py-3 text-sm font-medium text-gray-500 hover:bg-gray-50">Cancel</button>
+                <button type="button" x-on:click="closeModal()" class="portal-action flex-1 rounded-2xl border border-gray-200 py-3 text-sm font-medium text-gray-500 hover:bg-[#FEF9E1]">Cancel</button>
                 <button wire:click="requestInfo"
                         wire:loading.attr="disabled"
                         wire:target="requestInfo"
-                        class="portal-action flex flex-1 items-center justify-center gap-2 rounded-2xl bg-orange-500 py-3 text-sm font-semibold text-white hover:bg-orange-600">
+                        class="portal-action flex flex-1 items-center justify-center gap-2 rounded-2xl bg-[#E98C00] py-3 text-sm font-semibold text-white hover:bg-[#C97A00]">
                     <span wire:loading.remove wire:target="requestInfo">Send Request</span>
                     <span wire:loading.flex wire:target="requestInfo" class="items-center gap-2">
                         <svg class="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24">
@@ -496,7 +496,7 @@ $documents = $application->activeDocuments();
     </div>
 
     <div x-cloak x-show="modal === 'disburse'" x-transition class="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div class="portal-backdrop absolute inset-0 bg-[#071520]/70" x-on:click="closeModal()"></div>
+        <div class="portal-backdrop absolute inset-0 bg-[#1a0800]/70" x-on:click="closeModal()"></div>
         <div class="relative w-full max-w-md rounded-[1.75rem] border border-white/10 bg-white p-7 shadow-2xl shadow-black/20">
             <h2 class="text-lg font-semibold text-gray-800">Mark as Disbursed</h2>
             <p class="mt-1 text-sm text-gray-400">Use the actual release date so repayment schedules stay accurate.</p>
@@ -504,21 +504,21 @@ $documents = $application->activeDocuments();
             <div class="mt-5 space-y-4">
                 <div>
                     <label class="mb-1 block text-xs font-medium text-gray-600">Disbursement Date</label>
-                    <input wire:model="disburseDate" type="date" class="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm transition-all focus:border-[#166534] focus:outline-none focus:ring-2 focus:ring-[#166534]/10">
+                    <input wire:model="disburseDate" type="date" class="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm transition-all focus:border-[#E98C00] focus:outline-none focus:ring-2 focus:ring-[#E98C00]/10">
                     @error('disburseDate') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                 </div>
                 <div>
                     <label class="mb-1 block text-xs font-medium text-gray-600">Notes</label>
-                    <textarea wire:model="disburseNotes" rows="2" class="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm transition-all resize-none focus:border-[#166534] focus:outline-none focus:ring-2 focus:ring-[#166534]/10"></textarea>
+                    <textarea wire:model="disburseNotes" rows="2" class="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm transition-all resize-none focus:border-[#E98C00] focus:outline-none focus:ring-2 focus:ring-[#E98C00]/10"></textarea>
                 </div>
             </div>
 
             <div class="mt-6 flex gap-3">
-                <button type="button" x-on:click="closeModal()" class="portal-action flex-1 rounded-2xl border border-gray-200 py-3 text-sm font-medium text-gray-500 hover:bg-gray-50">Cancel</button>
+                <button type="button" x-on:click="closeModal()" class="portal-action flex-1 rounded-2xl border border-gray-200 py-3 text-sm font-medium text-gray-500 hover:bg-[#FEF9E1]">Cancel</button>
                 <button wire:click="disburse"
                         wire:loading.attr="disabled"
                         wire:target="disburse"
-                        class="portal-action flex flex-1 items-center justify-center gap-2 rounded-2xl bg-[#1B4F72] py-3 text-sm font-semibold text-white hover:bg-[#163f5d]">
+                        class="portal-action flex flex-1 items-center justify-center gap-2 rounded-2xl bg-[#E98C00] py-3 text-sm font-semibold text-white hover:bg-[#163f5d]">
                     <span wire:loading.remove wire:target="disburse">Confirm Disbursement</span>
                     <span wire:loading.flex wire:target="disburse" class="items-center gap-2">
                         <svg class="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24">
@@ -536,9 +536,9 @@ $documents = $application->activeDocuments();
          x-show="viewerOpen"
          x-transition.opacity
          class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
-        <div class="portal-backdrop absolute inset-0 bg-[#071520]/75" x-on:click="closeViewer()"></div>
+        <div class="portal-backdrop absolute inset-0 bg-[#1a0800]/75" x-on:click="closeViewer()"></div>
 
-        <div class="relative flex max-h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#071520] shadow-2xl shadow-black/40">
+        <div class="relative flex max-h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#1a0800] shadow-2xl shadow-black/40">
             <div class="flex items-center justify-between border-b border-white/10 px-5 py-4 text-white">
                 <div class="min-w-0">
                     <p class="truncate text-sm font-semibold" x-text="viewerTitle"></p>

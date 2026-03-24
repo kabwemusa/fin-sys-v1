@@ -1,13 +1,13 @@
 @php
 $statusConfig = [
-    'pending'        => ['bg'=>'bg-amber-50',   'text'=>'text-amber-600',  'dot'=>'bg-amber-400',  'label'=>'Pending'],
+    'pending'        => ['bg'=>'bg-[#FEF9E1]',   'text'=>'text-amber-600',  'dot'=>'bg-amber-400',  'label'=>'Pending'],
     'under_review'   => ['bg'=>'bg-blue-50',    'text'=>'text-blue-600',   'dot'=>'bg-blue-400',   'label'=>'Under Review'],
     'approved'       => ['bg'=>'bg-emerald-50', 'text'=>'text-emerald-600','dot'=>'bg-emerald-400','label'=>'Approved'],
     'rejected'       => ['bg'=>'bg-red-50',     'text'=>'text-red-500',    'dot'=>'bg-red-400',    'label'=>'Rejected'],
-    'disbursed'      => ['bg'=>'bg-green-50',   'text'=>'text-green-600',  'dot'=>'bg-green-400',  'label'=>'Disbursed'],
-    'info_requested' => ['bg'=>'bg-orange-50',  'text'=>'text-orange-600', 'dot'=>'bg-orange-400', 'label'=>'Info Requested'],
-    'closed'         => ['bg'=>'bg-gray-100',   'text'=>'text-gray-500',   'dot'=>'bg-gray-400',   'label'=>'Closed'],
-    'cancelled'      => ['bg'=>'bg-gray-100',   'text'=>'text-gray-400',   'dot'=>'bg-gray-300',   'label'=>'Cancelled'],
+    'disbursed'      => ['bg'=>'bg-[#FEF9E1]',   'text'=>'text-[#E98C00]',  'dot'=>'bg-green-400',  'label'=>'Disbursed'],
+    'info_requested' => ['bg'=>'bg-[#FEF9E1]',  'text'=>'text-[#E98C00]', 'dot'=>'bg-[#E98C00]', 'label'=>'Info Requested'],
+    'closed'         => ['bg'=>'bg-[#FEF9E1]',   'text'=>'text-gray-500',   'dot'=>'bg-gray-400',   'label'=>'Closed'],
+    'cancelled'      => ['bg'=>'bg-[#FEF9E1]',   'text'=>'text-gray-400',   'dot'=>'bg-gray-300',   'label'=>'Cancelled'],
 ];
 @endphp
 
@@ -21,10 +21,10 @@ $statusConfig = [
             </div>
             <input wire:model.live.debounce.300ms="search" type="text" placeholder="Search by reference or customer…"
                 class="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-800
-                       focus:outline-none focus:ring-2 focus:ring-[#166534]/20 focus:border-[#166534] transition-all">
+                       focus:outline-none focus:ring-2 focus:ring-[#E98C00]/20 focus:border-[#E98C00] transition-all">
         </div>
         <select wire:model.live="status"
-            class="px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 focus:outline-none focus:border-[#166534]">
+            class="px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 focus:outline-none focus:border-[#E98C00]">
             <option value="">All statuses</option>
             <option value="pending">Pending</option>
             <option value="under_review">Under Review</option>
@@ -34,7 +34,7 @@ $statusConfig = [
             <option value="disbursed">Disbursed</option>
         </select>
         <select wire:model.live="productId"
-            class="px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 focus:outline-none focus:border-[#166534]">
+            class="px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 focus:outline-none focus:border-[#E98C00]">
             <option value="">All products</option>
             @foreach($products as $product)
                 <option value="{{ $product->id }}">{{ $product->name }}</option>
@@ -44,7 +44,7 @@ $statusConfig = [
 
     {{-- Table --}}
     <div class="portal-panel rounded-2xl overflow-hidden">
-        <div class="hidden md:grid grid-cols-12 gap-3 px-6 py-3 bg-gray-50 border-b border-gray-100 text-xs font-medium text-gray-400 uppercase tracking-wider">
+        <div class="hidden md:grid grid-cols-12 gap-3 px-6 py-3 bg-[#FEF9E1] border-b border-gray-100 text-xs font-medium text-gray-400 uppercase tracking-wider">
             <button class="portal-action col-span-3 text-left flex items-center gap-1" wire:click="sort('reference')">
                 Reference
                 @if($sortBy === 'reference') <span class="{{ $sortDir === 'asc' ? 'rotate-180' : '' }} transition-transform">↓</span> @endif
@@ -62,9 +62,9 @@ $statusConfig = [
             @forelse($applications as $app)
                 @php $sc = $statusConfig[$app->status] ?? $statusConfig['pending']; @endphp
                 <a href="{{ route('admin.application.review', $app->id) }}"
-                   class="portal-card-hover grid grid-cols-12 gap-3 px-6 py-4 hover:bg-gray-50/60 transition-colors items-center group">
+                   class="portal-card-hover grid grid-cols-12 gap-3 px-6 py-4 hover:bg-[#FEF9E1]/60 transition-colors items-center group">
                     <div class="col-span-12 md:col-span-3">
-                        <p class="text-sm font-medium text-[#166534] group-hover:underline">{{ $app->reference }}</p>
+                        <p class="text-sm font-medium text-[#E98C00] group-hover:underline">{{ $app->reference }}</p>
                         <p class="text-xs text-gray-400">{{ $app->created_at->format('d M Y') }}</p>
                     </div>
                     <div class="hidden md:block col-span-3">

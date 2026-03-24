@@ -3,13 +3,13 @@
     $labelClass = $isDark ? 'text-gray-300' : 'text-gray-500';
     $inputClass = $isDark
         ? 'bg-white/10 border-white/15 text-white placeholder-white/30 focus:border-white/40'
-        : 'bg-gray-50 border-gray-200 text-gray-800 placeholder-gray-400 focus:border-[#1B4F72]';
-    $trackColor = $isDark ? '#F39C12' : '#1B4F72';
+        : 'bg-[#FEF9E1] border-gray-200 text-gray-800 placeholder-gray-400 focus:border-[#E98C00]';
+    $trackColor = $isDark ? '#E98C00' : '#E98C00';
     $dividerClass = $isDark ? 'border-white/10' : 'border-gray-100';
     $valueClass = $isDark ? 'text-white' : 'text-gray-800';
     $subClass = $isDark ? 'text-gray-400' : 'text-gray-500';
-    $highlightClass = $isDark ? 'text-[#F39C12]' : 'text-[#1B4F72]';
-    $panelClass = $isDark ? 'bg-white/8' : 'bg-gray-50';
+    $highlightClass = $isDark ? 'text-[#E98C00]' : 'text-[#E98C00]';
+    $panelClass = $isDark ? 'bg-white/8' : 'bg-[#FEF9E1]';
 @endphp
 
 <div
@@ -55,13 +55,13 @@
                             x-on:click="selectProduct(i)"
                             class="flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-left text-sm transition-colors"
                             x-bind:class="Number(productIdx) === Number(i)
-                                ? '{{ $isDark ? 'bg-[#1B4F72]/70 text-white' : 'bg-[#1B4F72]/10 text-[#1B4F72]' }}'
-                                : '{{ $isDark ? 'text-gray-200 hover:bg-white/8' : 'text-gray-700 hover:bg-slate-50' }}'"
+                                ? '{{ $isDark ? 'bg-[#E98C00]/70 text-white' : 'bg-[#E98C00]/10 text-[#E98C00]' }}'
+                                : '{{ $isDark ? 'text-gray-200 hover:bg-white/8' : 'text-gray-700 hover:bg-[#FEF9E1]' }}'"
                         >
                             <span class="truncate pr-3" x-text="productName(p)"></span>
                             <svg
                                 x-show="Number(productIdx) === Number(i)"
-                                class="h-4 w-4 shrink-0 {{ $isDark ? 'text-[#4EA8D9]' : 'text-[#1B4F72]' }}"
+                                class="h-4 w-4 shrink-0 {{ $isDark ? 'text-[#E98C00]' : 'text-[#E98C00]' }}"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -127,16 +127,16 @@
 
         <div class="mb-1">
             <div class="flex h-2 rounded-full overflow-hidden {{ $panelClass }} mb-2">
-                <div class="bg-[#16a34a] transition-all duration-500 ease-out" :style="'width:' + principalPct + '%'"></div>
-                <div class="bg-[#F39C12] transition-all duration-500 ease-out" :style="'width:' + interestPct + '%'"></div>
+                <div class="bg-[#E98C00] transition-all duration-500 ease-out" :style="'width:' + principalPct + '%'"></div>
+                <div class="bg-[#E98C00] transition-all duration-500 ease-out" :style="'width:' + interestPct + '%'"></div>
             </div>
             <div class="flex justify-between text-[11px] {{ $subClass }}">
                 <span class="flex items-center gap-1">
-                    <span class="w-2 h-2 rounded-full bg-[#16a34a] inline-block shrink-0"></span>
+                    <span class="w-2 h-2 rounded-full bg-[#E98C00] inline-block shrink-0"></span>
                     Principal <span class="tabular-nums" x-text="principalPct + '%'"></span>
                 </span>
                 <span class="flex items-center gap-1">
-                    <span class="w-2 h-2 rounded-full bg-[#F39C12] inline-block shrink-0"></span>
+                    <span class="w-2 h-2 rounded-full bg-[#E98C00] inline-block shrink-0"></span>
                     Interest <span class="tabular-nums" x-text="interestPct + '%'"></span>
                 </span>
             </div>
@@ -156,8 +156,8 @@
         <a
             :href="applyUrl"
             class="mt-4 flex items-center justify-center gap-2 w-full py-3.5 rounded-2xl
-                   bg-[#166534] text-white text-sm font-semibold
-                   shadow-lg shadow-[#166534]/30 hover:bg-[#14532d] hover:-translate-y-0.5
+                   bg-[#E98C00] text-white text-sm font-semibold
+                   shadow-lg shadow-[#E98C00]/30 hover:bg-[#C97A00] hover:-translate-y-0.5
                    active:scale-[.98] transition-all duration-200 select-none"
         >
             Apply at these terms

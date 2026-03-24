@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
@@ -19,22 +21,22 @@
     name: "CredenceSystems";
     default: true;
     color-scheme: light;
-    --color-primary: #166534;
-    --color-secondary: #1b4f72;
-    --color-accent: #f39c12;
+    --color-primary: #E98C00;
+    --color-secondary: #E98C00;
+    --color-accent: #E98C00;
     --color-neutral: #1c2833;
     --color-base-100: #ffffff;
-    --color-info: #1b4f72;
-    --color-success: #16a34a;
-    --color-warning: #f39c12;
+    --color-info: #E98C00;
+    --color-success: #E98C00;
+    --color-warning: #E98C00;
     --color-error: #e74c3c;
 }
 
 :root {
-    --portal-ink: #071520;
-    --portal-surface: rgba(255, 255, 255, 0.92);
-    --portal-line: rgba(148, 163, 184, 0.16);
-    --portal-shadow: 0 22px 45px rgba(7, 21, 32, 0.08);
+    --portal-ink: #1a0800;
+    --portal-surface: rgba(255, 247, 237, 0.95);
+    --portal-line: rgba(233, 140, 0, 0.14);
+    --portal-shadow: 0 22px 45px rgba(28, 8, 0, 0.08);
 }
 
 [x-cloak] {
@@ -58,18 +60,18 @@ button:disabled,
 
 .portal-shell-bg {
     background:
-        radial-gradient(circle at top left, rgba(78, 168, 217, 0.08), transparent 32%),
-        radial-gradient(circle at bottom right, rgba(22, 101, 52, 0.08), transparent 30%),
-        linear-gradient(180deg, #f8fbfd 0%, #f2f6f9 100%);
+        radial-gradient(circle at top left, rgba(233, 140, 0, 0.14), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(233, 140, 0, 0.10), transparent 30%),
+        linear-gradient(180deg, #FEF9E1 0%, #FEF9E1 100%);
 }
 
 .portal-sidebar-surface {
     background:
-        linear-gradient(180deg, rgba(12, 35, 54, 0.96) 0%, rgba(7, 21, 32, 0.98) 100%);
+        linear-gradient(180deg, rgba(28, 10, 0, 0.97) 0%, rgba(18, 6, 0, 0.99) 100%);
 }
 
 .portal-topbar-surface {
-    background: rgba(255, 255, 255, 0.88);
+    background: rgba(255, 247, 237, 0.92);
     backdrop-filter: blur(18px);
 }
 
@@ -97,7 +99,7 @@ button:disabled,
 }
 
 .portal-card-hover:hover {
-    box-shadow: 0 24px 44px rgba(7, 21, 32, 0.1);
+    box-shadow: 0 24px 44px rgba(28, 8, 0, 0.1);
 }
 
 .portal-progress-track {

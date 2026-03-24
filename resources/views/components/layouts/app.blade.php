@@ -11,6 +11,13 @@
     <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- Dark mode: set class before first paint to avoid flash --}}
+    <script>
+        (function () {
+            var t = localStorage.getItem('theme') || 'light';
+            if (t === 'dark') document.documentElement.classList.add('dark');
+        })();
+    </script>
     <style>
         body { font-family: 'Inter', sans-serif; }
 
@@ -74,7 +81,7 @@
         }
 
         /* ── Timeline line draw ─────────────────────────────── */
-        .timeline-line { background: linear-gradient(to bottom, transparent, rgba(22,101,52,.25) 20%, rgba(22,101,52,.25) 80%, transparent); }
+        .timeline-line { background: linear-gradient(to bottom, transparent, rgba(233,140,0,.25) 20%, rgba(233,140,0,.25) 80%, transparent); }
 
         /* ── Misc ── */
         .card { border: none !important; }
@@ -88,7 +95,7 @@
             content:'';
             position:absolute;
             bottom:-6px; left:0; right:0; height:3px;
-            background: linear-gradient(90deg, transparent, #F39C12 30%, #F39C12 70%, transparent);
+            background: linear-gradient(90deg, transparent, #E98C00 30%, #E98C00 70%, transparent);
             border-radius: 9px;
             opacity:.55;
         }
@@ -121,10 +128,10 @@
             z-index: 0;
             opacity: .80;
         }
-        .photo-float-wrap.pf-green::before  { background: #166534; }
-        .photo-float-wrap.pf-navy::before   { background: #1B4F72; }
-        .photo-float-wrap.pf-gold::before   { background: #F39C12; }
-        .photo-float-wrap.pf-teal::before   { background: #0f766e; }
+        .photo-float-wrap.pf-green::before  { background: #E98C00; }
+        .photo-float-wrap.pf-navy::before   { background: #C97A00; }
+        .photo-float-wrap.pf-gold::before   { background: #E98C00; }
+        .photo-float-wrap.pf-teal::before   { background: #E98C00; }
         /* Inner image wrapper — clips photo and tint overlay to the blob shape */
         .photo-float-img {
             position: absolute;
@@ -165,18 +172,38 @@
         }
     </style>
 </head>
-<body class="min-h-screen bg-white font-sans antialiased">
+<body class="min-h-screen bg-white dark:bg-[#1a0800] font-sans antialiased"
+      x-data="{ dark: document.documentElement.classList.contains('dark') }"
+      x-init="$watch('dark', function(v) {
+          document.documentElement.classList.toggle('dark', v);
+          localStorage.setItem('theme', v ? 'dark' : 'light');
+      })">
     <x-mary-toast />
 
     {{-- Navbar --}}
-    <nav class="fixed top-0 inset-x-0 z-50 bg-[#071520]/90 backdrop-blur-md border-b border-white/5">
+    <nav class="fixed top-0 inset-x-0 z-50 bg-white/95 dark:bg-[#1a0800]/90 backdrop-blur-md border-b border-gray-200 dark:border-white/5">
         <div class="max-w-6xl mx-auto h-16 px-4 sm:px-5 flex items-center justify-between gap-3 sm:gap-4 min-w-0">
-            <a href="{{ route('home') }}" class="font-semibold text-white text-lg sm:text-xl tracking-tight leading-none whitespace-nowrap shrink-0">
-                <span class="text-[#4EA8D9]">Credence</span>Systems
+            <a href="{{ route('home') }}" class="shrink-0 leading-none">
+                <img src="{{ asset('images/logo.png') }}" alt="Orange Fin" class="h-9 w-auto">
             </a>
             <div class="flex items-center gap-2 sm:gap-3 shrink-0">
-                <a href="{{ route('login') }}" class="inline-flex items-center whitespace-nowrap text-xs sm:text-sm text-gray-400 hover:text-white transition-colors px-2.5 sm:px-3 py-2 rounded-lg hover:bg-white/5">Sign in</a>
-                <a href="#products" class="inline-flex items-center whitespace-nowrap text-xs sm:text-sm bg-[#166534] text-white px-3 sm:px-4 py-2 rounded-xl hover:bg-[#14532d] transition-colors shadow-md shadow-[#166534]/25">Apply Now</a>
+                {{-- Theme toggle --}}
+                <button @click="dark = !dark"
+                        class="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/8 transition-colors"
+                        :aria-label="dark ? 'Switch to light mode' : 'Switch to dark mode'">
+                    {{-- Sun (shown in dark mode — click to go light) --}}
+                    <svg x-show="dark" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/>
+                    </svg>
+                    {{-- Moon (shown in light mode — click to go dark) --}}
+                    <svg x-show="!dark" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                              d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+                    </svg>
+                </button>
+                <a href="{{ route('login') }}" class="inline-flex items-center whitespace-nowrap text-xs sm:text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors px-2.5 sm:px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5">Sign in</a>
+                <a href="#products" class="inline-flex items-center whitespace-nowrap text-xs sm:text-sm bg-[#E98C00] text-white px-3 sm:px-4 py-2 rounded-xl hover:bg-[#C97A00] transition-colors shadow-md shadow-[#E98C00]/25">Apply Now</a>
             </div>
         </div>
     </nav>
@@ -195,8 +222,8 @@
     <div id="sticky-cta-desktop"
          class="sticky-cta-el fixed bottom-6 right-6 z-40 hidden md:flex">
         <a href="#products"
-           class="flex items-center gap-2 px-5 py-3 rounded-2xl bg-[#166534] text-white text-sm font-semibold
-                  shadow-2xl shadow-[#166534]/35 hover:bg-[#14532d] hover:-translate-y-0.5
+           class="flex items-center gap-2 px-5 py-3 rounded-2xl bg-[#E98C00] text-white text-sm font-semibold
+                  shadow-2xl shadow-[#E98C00]/35 hover:bg-[#E98C00] hover:-translate-y-0.5
                   transition-all duration-200 select-none whitespace-nowrap">
             <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -212,8 +239,8 @@
         <div class="bg-white/96 backdrop-blur-sm border-t border-gray-100 shadow-2xl shadow-black/10 px-4 pt-3"
              style="padding-bottom: max(0.875rem, env(safe-area-inset-bottom));">
             <a href="#products"
-               class="flex items-center justify-center gap-2 w-full py-3.5 rounded-2xl bg-[#166534] text-white text-sm font-semibold
-                      shadow-lg shadow-[#166534]/30 hover:bg-[#14532d] active:scale-[.98]
+               class="flex items-center justify-center gap-2 w-full py-3.5 rounded-2xl bg-[#E98C00] text-white text-sm font-semibold
+                      shadow-lg shadow-[#E98C00]/30 hover:bg-[#E98C00] active:scale-[.98]
                       transition-all duration-150 select-none">
                 Apply for a Loan
                 <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">

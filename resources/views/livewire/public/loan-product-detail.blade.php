@@ -1,10 +1,10 @@
-<div class="min-h-screen bg-gray-50">
+<div class="min-h-screen bg-[#FEF9E1]">
 
     {{-- ── Hero banner ── --}}
-    <div class="relative bg-[#0c2336] overflow-hidden">
+    <div class="relative bg-[#150700] overflow-hidden">
         <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=80"
              alt="" class="absolute inset-0 w-full h-full object-cover opacity-15" loading="eager" fetchpriority="high" decoding="async">
-        <div class="absolute inset-0 bg-gradient-to-r from-[#0c2336]/98 via-[#0c2336]/85 to-[#0c2336]/40"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#150700]/98 via-[#150700]/85 to-[#150700]/40"></div>
 
         <div class="relative max-w-4xl mx-auto px-5 py-16">
             <a href="{{ route('home') }}" class="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-slate-200 transition-colors mb-6">
@@ -35,7 +35,7 @@
                          {{ $i < 3 ? 'border-b border-gray-100' : '' }}
                          {{ ($i % 3) < 2 ? 'border-r border-gray-100' : '' }}">
                         <p class="text-[10px] text-gray-400 uppercase tracking-wider mb-1.5">{{ $stat[0] }}</p>
-                        <p class="text-xl font-semibold text-[#1B4F72] mb-0.5">{{ $stat[1] }}</p>
+                        <p class="text-xl font-semibold text-[#E98C00] mb-0.5">{{ $stat[1] }}</p>
                         <p class="text-[11px] text-gray-400 font-light">{{ $stat[2] }}</p>
                     </div>
                 @endforeach
@@ -49,9 +49,9 @@
 
             {{-- Benefits --}}
             <div>
-                <p class="text-xs text-[#2E86C1] font-medium tracking-[0.18em] uppercase mb-2">Benefits</p>
+                <p class="text-xs text-[#E98C00] font-medium tracking-[0.18em] uppercase mb-2">Benefits</p>
                 <h2 class="text-xl font-semibold text-gray-800 mb-5">What you get</h2>
-                <div class="h-px bg-gradient-to-r from-[#1B4F72]/20 to-transparent mb-6"></div>
+                <div class="h-px bg-gradient-to-r from-[#E98C00]/20 to-transparent mb-6"></div>
                 <ul class="space-y-4">
                     @foreach([
                         'Flat-rate interest — no compound surprises',
@@ -61,8 +61,8 @@
                         $product->requires_collateral ? 'Higher loan limits with asset backing' : 'No collateral required',
                     ] as $benefit)
                         <li class="flex items-start gap-3">
-                            <div class="w-5 h-5 rounded-full bg-[#1B4F72]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <svg class="w-3 h-3 text-[#1B4F72]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                            <div class="w-5 h-5 rounded-full bg-[#E98C00]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg class="w-3 h-3 text-[#E98C00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
                             </div>
                             <span class="text-sm text-gray-600 font-light leading-relaxed">{{ $benefit }}</span>
                         </li>
@@ -71,8 +71,8 @@
             </div>
 
             {{-- Calculator --}}
-            <div class="bg-[#0c2336] rounded-3xl p-8 border border-slate-700/50">
-                <p class="text-xs text-[#F39C12] font-medium tracking-[0.18em] uppercase mb-4">Quick Estimate</p>
+            <div class="bg-[#150700] rounded-3xl p-8 border border-slate-700/50">
+                <p class="text-xs text-[#E98C00] font-medium tracking-[0.18em] uppercase mb-4">Quick Estimate</p>
                 <livewire:public.loan-calculator theme="dark" />
             </div>
         </div>
@@ -94,12 +94,12 @@
             <p class="text-sm text-gray-400 font-light mb-7">No pre-registration needed — your account is created automatically when you apply.</p>
             <div class="flex flex-wrap justify-center gap-3">
                 <a href="{{ route('loan.apply', $product->slug) }}"
-                   class="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl text-sm font-medium bg-[#1B4F72] text-white hover:bg-[#154060] transition-all duration-200 shadow-lg shadow-blue-900/20">
+                   class="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl text-sm font-medium bg-[#E98C00] text-white hover:bg-[#C97A00] transition-all duration-200 shadow-lg shadow-blue-900/20">
                     Apply for {{ $product->name }}
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
                 <a href="{{ route('home') }}"
-                   class="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl text-sm font-medium text-gray-500 hover:text-gray-700 border border-gray-200 hover:bg-gray-50 transition-all duration-200">
+                   class="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl text-sm font-medium text-gray-500 hover:text-gray-700 border border-gray-200 hover:bg-[#FEF9E1] transition-all duration-200">
                     View all products
                 </a>
             </div>

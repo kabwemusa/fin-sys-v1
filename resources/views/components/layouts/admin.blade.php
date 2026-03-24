@@ -24,14 +24,16 @@
              x-transition:leave-start="opacity-100"
              x-transition:leave-end="opacity-0"
              x-on:click="closeSidebar()"
-             class="portal-backdrop fixed inset-0 z-20 bg-[#071520]/55 lg:hidden"></div>
+             class="portal-backdrop fixed inset-0 z-20 bg-[#1a0800]/55 lg:hidden"></div>
 
         <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
                class="portal-sidebar-surface fixed inset-y-0 left-0 z-30 flex w-60 flex-col border-r border-white/8 transform transition-transform duration-300 ease-in-out lg:static lg:z-auto lg:translate-x-0">
 
             <div class="flex h-16 items-center border-b border-white/8 px-5 shrink-0">
-                <a href="{{ route('admin.dashboard') }}" class="portal-action text-lg font-semibold tracking-tight text-white">CredenceSystems</a>
-                <span class="ml-2 rounded-full border border-[#F39C12]/20 bg-[#F39C12]/10 px-2 py-0.5 text-[10px] font-medium text-[#F39C12]">Admin</span>
+                <a href="{{ route('admin.dashboard') }}" class="portal-action">
+                    <img src="{{ asset('images/logo.png') }}" alt="Orange Fin" class="h-8 w-auto">
+                </a>
+                <span class="ml-2 rounded-full border border-[#E98C00]/20 bg-[#E98C00]/10 px-2 py-0.5 text-[10px] font-medium text-[#E98C00]">Admin</span>
             </div>
 
             <nav class="flex-1 space-y-0.5 overflow-y-auto px-3 py-4">
@@ -51,7 +53,7 @@
                     @php $isActive = request()->routeIs($item['route']) || request()->routeIs($item['route'].'.*'); @endphp
                     <a href="{{ route($item['route']) }}"
                        class="portal-nav-link flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-all duration-150 {{ $isActive ? 'bg-white/10 font-medium text-white shadow-lg shadow-black/10' : 'text-slate-400 hover:bg-white/6 hover:text-white' }}">
-                        <svg class="h-4 w-4 shrink-0 {{ $isActive ? 'text-[#F39C12]' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="h-4 w-4 shrink-0 {{ $isActive ? 'text-[#E98C00]' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="{{ $item['icon'] }}"/>
                         </svg>
                         {{ $item['label'] }}
@@ -62,8 +64,8 @@
             <div class="border-t border-white/8 px-3 py-4 shrink-0">
                 @auth
                 <div class="mb-2 flex items-center gap-3 px-3 py-2">
-                    <div class="flex h-7 w-7 items-center justify-center rounded-full bg-[#F39C12]/20 shrink-0">
-                        <span class="text-xs font-semibold text-[#F39C12]">{{ strtoupper(substr(auth()->user()->name, 0, 1)) }}</span>
+                    <div class="flex h-7 w-7 items-center justify-center rounded-full bg-[#E98C00]/20 shrink-0">
+                        <span class="text-xs font-semibold text-[#E98C00]">{{ strtoupper(substr(auth()->user()->name, 0, 1)) }}</span>
                     </div>
                     <div class="min-w-0">
                         <p class="truncate text-xs font-medium text-white">{{ auth()->user()->name }}</p>
@@ -86,11 +88,11 @@
 
         <div class="relative flex min-w-0 flex-1 flex-col overflow-hidden">
             <div wire:loading.delay.flex class="portal-progress-track pointer-events-none absolute inset-x-0 top-0 z-30 hidden h-1">
-                <span class="portal-progress-runner absolute left-0 top-0 h-full w-28 rounded-full bg-linear-to-r from-[#F39C12] via-[#4EA8D9] to-[#166534]"></span>
+                <span class="portal-progress-runner absolute left-0 top-0 h-full w-28 rounded-full bg-linear-to-r from-[#E98C00] via-[#E98C00] to-[#E98C00]"></span>
             </div>
 
             <header class="portal-topbar-surface flex h-16 items-center justify-between border-b border-white/70 px-6 shadow-sm shadow-slate-900/5 shrink-0">
-                <button x-on:click="toggleSidebar()" class="portal-action rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600 lg:hidden">
+                <button x-on:click="toggleSidebar()" class="portal-action rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-[#FEF9E1] hover:text-gray-600 lg:hidden">
                     <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
@@ -99,7 +101,7 @@
                 <h1 class="hidden text-sm font-medium text-gray-700 lg:block">{{ $title ?? 'Admin Panel' }}</h1>
 
                 <div class="ml-auto flex items-center gap-3">
-                    <div wire:loading.delay.longer.flex class="hidden items-center gap-2 rounded-full border border-[#F39C12]/20 bg-[#F39C12]/10 px-3 py-1.5 text-xs font-medium text-[#b76f0a] md:flex">
+                    <div wire:loading.delay.longer.flex class="hidden items-center gap-2 rounded-full border border-[#E98C00]/20 bg-[#E98C00]/10 px-3 py-1.5 text-xs font-medium text-[#C97A00] md:flex">
                         <svg class="h-3.5 w-3.5 animate-spin" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>

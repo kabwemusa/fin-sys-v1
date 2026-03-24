@@ -2,15 +2,15 @@
 
     <div class="flex border-b border-gray-200 gap-1">
         <button wire:click="$set('activeTab','record')"
-            class="px-4 py-2.5 text-sm font-medium transition-all rounded-t-lg {{ $activeTab === 'record' ? 'text-[#1B4F72] border-b-2 border-[#1B4F72]' : 'text-gray-400 hover:text-gray-600' }}">
+            class="px-4 py-2.5 text-sm font-medium transition-all rounded-t-lg {{ $activeTab === 'record' ? 'text-[#E98C00] border-b-2 border-[#E98C00]' : 'text-gray-400 hover:text-gray-600' }}">
             Record Repayment
         </button>
         <button wire:click="$set('activeTab','history')"
-            class="px-4 py-2.5 text-sm font-medium transition-all rounded-t-lg {{ $activeTab === 'history' ? 'text-[#1B4F72] border-b-2 border-[#1B4F72]' : 'text-gray-400 hover:text-gray-600' }}">
+            class="px-4 py-2.5 text-sm font-medium transition-all rounded-t-lg {{ $activeTab === 'history' ? 'text-[#E98C00] border-b-2 border-[#E98C00]' : 'text-gray-400 hover:text-gray-600' }}">
             History
         </button>
         <button wire:click="$set('activeTab','overdue')"
-            class="px-4 py-2.5 text-sm font-medium transition-all rounded-t-lg {{ $activeTab === 'overdue' ? 'text-[#1B4F72] border-b-2 border-[#1B4F72]' : 'text-gray-400 hover:text-gray-600' }}">
+            class="px-4 py-2.5 text-sm font-medium transition-all rounded-t-lg {{ $activeTab === 'overdue' ? 'text-[#E98C00] border-b-2 border-[#E98C00]' : 'text-gray-400 hover:text-gray-600' }}">
             Overdue
             @if($overdueLoans->count())
                 <span class="ml-1 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">{{ $overdueLoans->count() }}</span>
@@ -28,10 +28,10 @@
                     <label class="block text-xs font-medium text-gray-600 mb-1">Loan Reference</label>
                     <div class="flex gap-2">
                         <input wire:model="loanReference" type="text" placeholder="LN-2026-00001"
-                            class="flex-1 px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1B4F72] uppercase"
+                            class="flex-1 px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#E98C00] uppercase"
                             wire:keydown.enter="lookupLoan">
                         <button wire:click="lookupLoan"
-                            class="px-4 py-2.5 bg-[#1B4F72] text-white text-sm font-medium rounded-xl hover:bg-[#154060] transition-colors">
+                            class="px-4 py-2.5 bg-[#E98C00] text-white text-sm font-medium rounded-xl hover:bg-[#C97A00] transition-colors">
                             Lookup
                         </button>
                     </div>
@@ -48,20 +48,20 @@
                         <div>
                             <label class="block text-xs font-medium text-gray-600 mb-1">Amount (ZMW) *</label>
                             <input wire:model="amount" type="number" step="0.01"
-                                class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1B4F72]">
+                                class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#E98C00]">
                             @error('amount') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
                         </div>
                         <div>
                             <label class="block text-xs font-medium text-gray-600 mb-1">Payment Date *</label>
                             <input wire:model="payment_date" type="date"
-                                class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1B4F72]">
+                                class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#E98C00]">
                         </div>
                     </div>
 
                     <div>
                         <label class="block text-xs font-medium text-gray-600 mb-1">Payment Method *</label>
                         <select wire:model="payment_method"
-                            class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1B4F72]">
+                            class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#E98C00]">
                             <option value="bank_transfer">Bank Transfer</option>
                             <option value="cash">Cash</option>
                             <option value="mobile_money">Mobile Money</option>
@@ -72,13 +72,13 @@
                     <div>
                         <label class="block text-xs font-medium text-gray-600 mb-1">Reference/Receipt No.</label>
                         <input wire:model="reference_number" type="text" placeholder="Optional"
-                            class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1B4F72]">
+                            class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#E98C00]">
                     </div>
 
                     <div>
                         <label class="block text-xs font-medium text-gray-600 mb-1">Notes</label>
                         <textarea wire:model="notes" rows="2"
-                            class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1B4F72] resize-none"></textarea>
+                            class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#E98C00] resize-none"></textarea>
                     </div>
 
                     <button wire:click="recordRepayment"
@@ -91,7 +91,7 @@
 
     @elseif($activeTab === 'history')
         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-            <div class="hidden md:grid grid-cols-12 gap-3 px-6 py-3 bg-gray-50 border-b border-gray-100 text-xs font-medium text-gray-400 uppercase tracking-wider">
+            <div class="hidden md:grid grid-cols-12 gap-3 px-6 py-3 bg-[#FEF9E1] border-b border-gray-100 text-xs font-medium text-gray-400 uppercase tracking-wider">
                 <div class="col-span-3">Loan Ref</div>
                 <div class="col-span-3">Customer</div>
                 <div class="col-span-2 text-right">Amount</div>
@@ -102,13 +102,13 @@
                 @forelse($recentRepayments as $repayment)
                     <div class="grid grid-cols-12 gap-3 px-6 py-3.5 items-center text-sm">
                         <div class="col-span-12 md:col-span-3">
-                            <p class="font-medium text-[#1B4F72]">{{ $repayment->loanApplication->reference }}</p>
+                            <p class="font-medium text-[#E98C00]">{{ $repayment->loanApplication->reference }}</p>
                         </div>
                         <div class="hidden md:block col-span-3 text-gray-600">{{ $repayment->loanApplication->customer->user->name ?? '—' }}</div>
                         <div class="col-span-6 md:col-span-2 text-right font-semibold text-emerald-600">ZMW {{ number_format($repayment->amount, 2) }}</div>
                         <div class="hidden md:block col-span-2 text-center text-gray-500">{{ $repayment->payment_date->format('d M Y') }}</div>
                         <div class="hidden md:block col-span-2 text-center">
-                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">{{ str_replace('_',' ',$repayment->payment_method) }}</span>
+                            <span class="text-xs bg-[#FEF9E1] text-gray-600 px-2 py-0.5 rounded-full">{{ str_replace('_',' ',$repayment->payment_method) }}</span>
                         </div>
                     </div>
                 @empty
@@ -129,7 +129,7 @@
                     @foreach($overdueLoans as $loan)
                         <div class="flex items-center justify-between px-6 py-4">
                             <div>
-                                <a href="{{ route('admin.application.review', $loan->id) }}" class="text-sm font-medium text-[#1B4F72] hover:underline">{{ $loan->reference }}</a>
+                                <a href="{{ route('admin.application.review', $loan->id) }}" class="text-sm font-medium text-[#E98C00] hover:underline">{{ $loan->reference }}</a>
                                 <p class="text-xs text-gray-400">{{ $loan->customer->user->name ?? '—' }} &middot; Due {{ $loan->due_date->format('d M Y') }}</p>
                             </div>
                             <div class="text-right">

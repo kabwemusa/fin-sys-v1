@@ -3,7 +3,7 @@
     {{-- Filters --}}
     <div class="flex flex-col sm:flex-row gap-3">
         <select wire:model.live="reportType"
-            class="px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 focus:outline-none focus:border-[#1B4F72]">
+            class="px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 focus:outline-none focus:border-[#E98C00]">
             <option value="disbursement">Disbursement Report</option>
             <option value="repayment">Repayment Report</option>
             <option value="overdue">Overdue Report</option>
@@ -11,9 +11,9 @@
         </select>
         @if($reportType !== 'overdue')
         <input wire:model.live="dateFrom" type="date"
-            class="px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1B4F72]">
+            class="px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#E98C00]">
         <input wire:model.live="dateTo" type="date"
-            class="px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1B4F72]">
+            class="px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#E98C00]">
         @endif
     </div>
 
@@ -22,7 +22,7 @@
     <div class="grid grid-cols-2 gap-4">
         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 text-center">
             <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">Records</p>
-            <p class="text-3xl font-semibold text-[#1B4F72]">{{ $summary['count'] }}</p>
+            <p class="text-3xl font-semibold text-[#E98C00]">{{ $summary['count'] }}</p>
         </div>
         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 text-center">
             <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">Total Amount (ZMW)</p>
@@ -39,7 +39,7 @@
                 @forelse($data as $app)
                     <div class="flex items-center justify-between px-6 py-4">
                         <div>
-                            <a href="{{ route('admin.application.review', $app->id) }}" class="text-sm font-medium text-[#1B4F72] hover:underline">{{ $app->reference }}</a>
+                            <a href="{{ route('admin.application.review', $app->id) }}" class="text-sm font-medium text-[#E98C00] hover:underline">{{ $app->reference }}</a>
                             <p class="text-xs text-gray-400">{{ $app->customer->user->name ?? '—' }} &middot; {{ $app->loanProduct->name }}</p>
                         </div>
                         <div class="text-right">
@@ -57,7 +57,7 @@
                 @forelse($data as $r)
                     <div class="flex items-center justify-between px-6 py-4">
                         <div>
-                            <p class="text-sm font-medium text-[#1B4F72]">{{ $r->loanApplication->reference }}</p>
+                            <p class="text-sm font-medium text-[#E98C00]">{{ $r->loanApplication->reference }}</p>
                             <p class="text-xs text-gray-400">{{ $r->loanApplication->customer->user->name ?? '—' }} &middot; {{ $r->payment_date->format('d M Y') }}</p>
                         </div>
                         <p class="text-sm font-semibold text-emerald-600">ZMW {{ number_format($r->amount, 2) }}</p>
@@ -72,7 +72,7 @@
                 @forelse($data as $app)
                     <div class="flex items-center justify-between px-6 py-4">
                         <div>
-                            <a href="{{ route('admin.application.review', $app->id) }}" class="text-sm font-medium text-[#1B4F72] hover:underline">{{ $app->reference }}</a>
+                            <a href="{{ route('admin.application.review', $app->id) }}" class="text-sm font-medium text-[#E98C00] hover:underline">{{ $app->reference }}</a>
                             <p class="text-xs text-gray-400">{{ $app->customer->user->name ?? '—' }} &middot; Due {{ $app->due_date->format('d M Y') }}</p>
                         </div>
                         <p class="text-sm font-semibold text-red-500">ZMW {{ number_format($app->outstandingBalance(), 2) }}</p>

@@ -1,22 +1,22 @@
 <div class="min-h-screen flex bg-white">
 
     {{-- ── Left brand panel ── --}}
-    <div class="hidden lg:flex w-5/12 xl:w-1/2 relative flex-col justify-between overflow-hidden bg-[#0c2336]">
+    <div class="hidden lg:flex w-5/12 xl:w-1/2 relative flex-col justify-between overflow-hidden bg-[#150700]">
         <img src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?auto=format&fit=crop&w=1200&q=80"
              alt="" class="absolute inset-0 w-full h-full object-cover opacity-15" loading="eager">
-        <div class="absolute inset-0 bg-gradient-to-br from-[#0c2336]/95 via-[#0c2336]/80 to-[#1B4F72]/60"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-[#150700]/95 via-[#150700]/80 to-[#E98C00]/60"></div>
 
         {{-- Top logo --}}
         <div class="relative p-10">
-            <a href="{{ route('home') }}" class="text-white font-semibold text-xl tracking-tight">CredenceSystems</a>
+            <a href="{{ route('home') }}"><img src="{{ asset('images/logo.png') }}" alt="Orange Fin" class="h-9 w-auto"></a>
         </div>
 
         {{-- Centre copy --}}
         <div class="relative px-10 pb-8">
-            <p class="text-[#F39C12] text-xs font-medium tracking-[0.2em] uppercase mb-4">Secure Portal</p>
+            <p class="text-[#E98C00] text-xs font-medium tracking-[0.2em] uppercase mb-4">Secure Portal</p>
             <h2 class="text-3xl font-semibold text-white leading-snug mb-4">
                 Manage your loans<br>
-                <span class="text-[#4EA8D9]">from one place.</span>
+                <span class="text-[#E98C00]">from one place.</span>
             </h2>
             <p class="text-slate-300 font-light text-sm leading-relaxed max-w-xs">
                 Track repayments, view your schedule, upload documents, and stay on top of your financial journey.
@@ -27,7 +27,7 @@
                 <div class="flex-1 h-px bg-white/15"></div>
                 <div class="flex gap-1.5">
                     <div class="w-1 h-1 rounded-full bg-white/30"></div>
-                    <div class="w-1.5 h-1.5 rounded-full bg-[#4EA8D9]/60"></div>
+                    <div class="w-1.5 h-1.5 rounded-full bg-[#E98C00]/60"></div>
                     <div class="w-1 h-1 rounded-full bg-white/30"></div>
                 </div>
                 <div class="flex-1 h-px bg-white/15"></div>
@@ -60,12 +60,12 @@
     </div>
 
     {{-- ── Right login panel ── --}}
-    <div class="flex-1 flex items-center justify-center px-6 py-16 bg-gray-50">
+    <div class="flex-1 flex items-center justify-center px-6 py-16 bg-[#FEF9E1]">
         <div class="w-full max-w-sm">
 
             {{-- Mobile logo --}}
             <div class="lg:hidden mb-8 text-center">
-                <a href="{{ route('home') }}" class="text-[#1B4F72] font-semibold text-xl">CredenceSystems</a>
+                <a href="{{ route('home') }}"><img src="{{ asset('images/logo.png') }}" alt="Orange Fin" class="h-9 w-auto mx-auto"></a>
             </div>
 
             {{-- Header --}}
@@ -93,7 +93,7 @@
                         </div>
                         <input wire:model="identifier" type="text" placeholder="you@example.com or +260 97XXXXXXX" autocomplete="username"
                             class="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl text-sm text-gray-800 placeholder-gray-400
-                                   focus:outline-none focus:ring-2 focus:ring-[#1B4F72]/20 focus:border-[#1B4F72] transition-all duration-200">
+                                   focus:outline-none focus:ring-2 focus:ring-[#E98C00]/20 focus:border-[#E98C00] transition-all duration-200">
                     </div>
                     @error('identifier') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                 </div>
@@ -106,7 +106,7 @@
                         </div>
                         <input wire:model="password" type="password" placeholder="••••••••" required
                             class="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl text-sm text-gray-800 placeholder-gray-400
-                                   focus:outline-none focus:ring-2 focus:ring-[#1B4F72]/20 focus:border-[#1B4F72] transition-all duration-200">
+                                   focus:outline-none focus:ring-2 focus:ring-[#E98C00]/20 focus:border-[#E98C00] transition-all duration-200">
                     </div>
                     @error('password') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                 </div>
@@ -115,8 +115,8 @@
                 <div class="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
 
                 <button type="submit" wire:loading.attr="disabled" wire:loading.class="opacity-70 cursor-not-allowed"
-                    class="w-full flex items-center justify-center gap-2 py-3 px-4 bg-[#1B4F72] text-white rounded-xl text-sm font-medium
-                           hover:bg-[#154060] transition-all duration-200 shadow-md shadow-blue-900/20">
+                    class="w-full flex items-center justify-center gap-2 py-3 px-4 bg-[#E98C00] text-white rounded-xl text-sm font-medium
+                           hover:bg-[#C97A00] transition-all duration-200 shadow-md shadow-orange-900/20">
                     <span wire:loading.remove>Sign In</span>
                     <span wire:loading class="flex items-center gap-2">
                         <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
@@ -135,7 +135,7 @@
             <div class="text-center space-y-3">
                 <p class="text-sm text-gray-500">
                     Don't have an account?
-                    <a href="{{ route('home') }}#products" class="text-[#1B4F72] font-medium hover:underline">Apply for a loan</a>
+                    <a href="{{ route('home') }}#products" class="text-[#E98C00] font-medium hover:underline">Apply for a loan</a>
                 </p>
                 <p class="text-xs text-gray-400 font-light">
                     Your account is created automatically when you submit a loan application.

@@ -25,21 +25,23 @@
              x-transition:leave-start="opacity-100"
              x-transition:leave-end="opacity-0"
              x-on:click="closeSidebar()"
-             class="portal-backdrop fixed inset-0 z-20 bg-[#071520]/55 lg:hidden"></div>
+             class="portal-backdrop fixed inset-0 z-20 bg-[#1a0800]/55 lg:hidden"></div>
 
         <aside
             :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
             class="portal-sidebar-surface fixed inset-y-0 left-0 z-30 flex w-64 flex-col border-r border-white/8 transform transition-transform duration-300 ease-in-out lg:static lg:z-auto lg:translate-x-0"
         >
             <div class="flex h-16 items-center border-b border-white/8 px-6 shrink-0">
-                <a href="{{ route('portal.loans') }}" class="portal-action text-lg font-semibold tracking-tight text-white">CredenceSystems</a>
-                <span class="ml-2 rounded-full border border-[#4EA8D9]/20 bg-[#4EA8D9]/10 px-2 py-0.5 text-[10px] font-medium text-[#4EA8D9]">Portal</span>
+                <a href="{{ route('portal.loans') }}" class="portal-action">
+                    <img src="{{ asset('images/logo.png') }}" alt="Orange Fin" class="h-8 w-auto">
+                </a>
+                <span class="ml-2 rounded-full border border-[#E98C00]/20 bg-[#E98C00]/10 px-2 py-0.5 text-[10px] font-medium text-[#E98C00]">Portal</span>
             </div>
 
             @auth
             <div class="border-b border-white/8 px-5 py-4 shrink-0">
                 <div class="flex items-center gap-3">
-                    <div class="flex h-9 w-9 items-center justify-center rounded-full bg-[#4EA8D9]/15 ring-1 ring-white/8 shrink-0">
+                    <div class="flex h-9 w-9 items-center justify-center rounded-full bg-[#E98C00]/15 ring-1 ring-white/8 shrink-0">
                         <span class="text-sm font-medium text-white">{{ strtoupper(substr(auth()->user()->name, 0, 1)) }}</span>
                     </div>
                     <div class="min-w-0">
@@ -62,7 +64,7 @@
                     @php $isActive = request()->routeIs($item['route']); @endphp
                     <a href="{{ route($item['route']) }}"
                        class="portal-nav-link flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-all duration-150 {{ $isActive ? 'bg-white/10 font-medium text-white shadow-lg shadow-black/10' : 'text-slate-400 hover:bg-white/6 hover:text-white' }}">
-                        <svg class="h-4 w-4 shrink-0 {{ $isActive ? 'text-[#4EA8D9]' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="h-4 w-4 shrink-0 {{ $isActive ? 'text-[#E98C00]' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="{{ $item['icon'] }}"/>
                         </svg>
                         {{ $item['label'] }}
@@ -86,11 +88,11 @@
 
         <div class="relative flex min-w-0 flex-1 flex-col overflow-hidden">
             <div wire:loading.delay.flex class="portal-progress-track pointer-events-none absolute inset-x-0 top-0 z-30 hidden h-1">
-                <span class="portal-progress-runner absolute left-0 top-0 h-full w-28 rounded-full bg-linear-to-r from-[#166534] via-[#4EA8D9] to-[#F39C12]"></span>
+                <span class="portal-progress-runner absolute left-0 top-0 h-full w-28 rounded-full bg-linear-to-r from-[#E98C00] via-[#E98C00] to-[#E98C00]"></span>
             </div>
 
             <header class="portal-topbar-surface flex h-16 items-center justify-between border-b border-white/70 px-6 shadow-sm shadow-slate-900/5 shrink-0">
-                <button x-on:click="toggleSidebar()" class="portal-action rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600 lg:hidden">
+                <button x-on:click="toggleSidebar()" class="portal-action rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-[#FEF9E1] hover:text-gray-600 lg:hidden">
                     <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
@@ -99,7 +101,7 @@
                 <h1 class="hidden text-sm font-medium text-gray-700 lg:block">{{ $title ?? 'Customer Portal' }}</h1>
 
                 <div class="ml-auto flex items-center gap-3 sm:gap-4">
-                    <div wire:loading.delay.longer.flex class="hidden items-center gap-2 rounded-full border border-[#4EA8D9]/20 bg-[#4EA8D9]/10 px-3 py-1.5 text-xs font-medium text-[#1B4F72] md:flex">
+                    <div wire:loading.delay.longer.flex class="hidden items-center gap-2 rounded-full border border-[#E98C00]/20 bg-[#E98C00]/10 px-3 py-1.5 text-xs font-medium text-[#E98C00] md:flex">
                         <svg class="h-3.5 w-3.5 animate-spin" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>

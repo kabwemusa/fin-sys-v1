@@ -3,14 +3,14 @@
     {{-- ═══════════════════════════════════════════════════════
          §1  HERO — Calculator + floating organic blob photos
          ═══════════════════════════════════════════════════════ --}}
-    <section id="hero" class="relative overflow-hidden bg-[#071520]">
+    <section id="hero" class="relative overflow-hidden bg-[#FEF9E1] dark:bg-[#1a0800]">
 
         <div class="absolute inset-0 pointer-events-none"
-             style="background-image:radial-gradient(circle, rgba(78,168,217,.12) 1px, transparent 1px); background-size:44px 44px;"></div>
+             style="background-image:radial-gradient(circle, rgba(249,115,22,.10) 1px, transparent 1px); background-size:44px 44px;"></div>
 
-        <div class="absolute left-[16%] top-1/4 h-[28rem] w-[28rem] rounded-full bg-[#166534]/8 blur-3xl pointer-events-none"></div>
-        <div class="absolute bottom-0 right-[12%] h-72 w-72 rounded-full bg-[#F39C12]/6 blur-3xl pointer-events-none"></div>
-        <div class="absolute right-[28%] top-1/3 h-80 w-80 rounded-full bg-[#1B4F72]/8 blur-3xl pointer-events-none"></div>
+        <div class="absolute left-[16%] top-1/4 h-[28rem] w-[28rem] rounded-full bg-[#E98C00]/8 blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 right-[12%] h-72 w-72 rounded-full bg-[#E98C00]/6 blur-3xl pointer-events-none"></div>
+        <div class="absolute right-[28%] top-1/3 h-80 w-80 rounded-full bg-[#E98C00]/8 blur-3xl pointer-events-none"></div>
 
         @php
             $primaryApplyUrl = $products->first() ? route('loan.apply', $products->first()->slug) : '#products';
@@ -20,18 +20,18 @@
             <div class="grid w-full items-center gap-10 xl:grid-cols-[minmax(0,1fr)_minmax(0,520px)] xl:gap-12">
 
                 <div class="max-w-xl">
-                    <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 hero-up">
-                        <span class="h-2 w-2 shrink-0 rounded-full bg-[#F39C12] animate-pulse"></span>
-                        <span class="text-xs font-medium uppercase tracking-[0.15em] text-[#F39C12]">Applications Open · Fast Approval</span>
+                    <div class="inline-flex items-center gap-2 rounded-full border border-[#E98C00]/30 bg-[#E98C00]/10 dark:border-white/10 dark:bg-white/5 px-4 py-2 hero-up">
+                        <span class="h-2 w-2 shrink-0 rounded-full bg-[#E98C00] animate-pulse"></span>
+                        <span class="text-xs font-medium uppercase tracking-[0.15em] text-[#E98C00]">Applications Open · Fast Approval</span>
                     </div>
 
-                    <h1 class="mt-6 max-w-[15ch] text-[2.3rem] font-semibold leading-[0.98] text-white hero-up d1 sm:text-[3.15rem] md:text-[4rem]">
+                    <h1 class="mt-6 max-w-[15ch] text-[2.3rem] font-semibold leading-[0.98] text-[#1a0800] dark:text-white hero-up d1 sm:text-[3.15rem] md:text-[4rem]">
                         <span class="block">You can</span>
-                        <span class="hero-squiggle block text-[#4EA8D9]">apply for a loan</span>
+                        <span class="hero-squiggle block text-[#E98C00]">apply for a loan</span>
                         <span class="block">today.</span>
                     </h1>
 
-                    <p class="mt-6 max-w-lg text-base font-light leading-8 text-slate-400 hero-up d2">
+                    <p class="mt-6 max-w-lg text-base font-light leading-8 text-slate-600 dark:text-slate-400 hero-up d2">
                         One application. No prior registration. Clear terms, fast review, and direct disbursement into your account once approved.
                     </p>
 
@@ -41,25 +41,25 @@
                             ['M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z', 'Zero hidden fees'],
                             ['M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', '24-48 hour review'],
                         ] as [$icon, $label])
-                            <div class="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-3.5 py-2.5">
-                                <svg class="h-4 w-4 shrink-0 text-[#16a34a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="inline-flex items-center gap-2 rounded-2xl border border-[#1a0800]/10 bg-[#1a0800]/5 dark:border-white/10 dark:bg-white/5 px-3.5 py-2.5">
+                                <svg class="h-4 w-4 shrink-0 text-[#E98C00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $icon }}"/>
                                 </svg>
-                                <span class="text-xs font-light text-slate-300">{{ $label }}</span>
+                                <span class="text-xs font-light text-slate-600 dark:text-slate-300">{{ $label }}</span>
                             </div>
                         @endforeach
                     </div>
 
                     <div class="mt-7 flex flex-wrap items-center gap-3 hero-up d3">
                         <a href="{{ $primaryApplyUrl }}"
-                           class="inline-flex items-center gap-2 rounded-2xl bg-[#166534] px-5 py-3 text-sm font-semibold text-white shadow-xl shadow-[#166534]/25 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#14532d]">
+                           class="inline-flex items-center gap-2 rounded-2xl bg-[#E98C00] px-5 py-3 text-sm font-semibold text-white shadow-xl shadow-[#E98C00]/25 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#C97A00]">
                             Start Application
                             <svg class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                             </svg>
                         </a>
                         <a href="#products"
-                           class="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10">
+                           class="inline-flex items-center gap-2 rounded-2xl border border-[#1a0800]/20 bg-[#1a0800]/5 dark:border-white/10 dark:bg-white/5 px-5 py-3 text-sm font-medium text-[#1a0800] dark:text-white transition-colors hover:bg-[#1a0800]/10 dark:hover:bg-white/10">
                             Browse products
                         </a>
                     </div>
@@ -72,14 +72,14 @@
                                 'photo-1500648767791-00dcc994a43e',
                                 'photo-1534528741775-53994a69daeb',
                             ] as $photo)
-                                <div class="h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-[#071520] ring-1 ring-white/10">
+                                <div class="h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-[#FEF9E1] dark:border-[#1a0800] ring-1 ring-[#1a0800]/10 dark:ring-white/10">
                                     <img src="https://images.unsplash.com/{{ $photo }}?auto=format&fit=crop&w=72&h=72&q=80"
                                          class="h-full w-full object-cover" loading="lazy" decoding="async" width="72" height="72" alt="">
                                 </div>
                             @endforeach
                         </div>
                         <div>
-                            <p class="text-sm font-medium text-white">5,000+ people funded</p>
+                            <p class="text-sm font-medium text-[#1a0800] dark:text-white">5,000+ people funded</p>
                             <p class="text-xs font-light text-slate-500">Trusted across Zambia</p>
                         </div>
                     </div>
@@ -103,8 +103,8 @@
                     {{-- <div class="mb-4 grid gap-3 sm:grid-cols-2">
                         <div class="rounded-2xl border border-white/70 bg-white/96 px-4 py-3 shadow-2xl shadow-black/15">
                             <div class="flex items-center gap-3">
-                                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#166534]/10">
-                                    <svg class="h-5 w-5 text-[#166534]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#E98C00]/10">
+                                    <svg class="h-5 w-5 text-[#E98C00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
                                 </div>
@@ -122,21 +122,21 @@
                         </div>
                     </div> --}}
 
-                    <div class="rounded-[2rem] border border-slate-700/40 bg-[#071622] p-6 shadow-2xl shadow-black/60 lg:p-8 hero-up d3">
+                    <div class="rounded-[2rem] border border-gray-200 dark:border-slate-700/40 bg-white dark:bg-[#1a0800] p-6 shadow-2xl shadow-gray-200 dark:shadow-black/60 lg:p-8 hero-up d3">
                         <div class="mb-5 flex items-center justify-between">
                             <div>
-                                <p class="mb-1 text-[10px] font-medium uppercase tracking-[0.18em] text-[#F39C12]">Loan Calculator</p>
-                                <p class="text-2xl font-semibold leading-tight text-white sm:text-[1.9rem]">Know your numbers first</p>
+                                <p class="mb-1 text-[10px] font-medium uppercase tracking-[0.18em] text-[#E98C00]">Loan Calculator</p>
+                                <p class="text-2xl font-semibold leading-tight text-[#1a0800] dark:text-white sm:text-[1.9rem]">Know your numbers first</p>
                             </div>
-                            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#166534]/30 bg-[#166534]/20">
-                                <svg class="h-5 w-5 text-[#16a34a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#E98C00]/30 bg-[#E98C00]/20">
+                                <svg class="h-5 w-5 text-[#E98C00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
                                           d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
                                 </svg>
                             </div>
                         </div>
 
-                        <livewire:public.loan-calculator theme="dark" />
+                        <livewire:public.loan-calculator theme="light" />
                     </div>
                 </div>
             </div>
@@ -147,7 +147,7 @@
     {{-- ═══════════════════════════════════════════════════════
          §2  MARQUEE STATS TICKER
          ═══════════════════════════════════════════════════════ --}}
-    <div class="bg-white border-y border-gray-100/80 py-4 overflow-hidden cursor-default">
+    <div class="bg-white dark:bg-[#150700] border-y border-gray-100/80 dark:border-white/5 py-4 overflow-hidden cursor-default">
         <div class="marquee-track flex whitespace-nowrap select-none">
             @php
                 $ticker = [
@@ -167,8 +167,8 @@
             @endphp
             @foreach($ticker as $stat)
                 <div class="inline-flex items-center gap-3 px-9">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#16a34a] shrink-0"></span>
-                    <span class="text-base font-semibold text-[#166534]">{{ $stat[0] }}</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#E98C00] shrink-0"></span>
+                    <span class="text-base font-semibold text-[#E98C00]">{{ $stat[0] }}</span>
                     <span class="text-sm text-gray-400 font-light">{{ $stat[1] }}</span>
                 </div>
             @endforeach
@@ -179,22 +179,22 @@
     {{-- ═══════════════════════════════════════════════════════
          §3  PRODUCTS — Stacked card deck
          ═══════════════════════════════════════════════════════ --}}
-    <section id="products" class="bg-gray-50 py-14 md:py-24 px-5 relative overflow-hidden">
+    <section id="products" class="bg-[#FEF9E1] dark:bg-[#150700] py-14 md:py-24 px-5 relative overflow-hidden">
 
         {{-- Decorative blob --}}
-        <div class="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-[#166534]/5 blur-3xl pointer-events-none"></div>
+        <div class="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-[#E98C00]/5 blur-3xl pointer-events-none"></div>
 
         <div class="max-w-5xl mx-auto relative">
 
             <div class="text-center mb-16 reveal">
-                <span class="inline-block text-[#166534] text-xs font-medium tracking-[0.2em] uppercase mb-3 px-4 py-1.5 bg-green-50 rounded-full border border-green-100">
+                <span class="inline-block text-[#E98C00] text-xs font-medium tracking-[0.2em] uppercase mb-3 px-4 py-1.5 bg-[#FEF9E1] rounded-full border border-[#E98C00]">
                     Loan Products
                 </span>
-                <h2 class="text-3xl md:text-4xl font-semibold text-gray-800 mt-4 leading-tight">
+                <h2 class="text-3xl md:text-4xl font-semibold text-gray-800 dark:text-white mt-4 leading-tight">
                     Choose your path to<br>
-                    <span class="text-[#166534]">financial freedom</span>
+                    <span class="text-[#E98C00]">financial freedom</span>
                 </h2>
-                <p class="text-gray-400 mt-3 font-light max-w-sm mx-auto text-sm">Simple, transparent products built around your life.</p>
+                <p class="text-gray-600 dark:text-slate-400 mt-3 font-light max-w-sm mx-auto text-sm">Simple, transparent products built around your life.</p>
             </div>
 
             {{-- Stacked product cards --}}
@@ -204,14 +204,14 @@
 
                         {{-- "Deck peek" strips (only for non-last cards) --}}
                         @if(!$loop->last)
-                            <div class="absolute -bottom-2 left-5 right-5 h-5 bg-gray-200/70 rounded-b-3xl -z-10"></div>
-                            <div class="absolute -bottom-4 left-10 right-10 h-5 bg-gray-300/40 rounded-b-3xl -z-20"></div>
+                            <div class="absolute -bottom-2 left-5 right-5 h-5 bg-[#E98C00]/20 rounded-b-3xl -z-10"></div>
+                            <div class="absolute -bottom-4 left-10 right-10 h-5 bg-[#E98C00]/10 rounded-b-3xl -z-20"></div>
                         @endif
 
-                        <div class="group relative bg-white rounded-3xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-gray-200/80 stacked-card">
+                        <div class="group relative bg-white dark:bg-[#1a0800] rounded-3xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-gray-200/80 dark:hover:shadow-black/50 stacked-card">
 
                             {{-- Color accent top bar --}}
-                            <div class="h-1.5 w-full {{ $loop->first ? 'bg-linear-to-r from-[#166534] to-[#16a34a]' : 'bg-linear-to-r from-[#F39C12] to-[#e67e22]' }}"></div>
+                            <div class="h-1.5 w-full {{ $loop->first ? 'bg-linear-to-r from-[#E98C00] to-[#E98C00]' : 'bg-linear-to-r from-[#E98C00] to-[#E98C00]' }}"></div>
 
                             <div class="p-8 md:p-10">
                                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-center">
@@ -219,7 +219,7 @@
                                     {{-- Column 1: Product identity --}}
                                     <div>
                                         <div class="flex items-center gap-3 mb-5">
-                                            <div class="w-12 h-12 rounded-2xl {{ $loop->first ? 'bg-[#166534]' : 'bg-[#F39C12]' }} flex items-center justify-center shrink-0 shadow-lg {{ $loop->first ? 'shadow-[#166534]/30' : 'shadow-[#F39C12]/30' }}">
+                                            <div class="w-12 h-12 rounded-2xl {{ $loop->first ? 'bg-[#E98C00]' : 'bg-[#E98C00]' }} flex items-center justify-center shrink-0 shadow-lg {{ $loop->first ? 'shadow-[#E98C00]/30' : 'shadow-[#E98C00]/30' }}">
                                                 @if($loop->first)
                                                     <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
@@ -231,40 +231,40 @@
                                                 @endif
                                             </div>
                                             <div>
-                                                <h3 class="text-xl font-semibold text-gray-800">{{ $product->name }}</h3>
-                                                <span class="text-xs {{ $loop->first ? 'text-[#166534] bg-green-50' : 'text-[#c07a0a] bg-amber-50' }} px-2.5 py-0.5 rounded-full font-medium">
+                                                <h3 class="text-xl font-semibold text-gray-800 dark:text-white">{{ $product->name }}</h3>
+                                                <span class="text-xs {{ $loop->first ? 'text-[#E98C00] bg-[#FEF9E1]' : 'text-[#C97A00] bg-[#FEF9E1]' }} px-2.5 py-0.5 rounded-full font-medium">
                                                     {{ $product->requires_collateral ? 'Asset-backed' : 'Salary-backed' }}
                                                 </span>
                                             </div>
                                         </div>
-                                        <p class="text-gray-500 text-sm leading-relaxed font-light">{{ $product->description }}</p>
+                                        <p class="text-gray-700 dark:text-slate-400 text-sm leading-relaxed font-light">{{ $product->description }}</p>
                                     </div>
 
                                     {{-- Column 2: Key numbers --}}
                                     <div>
                                         <div class="grid grid-cols-3 gap-3 text-center">
-                                            <div class="py-3 px-2 rounded-2xl bg-gray-50">
-                                                <p class="text-2xl font-bold {{ $loop->first ? 'text-[#166534]' : 'text-[#F39C12]' }}">{{ $product->interest_rate }}%</p>
-                                                <p class="text-[11px] text-gray-400 font-light mt-0.5 leading-tight">per month</p>
+                                            <div class="py-3 px-2 rounded-2xl bg-[#FEF9E1]">
+                                                <p class="text-2xl font-bold {{ $loop->first ? 'text-[#E98C00]' : 'text-[#E98C00]' }}">{{ $product->interest_rate }}%</p>
+                                                <p class="text-[11px] text-gray-600 font-light mt-0.5 leading-tight">per month</p>
                                             </div>
-                                            <div class="py-3 px-2 rounded-2xl bg-gray-50">
-                                                <p class="text-sm font-semibold text-gray-700 leading-tight">ZMW {{ number_format($product->min_amount/1000,0) }}K–{{ number_format($product->max_amount/1000,0) }}K</p>
-                                                <p class="text-[11px] text-gray-400 font-light mt-0.5">amount</p>
+                                            <div class="py-3 px-2 rounded-2xl bg-[#FEF9E1]">
+                                                <p class="text-sm font-semibold text-gray-800 leading-tight">ZMW {{ number_format($product->min_amount/1000,0) }}K–{{ number_format($product->max_amount/1000,0) }}K</p>
+                                                <p class="text-[11px] text-gray-600 font-light mt-0.5">amount</p>
                                             </div>
-                                            <div class="py-3 px-2 rounded-2xl bg-gray-50">
-                                                <p class="text-sm font-semibold text-gray-700">{{ $product->min_tenure_months }}–{{ $product->max_tenure_months }}mo</p>
-                                                <p class="text-[11px] text-gray-400 font-light mt-0.5">tenure</p>
+                                            <div class="py-3 px-2 rounded-2xl bg-[#FEF9E1]">
+                                                <p class="text-sm font-semibold text-gray-800">{{ $product->min_tenure_months }}–{{ $product->max_tenure_months }}mo</p>
+                                                <p class="text-[11px] text-gray-600 font-light mt-0.5">tenure</p>
                                             </div>
                                         </div>
 
                                         {{-- Range bar --}}
                                         <div class="mt-4 pt-4 border-t border-gray-100">
                                             <div class="flex justify-between mb-1.5">
-                                                <span class="text-[11px] text-gray-400 font-light">Min</span>
-                                                <span class="text-[11px] text-gray-500 font-medium">Max ZMW {{ number_format($product->max_amount/1000,0) }}K</span>
+                                                <span class="text-[11px] text-gray-600 font-light">Min</span>
+                                                <span class="text-[11px] text-gray-700 font-medium">Max ZMW {{ number_format($product->max_amount/1000,0) }}K</span>
                                             </div>
-                                            <div class="h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                                                <div class="h-full rounded-full {{ $loop->first ? 'bg-linear-to-r from-[#166534] to-[#16a34a]' : 'bg-linear-to-r from-[#F39C12] to-[#e67e22]' }}" style="width:78%"></div>
+                                            <div class="h-1.5 bg-[#FEF9E1] rounded-full overflow-hidden">
+                                                <div class="h-full rounded-full {{ $loop->first ? 'bg-linear-to-r from-[#E98C00] to-[#E98C00]' : 'bg-linear-to-r from-[#E98C00] to-[#E98C00]' }}" style="width:78%"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -274,15 +274,15 @@
                                         <a href="{{ route('loan.apply', $product->slug) }}"
                                            class="group/btn flex items-center justify-center gap-2 w-full py-4 rounded-2xl text-sm font-semibold transition-all duration-300
                                                   {{ $loop->first
-                                                        ? 'bg-[#166534] text-white hover:bg-[#14532d] shadow-lg shadow-[#166534]/25 hover:shadow-[#166534]/40 hover:-translate-y-0.5'
-                                                        : 'bg-gray-900 text-white hover:bg-gray-700 shadow-lg shadow-gray-900/15 hover:-translate-y-0.5' }}">
+                                                        ? 'bg-[#E98C00] text-white hover:bg-[#C97A00] shadow-lg shadow-[#E98C00]/25 hover:shadow-[#E98C00]/40 hover:-translate-y-0.5'
+                                                        : 'bg-[#1a0800] text-white hover:bg-[#C97A00] shadow-lg shadow-black/20 hover:-translate-y-0.5' }}">
                                             Apply Now
                                             <svg class="w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                                             </svg>
                                         </a>
-                                        <div class="flex items-center gap-2 text-xs text-gray-400 justify-center">
-                                            <svg class="w-3.5 h-3.5 text-green-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <div class="flex items-center gap-2 text-xs text-gray-600 justify-center">
+                                            <svg class="w-3.5 h-3.5 text-[#E98C00] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
                                             </svg>
                                             No registration required
@@ -302,25 +302,25 @@
     {{-- ═══════════════════════════════════════════════════════
          §4  HOW IT WORKS — Alternating story timeline
          ═══════════════════════════════════════════════════════ --}}
-    <section class="bg-[#071520] py-16 lg:py-28 px-5 relative overflow-hidden">
+    <section class="bg-white dark:bg-[#1a0800] py-16 lg:py-28 px-5 relative overflow-hidden">
 
         {{-- Background texture --}}
         <div class="absolute inset-0 pointer-events-none opacity-[0.025]"
-             style="background-image:radial-gradient(circle, #fff 1px, transparent 1px); background-size:36px 36px;"></div>
-        <div class="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent"></div>
-        <div class="absolute bottom-0 inset-x-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent"></div>
-        <div class="absolute top-1/3 -right-20 w-80 h-80 rounded-full bg-[#166534]/8 blur-3xl pointer-events-none"></div>
-        <div class="absolute bottom-1/4 -left-20 w-64 h-64 rounded-full bg-[#F39C12]/5 blur-3xl pointer-events-none"></div>
+             style="background-image:radial-gradient(circle, #1a0800 1px, transparent 1px); background-size:36px 36px;"></div>
+        <div class="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-gray-200 dark:via-white/10 to-transparent"></div>
+        <div class="absolute bottom-0 inset-x-0 h-px bg-linear-to-r from-transparent via-gray-200 dark:via-white/10 to-transparent"></div>
+        <div class="absolute top-1/3 -right-20 w-80 h-80 rounded-full bg-[#E98C00]/8 blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-1/4 -left-20 w-64 h-64 rounded-full bg-[#E98C00]/5 blur-3xl pointer-events-none"></div>
 
         <div class="max-w-6xl mx-auto relative">
 
             <div class="text-center mb-12 md:mb-20 reveal">
-                <span class="inline-block text-[#F39C12] text-xs font-medium tracking-[0.2em] uppercase mb-3 px-4 py-1.5 bg-[#F39C12]/10 rounded-full border border-[#F39C12]/20">
+                <span class="inline-block text-[#E98C00] text-xs font-medium tracking-[0.2em] uppercase mb-3 px-4 py-1.5 bg-[#E98C00]/10 rounded-full border border-[#E98C00]/20">
                     The Journey
                 </span>
-                <h2 class="text-3xl md:text-4xl font-semibold text-white mt-4 leading-tight">
+                <h2 class="text-3xl md:text-4xl font-semibold text-[#1a0800] dark:text-white mt-4 leading-tight">
                     From idea to funded<br>
-                    <span class="text-[#4EA8D9]">in 3 simple steps</span>
+                    <span class="text-[#E98C00]">in 3 simple steps</span>
                 </h2>
             </div>
 
@@ -368,20 +368,20 @@
 
                             {{-- Step number + icon row --}}
                             <div class="flex items-center gap-4 mb-6">
-                                <div class="w-12 h-12 rounded-2xl bg-[#166534]/15 border border-[#166534]/25 flex items-center justify-center shrink-0">
-                                    <svg class="w-5 h-5 text-[#16a34a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div class="w-12 h-12 rounded-2xl bg-[#E98C00]/15 border border-[#E98C00]/25 flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5 text-[#E98C00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="{{ $step['icon'] }}"/>
                                     </svg>
                                 </div>
-                                <span class="text-6xl font-black text-white/5 leading-none select-none tracking-tighter">{{ $step['num'] }}</span>
+                                <span class="text-6xl font-black text-[#1a0800]/5 dark:text-white/5 leading-none select-none tracking-tighter">{{ $step['num'] }}</span>
                             </div>
 
-                            <h3 class="text-2xl md:text-3xl font-semibold text-white mb-3">{{ $step['title'] }}</h3>
-                            <p class="text-slate-400 font-light leading-relaxed text-sm md:text-base">{{ $step['body'] }}</p>
+                            <h3 class="text-2xl md:text-3xl font-semibold text-[#1a0800] dark:text-white mb-3">{{ $step['title'] }}</h3>
+                            <p class="text-slate-600 dark:text-slate-400 font-light leading-relaxed text-sm md:text-base">{{ $step['body'] }}</p>
 
                             @if($step['cta'])
                                 <a href="{{ route('loan.apply', $products->first()?->slug) }}"
-                                   class="inline-flex items-center gap-2 mt-7 text-sm text-[#16a34a] hover:text-white transition-colors group font-medium">
+                                   class="inline-flex items-center gap-2 mt-7 text-sm text-[#E98C00] hover:text-[#C97A00] dark:hover:text-white transition-colors group font-medium">
                                     Start your application
                                     <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -393,13 +393,13 @@
                             <div class="flex items-center gap-3 mt-8">
                                 @foreach($steps as $j => $_s)
                                     <div class="flex items-center gap-2">
-                                        <div class="w-2.5 h-2.5 rounded-full {{ $j === $i ? 'bg-[#F39C12] shadow-lg shadow-[#F39C12]/50' : ($j < $i ? 'bg-[#16a34a]/60' : 'bg-white/15') }} transition-all"></div>
+                                        <div class="w-2.5 h-2.5 rounded-full {{ $j === $i ? 'bg-[#E98C00] shadow-lg shadow-[#E98C00]/50' : ($j < $i ? 'bg-[#E98C00]/60' : 'bg-[#1a0800]/15 dark:bg-white/15') }} transition-all"></div>
                                         @if(!$loop->last)
-                                            <div class="w-8 h-px {{ $j < $i ? 'bg-[#16a34a]/40' : 'bg-white/10' }}"></div>
+                                            <div class="w-8 h-px {{ $j < $i ? 'bg-[#E98C00]/40' : 'bg-[#1a0800]/10 dark:bg-white/10' }}"></div>
                                         @endif
                                     </div>
                                 @endforeach
-                                <span class="text-xs text-slate-500 font-light ml-1">Step {{ $i+1 }} of 3</span>
+                                <span class="text-xs text-slate-500 dark:text-slate-500 font-light ml-1">Step {{ $i+1 }} of 3</span>
                             </div>
                         </div>
 
@@ -407,16 +407,16 @@
                         <div class="{{ $i % 2 === 1 ? 'md:order-1' : 'md:order-2' }} reveal-{{ $i % 2 === 1 ? 'left' : 'right' }} rd{{ $i+1 }} relative">
 
                             {{-- Glow under image --}}
-                            <div class="absolute inset-8 bg-[#166534]/15 blur-2xl rounded-full pointer-events-none"></div>
+                            <div class="absolute inset-8 bg-[#E98C00]/15 blur-2xl rounded-full pointer-events-none"></div>
 
                             {{-- Organic blob image --}}
                             <div class="relative overflow-hidden shadow-2xl shadow-black/50 h-52 md:h-75" style="border-radius:{{ $step['shape'] }};">
                                 <img src="{{ $step['img'] }}" alt="{{ $step['title'] }}" class="w-full h-full object-cover {{ $step['pos'] ?? 'object-top' }}" loading="lazy" decoding="async">
-                                <div class="absolute inset-0 bg-[#071520]/30"></div>
+                                <div class="absolute inset-0 bg-[#1a0800]/30"></div>
                             </div>
 
                             {{-- Step badge --}}
-                            <div class="absolute {{ $i % 2 === 1 ? '-right-3 md:right-auto md:-left-3' : '-right-3' }} top-8 w-11 h-11 rounded-full bg-[#F39C12] text-white flex items-center justify-center text-sm font-bold shadow-xl shadow-[#F39C12]/40 select-none">
+                            <div class="absolute {{ $i % 2 === 1 ? '-right-3 md:right-auto md:-left-3' : '-right-3' }} top-8 w-11 h-11 rounded-full bg-[#E98C00] text-white flex items-center justify-center text-sm font-bold shadow-xl shadow-[#E98C00]/40 select-none">
                                 {{ $i + 1 }}
                             </div>
                         </div>
@@ -426,13 +426,13 @@
                     {{-- Connector between steps --}}
                     @if(!$loop->last)
                         <div class="flex items-center justify-center gap-4 -my-6 reveal">
-                            <div class="flex-1 max-w-xs h-px bg-linear-to-r from-transparent to-white/10"></div>
+                            <div class="flex-1 max-w-xs h-px bg-linear-to-r from-transparent to-[#1a0800]/10 dark:to-white/10"></div>
                             <div class="flex gap-1.5">
-                                <div class="w-1 h-1 rounded-full bg-white/15"></div>
-                                <div class="w-1.5 h-1.5 rounded-full bg-[#16a34a]/40"></div>
-                                <div class="w-1 h-1 rounded-full bg-white/15"></div>
+                                <div class="w-1 h-1 rounded-full bg-[#1a0800]/15 dark:bg-white/15"></div>
+                                <div class="w-1.5 h-1.5 rounded-full bg-[#E98C00]/40"></div>
+                                <div class="w-1 h-1 rounded-full bg-[#1a0800]/15 dark:bg-white/15"></div>
                             </div>
-                            <div class="flex-1 max-w-xs h-px bg-linear-to-l from-transparent to-white/10"></div>
+                            <div class="flex-1 max-w-xs h-px bg-linear-to-l from-transparent to-[#1a0800]/10 dark:to-white/10"></div>
                         </div>
                     @endif
                 @endforeach
@@ -446,38 +446,38 @@
          §5  WHY CHOOSE US — Feature grid on navy
          ═══════════════════════════════════════════════════════ --}}
 
-    <section class="bg-[#1B4F72] py-14 md:py-24 px-5 relative overflow-hidden">
+    <section class="bg-[#E98C00] py-14 md:py-24 px-5 relative overflow-hidden">
 
         {{-- Dot pattern --}}
         <div class="absolute inset-0 pointer-events-none opacity-[0.045]"
              style="background-image:radial-gradient(circle, #fff 1px, transparent 1px); background-size:38px 38px;"></div>
-        <div class="absolute top-0 right-0 w-96 h-96 bg-[#16a34a]/10 rounded-full blur-3xl pointer-events-none translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute top-0 right-0 w-96 h-96 bg-[#E98C00]/10 rounded-full blur-3xl pointer-events-none translate-x-1/2 -translate-y-1/2"></div>
 
         <div class="relative max-w-6xl mx-auto">
 
             <div class="text-center mb-16 reveal">
                 <h2 class="text-3xl md:text-4xl font-semibold text-white leading-tight">
                     Built differently,<br>
-                    <span class="text-[#4EA8D9]">for you</span>
+                    <span class="text-[#FEF9E1]">for you</span>
                 </h2>
-                <p class="text-blue-200/50 mt-3 font-light text-sm">Everything you need. Nothing you don't.</p>
+                <p class="text-white/60 mt-3 font-light text-sm">Everything you need. Nothing you don't.</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 @foreach([
-                    ['No Registration', 'Your account is created automatically when you apply. Zero pre-registration friction or paperwork.', 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', '#4EA8D9'],
-                    ['48hr Processing', 'Most applications are reviewed and decided within 24–48 hours of document submission.', 'M13 10V3L4 14h7v7l9-11h-7z', '#F39C12'],
-                    ['Transparent Rates', 'Fixed flat-rate interest. No hidden fees, no penalty surprises on your statement.', 'M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z', '#4EA8D9'],
-                    ['Secure Portal', 'Track repayments, view statements, and monitor your loan status from your personal portal.', 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z', '#F39C12'],
+                    ['No Registration', 'Your account is created automatically when you apply. Zero pre-registration friction or paperwork.', 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'],
+                    ['48hr Processing', 'Most applications are reviewed and decided within 24–48 hours of document submission.', 'M13 10V3L4 14h7v7l9-11h-7z'],
+                    ['Transparent Rates', 'Fixed flat-rate interest. No hidden fees, no penalty surprises on your statement.', 'M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z'],
+                    ['Secure Portal', 'Track repayments, view statements, and monitor your loan status from your personal portal.', 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z'],
                 ] as $i => $feat)
-                    <div class="group bg-white/5 hover:bg-white/10 border border-white/8 hover:border-white/18 rounded-3xl p-7 transition-all duration-300 cursor-default reveal rd{{ $i+1 }}">
-                        <div class="w-11 h-11 rounded-2xl bg-white/8 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                            <svg class="w-5 h-5" style="color:{{ $feat[3] }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="group bg-white/10 hover:bg-white/18 border border-white/15 hover:border-white/30 rounded-3xl p-7 transition-all duration-300 cursor-default reveal rd{{ $i+1 }}">
+                        <div class="w-11 h-11 rounded-2xl bg-[#FEF9E1]/15 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-5 h-5 text-[#FEF9E1]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="{{ $feat[2] }}"/>
                             </svg>
                         </div>
                         <h3 class="font-semibold text-white mb-2 text-sm">{{ $feat[0] }}</h3>
-                        <p class="text-sm text-blue-200/50 leading-relaxed font-light">{{ $feat[1] }}</p>
+                        <p class="text-sm text-white/70 leading-relaxed font-light">{{ $feat[1] }}</p>
                     </div>
                 @endforeach
             </div>
@@ -488,37 +488,37 @@
     {{-- ═══════════════════════════════════════════════════════
          §7  CTA — Bold, dramatic closer
          ═══════════════════════════════════════════════════════ --}}
-    <section class="relative bg-gray-950 py-20 md:py-32 px-5 overflow-hidden">
+    <section class="relative bg-[#FEF9E1] dark:bg-[#1a0800] py-20 md:py-32 px-5 overflow-hidden">
 
         {{-- Background image --}}
         <div class="absolute inset-0">
             <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=80"
-                 alt="" class="w-full h-full object-cover opacity-[0.07]" loading="lazy" decoding="async">
+                 alt="" class="w-full h-full object-cover opacity-[0.04] dark:opacity-[0.07]" loading="lazy" decoding="async">
         </div>
 
         {{-- Gradient overlay --}}
-        <div class="absolute inset-0 bg-linear-to-r from-gray-950/98 via-gray-950/90 to-gray-950/98"></div>
+        <div class="absolute inset-0 bg-linear-to-r from-[#FEF9E1]/98 via-[#FEF9E1]/90 to-[#FEF9E1]/98 dark:from-[#1a0800]/98 dark:via-[#1a0800]/90 dark:to-[#1a0800]/98"></div>
 
         {{-- Massive watermark text --}}
         <div class="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none">
-            <span class="text-white font-black opacity-[0.025] whitespace-nowrap" style="font-size:16vw; line-height:1;">FUNDED</span>
+            <span class="text-[#1a0800] dark:text-white font-black opacity-[0.025] whitespace-nowrap" style="font-size:16vw; line-height:1;">FUNDED</span>
         </div>
 
         {{-- Glow --}}
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full bg-[#166534]/15 blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full bg-[#E98C00]/15 blur-3xl pointer-events-none"></div>
 
         <div class="relative max-w-4xl mx-auto text-center reveal">
 
-            <span class="inline-block text-[#F39C12] text-xs font-medium tracking-[0.2em] uppercase mb-7 px-4 py-1.5 bg-[#F39C12]/10 rounded-full border border-[#F39C12]/20">
+            <span class="inline-block text-[#E98C00] text-xs font-medium tracking-[0.2em] uppercase mb-7 px-4 py-1.5 bg-[#E98C00]/10 rounded-full border border-[#E98C00]/20">
                 Ready when you are
             </span>
 
-            <h2 class="text-4xl md:text-6xl lg:text-7xl font-semibold text-white mb-6 leading-[1.02]">
+            <h2 class="text-4xl md:text-6xl lg:text-7xl font-semibold text-[#1a0800] dark:text-white mb-6 leading-[1.02]">
                 Your next chapter<br>
-                starts with <span class="text-[#4EA8D9]">one form.</span>
+                starts with <span class="text-[#E98C00]">one form.</span>
             </h2>
 
-            <p class="text-gray-500 font-light mb-12 text-base max-w-lg mx-auto leading-relaxed">
+            <p class="text-[#1a0800]/60 dark:text-white/60 font-light mb-12 text-base max-w-lg mx-auto leading-relaxed">
                 No pre-registration required. No branch visits. Your account is created automatically — just apply.
             </p>
 
@@ -527,8 +527,8 @@
                     <a href="{{ route('loan.apply', $product->slug) }}"
                        class="group inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl text-sm font-semibold transition-all duration-300
                               {{ $loop->first
-                                    ? 'bg-[#166534] text-white hover:bg-[#14532d] shadow-2xl shadow-[#166534]/25 hover:shadow-[#166534]/40 hover:-translate-y-1'
-                                    : 'bg-white/8 text-white border border-white/15 hover:bg-white/14 hover:border-white/30 hover:-translate-y-1' }}">
+                                    ? 'bg-[#E98C00] text-white hover:bg-[#C97A00] shadow-2xl shadow-[#E98C00]/25 hover:shadow-[#E98C00]/40 hover:-translate-y-1'
+                                    : 'bg-[#1a0800]/8 text-[#1a0800] dark:bg-white/8 dark:text-white border border-[#1a0800]/15 dark:border-white/15 hover:bg-[#1a0800]/14 dark:hover:bg-white/14 hover:border-[#1a0800]/30 dark:hover:border-white/30 hover:-translate-y-1' }}">
                         Apply — {{ $product->name }}
                         <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -537,7 +537,7 @@
                 @endforeach
             </div>
 
-            <p class="text-gray-700 text-xs mt-8 font-light">
+            <p class="text-[#1a0800]/35 dark:text-white/35 text-xs mt-8 font-light">
                 All amounts in Zambian Kwacha (ZMW) &nbsp;·&nbsp; No hidden charges
             </p>
         </div>
@@ -545,24 +545,22 @@
 
 
     {{-- ─── Footer ─────────────────────────────────────────── --}}
-    <footer class="bg-gray-950 border-t border-white/5 text-gray-600 py-14 px-5">
+    <footer class="bg-[#FEF9E1] dark:bg-[#1a0800] border-t border-[#1a0800]/8 dark:border-white/8 py-14 px-5">
         <div class="max-w-6xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-10">
                 <div>
-                    <p class="font-semibold text-white text-xl tracking-tight">
-                        <span class="text-[#4EA8D9]">Credence</span>Systems
-                    </p>
-                    <p class="text-xs text-gray-600 mt-1 font-light">Financial freedom, simplified.</p>
+                    <img src="{{ asset('images/logo.png') }}" alt="Orange Fin" class="h-9 w-auto mb-1">
+                    <p class="text-xs text-[#1a0800]/40 dark:text-white/40 mt-1 font-light">Financial freedom, simplified.</p>
                 </div>
                 <nav class="flex flex-wrap gap-6">
-                    <a href="#products" class="text-sm hover:text-white transition-colors">Products</a>
-                    <a href="{{ route('login') }}" class="text-sm hover:text-white transition-colors">Customer Portal</a>
-                    <a href="{{ route('login') }}" class="text-sm hover:text-white transition-colors">Sign In</a>
+                    <a href="#products" class="text-sm text-[#1a0800]/50 dark:text-white/50 hover:text-[#1a0800] dark:hover:text-white transition-colors">Products</a>
+                    <a href="{{ route('login') }}" class="text-sm text-[#1a0800]/50 dark:text-white/50 hover:text-[#1a0800] dark:hover:text-white transition-colors">Customer Portal</a>
+                    <a href="{{ route('login') }}" class="text-sm text-[#1a0800]/50 dark:text-white/50 hover:text-[#1a0800] dark:hover:text-white transition-colors">Sign In</a>
                 </nav>
             </div>
-            <div class="border-t border-white/5 pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
-                <p class="text-xs font-light">All amounts in Zambian Kwacha (ZMW)</p>
-                <p class="text-xs font-light">© {{ date('Y') }} CredenceSystems · All rights reserved</p>
+            <div class="border-t border-[#1a0800]/8 dark:border-white/8 pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
+                <p class="text-xs text-[#1a0800]/35 dark:text-white/35 font-light">All amounts in Zambian Kwacha (ZMW)</p>
+                <p class="text-xs text-[#1a0800]/35 dark:text-white/35 font-light">© {{ date('Y') }} Orange Fin · All rights reserved</p>
             </div>
         </div>
     </footer>

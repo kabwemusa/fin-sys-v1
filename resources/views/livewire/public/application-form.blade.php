@@ -28,12 +28,12 @@
 
 @section('hide-sticky-cta', true)
 
-<div class="relative min-h-[calc(100svh-4rem)] overflow-x-hidden bg-[#071520]">
+<div class="relative min-h-[calc(100svh-4rem)] overflow-x-hidden bg-[#1a0800]">
     <div class="pointer-events-none absolute inset-0"
-         style="background-image:radial-gradient(circle, rgba(78,168,217,.12) 1px, transparent 1px); background-size:44px 44px;"></div>
+         style="background-image:radial-gradient(circle, rgba(249,115,22,.10) 1px, transparent 1px); background-size:44px 44px;"></div>
     <div class="pointer-events-none absolute inset-x-0 top-0 h-64 bg-linear-to-b from-white/[0.03] to-transparent"></div>
-    <div class="pointer-events-none absolute left-[10%] top-24 h-72 w-72 rounded-full bg-[#166534]/10 blur-3xl"></div>
-    <div class="pointer-events-none absolute bottom-8 right-[8%] h-80 w-80 rounded-full bg-[#F39C12]/8 blur-3xl"></div>
+    <div class="pointer-events-none absolute left-[10%] top-24 h-72 w-72 rounded-full bg-[#E98C00]/10 blur-3xl"></div>
+    <div class="pointer-events-none absolute bottom-8 right-[8%] h-80 w-80 rounded-full bg-[#E98C00]/8 blur-3xl"></div>
 
     {{-- ═══════════════════════════════════════════════════
          COMPACT PAGE HEADER — back · product · step progress
@@ -52,9 +52,9 @@
                         <span class="hidden sm:inline">Back</span>
                     </a>
                     <span class="w-px h-4 bg-white/10 shrink-0"></span>
-                    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#F39C12]/10 border border-[#F39C12]/20">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#F39C12] animate-pulse shrink-0"></span>
-                        <span class="text-[#F39C12] text-xs font-medium tracking-[0.12em] uppercase">{{ $loanProduct->name }}</span>
+                    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#E98C00]/10 border border-[#E98C00]/20">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#E98C00] animate-pulse shrink-0"></span>
+                        <span class="text-[#E98C00] text-xs font-medium tracking-[0.12em] uppercase">{{ $loanProduct->name }}</span>
                     </div>
                     <div class="ml-auto flex items-center gap-2.5 shrink-0">
                         <span class="text-xs text-slate-500 font-light hidden sm:inline">Step</span>
@@ -62,7 +62,7 @@
                         <span class="text-slate-600 text-[10px]">/</span>
                         <span class="text-slate-500 text-xs font-light">{{ $totalSteps }}</span>
                         <div class="h-1 w-16 overflow-hidden rounded-full bg-white/10">
-                            <div class="h-full rounded-full bg-linear-to-r from-[#166534] via-[#16a34a] to-[#F39C12] transition-all duration-700"
+                            <div class="h-full rounded-full bg-linear-to-r from-[#E98C00] via-[#E98C00] to-[#E98C00] transition-all duration-700"
                                  style="width:{{ $progressPct }}%"></div>
                         </div>
                     </div>
@@ -74,15 +74,15 @@
 
                         {{-- Track --}}
                         <div class="absolute top-3.25 left-3 right-3 z-0 hidden h-px bg-white/8 md:block"></div>
-                        <div class="absolute top-3.25 left-3 z-0 hidden h-px bg-linear-to-r from-[#166534] via-[#16a34a] to-[#F39C12] transition-all duration-700 md:block"
+                        <div class="absolute top-3.25 left-3 z-0 hidden h-px bg-linear-to-r from-[#E98C00] via-[#E98C00] to-[#E98C00] transition-all duration-700 md:block"
                              style="width: calc({{ max(0, ($currentStep - 1) / max(1, $totalSteps - 1) * 100) }}% - 1.5rem)"></div>
 
                         @foreach($stepLabels as $i => $label)
                             @php $n = $i + 1; $isDone = $currentStep > $n; $isActive = $currentStep === $n; @endphp
                             <div class="relative z-10 flex flex-col items-center gap-1 px-2.5 first:pl-0 last:pr-0 md:px-0">
                                 <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[10px] font-semibold transition-all duration-300
-                                     {{ $isDone ? 'bg-[#166534] text-white shadow-md shadow-[#166534]/30'
-                                                : ($isActive ? 'bg-[#F39C12] text-[#071520] shadow-lg ring-4 ring-[#F39C12]/20'
+                                     {{ $isDone ? 'bg-[#E98C00] text-white shadow-md shadow-[#E98C00]/30'
+                                                : ($isActive ? 'bg-[#E98C00] text-[#1a0800] shadow-lg ring-4 ring-[#E98C00]/20'
                                                              : 'border border-white/10 bg-white/6 text-white/25') }}">
                                     @if($isDone)
                                         <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -93,7 +93,7 @@
                                     @endif
                                 </div>
                                 <span class="text-[9px] font-medium whitespace-nowrap transition-colors duration-300
-                                     {{ $isActive ? 'text-white' : ($isDone ? 'text-[#16a34a]/75' : 'text-white/25') }}">
+                                     {{ $isActive ? 'text-white' : ($isDone ? 'text-[#E98C00]/75' : 'text-white/25') }}">
                                     {{ $label }}
                                 </span>
                             </div>
@@ -114,25 +114,25 @@
         <div class="flex w-full flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-white shadow-2xl shadow-black/45 lg:h-[calc(100svh-13rem)] xl:h-[calc(100svh-12.25rem)]">
 
             {{-- Animated gradient progress bar --}}
-            <div class="h-1 bg-gray-100">
-                <div class="h-full bg-linear-to-r from-[#166534] via-[#16a34a] to-[#F39C12] transition-all duration-700"
+            <div class="h-1 bg-[#FEF9E1]">
+                <div class="h-full bg-linear-to-r from-[#E98C00] via-[#E98C00] to-[#E98C00] transition-all duration-700"
                      style="width:{{ $progressPct }}%"></div>
             </div>
 
             <div class="flex min-h-0 flex-1 flex-col md:flex-row">
 
                 {{-- ── SIDEBAR ── --}}
-                <div class="hidden min-h-0 w-[220px] shrink-0 flex-col bg-[#071520] md:flex lg:w-[240px] xl:w-[260px]">
+                <div class="hidden min-h-0 w-[220px] shrink-0 flex-col bg-[#1a0800] md:flex lg:w-[240px] xl:w-[260px]">
 
                     <div class="p-4 lg:p-5">
                         <div class="mb-4 flex items-center gap-3">
-                            <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl border border-[#F39C12]/25 bg-[#F39C12]/15">
-                                <svg class="h-4.5 w-4.5 text-[#F39C12]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl border border-[#E98C00]/25 bg-[#E98C00]/15">
+                                <svg class="h-4.5 w-4.5 text-[#E98C00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="{{ $meta['icon'] }}"/>
                                 </svg>
                             </div>
                             <div class="min-w-0">
-                                <p class="text-[10px] font-medium uppercase tracking-[0.18em] text-[#F39C12]">Application Timeline</p>
+                                <p class="text-[10px] font-medium uppercase tracking-[0.18em] text-[#E98C00]">Application Timeline</p>
                                 <p class="mt-1 truncate text-xs font-light text-slate-400">{{ $currentLabel }} - Step {{ $currentStep }} of {{ $totalSteps }}</p>
                             </div>
                         </div>
@@ -148,8 +148,8 @@
                                     <div class="grid grid-cols-[auto_1fr] items-start gap-x-3">
                                         <div class="flex flex-col items-center">
                                             <div class="flex h-6 w-6 items-center justify-center rounded-lg text-[10px] font-semibold transition-all duration-300
-                                                 {{ $isDone ? 'bg-[#166534] text-white shadow-md shadow-[#166534]/30'
-                                                            : ($isActive ? 'bg-[#F39C12] text-[#071520] shadow-lg ring-4 ring-[#F39C12]/20'
+                                                 {{ $isDone ? 'bg-[#E98C00] text-white shadow-md shadow-[#E98C00]/30'
+                                                            : ($isActive ? 'bg-[#E98C00] text-[#1a0800] shadow-lg ring-4 ring-[#E98C00]/20'
                                                                          : 'border border-white/10 bg-white/6 text-white/35') }}">
                                                 @if($isDone)
                                                     <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -160,15 +160,15 @@
                                                 @endif
                                             </div>
                                             @if(!$loop->last)
-                                                <div class="mt-1 h-3.5 w-px {{ $isDone ? 'bg-[#166534]/40' : 'bg-white/10' }}"></div>
+                                                <div class="mt-1 h-3.5 w-px {{ $isDone ? 'bg-[#E98C00]/40' : 'bg-white/10' }}"></div>
                                             @endif
                                         </div>
                                         <div class="flex min-h-6 items-center justify-between gap-2 pt-0.5">
                                             <p class="text-[11px] font-medium leading-4 {{ $isActive ? 'text-white' : ($isDone ? 'text-slate-200' : 'text-slate-400') }}">{{ $label }}</p>
                                             @if($isActive)
-                                                <span class="rounded-full bg-[#F39C12]/15 px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-[0.12em] text-[#f5b64a]">Now</span>
+                                                <span class="rounded-full bg-[#E98C00]/15 px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-[0.12em] text-[#f5b64a]">Now</span>
                                             @elseif($isDone)
-                                                <span class="rounded-full bg-[#166534]/15 px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-[0.12em] text-[#8ae19f]">Done</span>
+                                                <span class="rounded-full bg-[#E98C00]/15 px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-[0.12em] text-[#8ae19f]">Done</span>
                                             @endif
                                         </div>
                                     </div>
@@ -186,23 +186,23 @@
                         {{-- Step header --}}
                         <div class="border-b border-slate-100 px-5 py-5 lg:px-8 lg:py-6">
                             <div class="mb-4 flex items-center justify-between gap-3 md:hidden">
-                                <div class="inline-flex items-center gap-2 rounded-full border border-[#166534]/10 bg-[#166534]/[0.05] px-3 py-1.5">
-                                    <span class="h-2 w-2 rounded-full bg-[#16a34a]"></span>
-                                    <span class="text-[11px] font-medium uppercase tracking-[0.18em] text-[#166534]">Step {{ $currentStep }} of {{ $totalSteps }}</span>
+                                <div class="inline-flex items-center gap-2 rounded-full border border-[#E98C00]/10 bg-[#E98C00]/[0.05] px-3 py-1.5">
+                                    <span class="h-2 w-2 rounded-full bg-[#E98C00]"></span>
+                                    <span class="text-[11px] font-medium uppercase tracking-[0.18em] text-[#E98C00]">Step {{ $currentStep }} of {{ $totalSteps }}</span>
                                 </div>
-                                <span class="rounded-full bg-[#F39C12]/10 px-3 py-1 text-[11px] font-medium text-[#c07a0a]">{{ $currentLabel }}</span>
+                                <span class="rounded-full bg-[#E98C00]/10 px-3 py-1 text-[11px] font-medium text-[#C97A00]">{{ $currentLabel }}</span>
                             </div>
 
                             <div class="flex items-start gap-3">
-                            <div class="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#166534]/[0.08]">
-                                <svg class="w-5 h-5 text-[#166534]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#E98C00]/[0.08]">
+                                <svg class="w-5 h-5 text-[#E98C00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="{{ $meta['icon'] }}"/>
                                 </svg>
                             </div>
                             <div class="flex-1">
                                 <div class="flex flex-wrap items-center gap-2">
                                     <h2 class="text-xl font-semibold text-gray-800">{{ $currentLabel }}</h2>
-                                    <span class="rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-slate-500">{{ $loanProduct->name }}</span>
+                                    <span class="rounded-full bg-[#FEF9E1] px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-slate-500">{{ $loanProduct->name }}</span>
                                 </div>
                                 <p class="mt-1 text-sm font-light text-gray-400">{{ $meta['sub'] }}</p>
                                 <div class="mt-4 h-px bg-linear-to-r from-slate-100 to-transparent"></div>
@@ -215,7 +215,7 @@
                                 <div wire:key="application-step-{{ $currentStep }}" class="space-y-0">
                                 <div wire:loading.flex wire:target="nextStep,previousStep,submit" class="absolute inset-0 z-20 hidden items-center justify-center bg-white/80 backdrop-blur-sm">
                                     <div class="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-xl shadow-slate-200/60">
-                                        <svg class="h-5 w-5 animate-spin text-[#166534]" fill="none" viewBox="0 0 24 24">
+                                        <svg class="h-5 w-5 animate-spin text-[#E98C00]" fill="none" viewBox="0 0 24 24">
                                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3"/>
                                             <path class="opacity-90" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
                                         </svg>
@@ -258,16 +258,16 @@
                                         <x-mary-textarea label="Employer Address" wire:model="employer_address" placeholder="P.O. Box 12345, Lusaka" rows="2" />
                                     </div>
                                 </div>
-                                <div class="mt-5 flex items-start gap-3 rounded-2xl border border-[#166534]/10 bg-[#166534]/[0.05] p-4">
-                                    <svg class="mt-0.5 h-4 w-4 shrink-0 text-[#166534]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div class="mt-5 flex items-start gap-3 rounded-2xl border border-[#E98C00]/10 bg-[#E98C00]/[0.05] p-4">
+                                    <svg class="mt-0.5 h-4 w-4 shrink-0 text-[#E98C00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
-                                    <p class="text-xs font-light leading-relaxed text-[#166534]">We verify your income to ensure the repayment is comfortable. Your employer will not be contacted without your consent.</p>
+                                    <p class="text-xs font-light leading-relaxed text-[#E98C00]">We verify your income to ensure the repayment is comfortable. Your employer will not be contacted without your consent.</p>
                                 </div>
 
                             {{-- ══ STEP 3: Collateral (collateral products only) ══ --}}
                             @elseif($currentStep === 3 && $loanProduct->requires_collateral)
-                                <div class="mb-5 flex items-start gap-3 bg-amber-50 border border-amber-100 rounded-2xl p-4">
+                                <div class="mb-5 flex items-start gap-3 bg-[#FEF9E1] border border-amber-100 rounded-2xl p-4">
                                     <svg class="w-4 h-4 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
                                     </svg>
@@ -291,27 +291,27 @@
                                     <x-mary-input label="Account Number *"    wire:model="bank_account_number" placeholder="000 000 000"               icon="o-credit-card" />
                                     <x-mary-input label="Branch"              wire:model="bank_branch"         placeholder="Cairo Road Branch"          icon="o-map-pin" />
                                 </div>
-                                <div class="mt-5 flex items-start gap-3 rounded-2xl border border-[#166534]/10 bg-[#166534]/[0.05] p-4">
-                                    <svg class="mt-0.5 h-4 w-4 shrink-0 text-[#166534]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div class="mt-5 flex items-start gap-3 rounded-2xl border border-[#E98C00]/10 bg-[#E98C00]/[0.05] p-4">
+                                    <svg class="mt-0.5 h-4 w-4 shrink-0 text-[#E98C00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
-                                    <p class="text-xs font-light leading-relaxed text-[#166534]">The account must be in your name and active. Funds are typically received within 48 hours of approval.</p>
+                                    <p class="text-xs font-light leading-relaxed text-[#E98C00]">The account must be in your name and active. Funds are typically received within 48 hours of approval.</p>
                                 </div>
 
                             {{-- ══ STEP 4/5: Loan Details ══ --}}
                             @elseif(($currentStep === 4 && !$loanProduct->requires_collateral) || ($currentStep === 5 && $loanProduct->requires_collateral))
                                 {{-- Product stats card --}}
                                 <div class="mb-6 grid grid-cols-3 gap-3">
-                                    <div class="rounded-2xl border border-[#166534]/10 bg-[#166534]/[0.05] px-4 py-4 text-center">
-                                        <p class="text-2xl font-bold text-[#166534]">{{ $loanProduct->interest_rate }}%</p>
+                                    <div class="rounded-2xl border border-[#E98C00]/10 bg-[#E98C00]/[0.05] px-4 py-4 text-center">
+                                        <p class="text-2xl font-bold text-[#E98C00]">{{ $loanProduct->interest_rate }}%</p>
                                         <p class="text-[10px] text-gray-400 font-light mt-0.5">per month</p>
                                     </div>
-                                    <div class="rounded-2xl border border-[#F39C12]/15 bg-[#F39C12]/[0.08] px-4 py-4 text-center">
+                                    <div class="rounded-2xl border border-[#E98C00]/15 bg-[#E98C00]/[0.08] px-4 py-4 text-center">
                                         <p class="text-sm font-semibold leading-tight text-[#9a6808]">ZMW {{ number_format($loanProduct->min_amount/1000,0) }}K-{{ number_format($loanProduct->max_amount/1000,0) }}K</p>
                                         <p class="text-[10px] text-gray-400 font-light mt-0.5">loan range</p>
                                     </div>
-                                    <div class="rounded-2xl border border-[#4EA8D9]/15 bg-[#4EA8D9]/[0.08] px-4 py-4 text-center">
-                                        <p class="text-sm font-semibold text-[#1B4F72]">{{ $loanProduct->min_tenure_months }}-{{ $loanProduct->max_tenure_months }} mo</p>
+                                    <div class="rounded-2xl border border-[#E98C00]/15 bg-[#E98C00]/[0.08] px-4 py-4 text-center">
+                                        <p class="text-sm font-semibold text-[#E98C00]">{{ $loanProduct->min_tenure_months }}-{{ $loanProduct->max_tenure_months }} mo</p>
                                         <p class="text-[10px] text-gray-400 font-light mt-0.5">tenure</p>
                                     </div>
                                 </div>
@@ -326,7 +326,7 @@
 
                             {{-- ══ STEP 5/6: Documents ══ --}}
                             @elseif(($currentStep === 5 && !$loanProduct->requires_collateral) || ($currentStep === 6 && $loanProduct->requires_collateral))
-                                <div class="mb-5 flex items-start gap-3 bg-amber-50 border border-amber-100 rounded-2xl p-4">
+                                <div class="mb-5 flex items-start gap-3 bg-[#FEF9E1] border border-amber-100 rounded-2xl p-4">
                                     <svg class="w-4 h-4 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
                                     </svg>
@@ -335,10 +335,10 @@
                                 <div class="space-y-3">
                                     <div class="mb-2 grid gap-3 sm:grid-cols-2">
                                         @foreach($documentChecklist as $item)
-                                            <div class="rounded-2xl border {{ $item['required'] ? 'border-[#166534]/15 bg-[#166534]/[0.05]' : 'border-gray-100 bg-gray-50' }} px-4 py-3">
+                                            <div class="rounded-2xl border {{ $item['required'] ? 'border-[#E98C00]/15 bg-[#E98C00]/[0.05]' : 'border-gray-100 bg-[#FEF9E1]' }} px-4 py-3">
                                                 <div class="flex items-center justify-between gap-3">
-                                                    <p class="text-sm font-medium {{ $item['required'] ? 'text-[#166534]' : 'text-gray-700' }}">{{ $item['label'] }}</p>
-                                                    <span class="text-[10px] uppercase tracking-wider font-semibold {{ $item['required'] ? 'text-[#166534]' : 'text-gray-400' }}">
+                                                    <p class="text-sm font-medium {{ $item['required'] ? 'text-[#E98C00]' : 'text-gray-700' }}">{{ $item['label'] }}</p>
+                                                    <span class="text-[10px] uppercase tracking-wider font-semibold {{ $item['required'] ? 'text-[#E98C00]' : 'text-gray-400' }}">
                                                         {{ $item['required'] ? 'Required' : 'Recommended' }}
                                                     </span>
                                                 </div>
@@ -362,8 +362,8 @@
 
                                     {{-- Personal block --}}
                                     <div class="rounded-2xl border border-gray-100 overflow-hidden">
-                                        <div class="bg-gray-50 px-5 py-3 flex items-center gap-2 border-b border-gray-100">
-                                            <svg class="w-4 h-4 text-[#166534]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <div class="bg-[#FEF9E1] px-5 py-3 flex items-center gap-2 border-b border-gray-100">
+                                            <svg class="w-4 h-4 text-[#E98C00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                                             </svg>
                                             <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Personal</span>
@@ -390,26 +390,26 @@
 
                                     {{-- Loan block --}}
                                     <div class="rounded-2xl border border-gray-100 overflow-hidden">
-                                        <div class="bg-gray-50 px-5 py-3 flex items-center gap-2 border-b border-gray-100">
-                                            <svg class="w-4 h-4 text-[#166534]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <div class="bg-[#FEF9E1] px-5 py-3 flex items-center gap-2 border-b border-gray-100">
+                                            <svg class="w-4 h-4 text-[#E98C00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/>
                                             </svg>
                                             <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Loan</span>
                                         </div>
                                         <div class="px-5 py-4 grid grid-cols-2 gap-y-3 text-sm">
                                             <span class="text-gray-400">Product</span>       <span class="font-medium text-gray-700">{{ $loanProduct->name }}</span>
-                                            <span class="text-gray-400">Amount</span>        <span class="text-base font-bold text-[#166534]">ZMW {{ number_format((float)$amount_requested, 2) }}</span>
+                                            <span class="text-gray-400">Amount</span>        <span class="text-base font-bold text-[#E98C00]">ZMW {{ number_format((float)$amount_requested, 2) }}</span>
                                             <span class="text-gray-400">Tenure</span>        <span class="font-medium text-gray-700">{{ $tenure_months }} months</span>
                                             <span class="text-gray-400">Interest Rate</span> <span class="font-medium text-gray-700">{{ $loanProduct->interest_rate }}% / month</span>
                                         </div>
                                     </div>
 
                                     {{-- Consent notice --}}
-                                    <div class="flex items-start gap-3 rounded-2xl border border-[#166534]/10 bg-[#166534]/[0.05] p-4">
-                                        <svg class="mt-0.5 h-4 w-4 shrink-0 text-[#166534]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <div class="flex items-start gap-3 rounded-2xl border border-[#E98C00]/10 bg-[#E98C00]/[0.05] p-4">
+                                        <svg class="mt-0.5 h-4 w-4 shrink-0 text-[#E98C00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                                         </svg>
-                                        <p class="text-xs font-light leading-relaxed text-[#166534]">By submitting, you confirm all information is accurate and true, and you consent to a credit assessment being performed.</p>
+                                        <p class="text-xs font-light leading-relaxed text-[#E98C00]">By submitting, you confirm all information is accurate and true, and you consent to a credit assessment being performed.</p>
                                     </div>
 
                                     {{-- System error banner (transaction / file storage failure) --}}
@@ -431,14 +431,14 @@
 
                                     {{-- Trust micro-badges --}}
                                     <div class="mb-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 sm:justify-between">
-                                        <div class="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1.5 text-[11px] font-medium text-slate-600">
-                                            <span class="h-2 w-2 rounded-full bg-[#16a34a]"></span>
+                                        <div class="inline-flex items-center gap-2 rounded-full bg-[#FEF9E1] px-3 py-1.5 text-[11px] font-medium text-slate-600">
+                                            <span class="h-2 w-2 rounded-full bg-[#E98C00]"></span>
                                             Step {{ $currentStep }} of {{ $totalSteps }}
                                         </div>
                                         <div class="flex flex-wrap items-center justify-center gap-5">
                                         @foreach([['M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z','Encrypted'],['M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z','Secure'],['M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2','No credit hit']] as [$path, $label])
                                             <div class="flex items-center gap-1.5 text-[11px] text-gray-400 font-light">
-                                                <svg class="h-3.5 w-3.5 text-[#16a34a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <svg class="h-3.5 w-3.5 text-[#E98C00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="{{ $path }}"/>
                                                 </svg>
                                                 {{ $label }}
@@ -447,7 +447,7 @@
                                         </div>
                                     </div>
 
-                                    <div wire:loading.flex wire:target="submit" class="mb-4 items-center gap-2 rounded-2xl border border-[#166534]/10 bg-[#166534]/[0.05] px-3.5 py-3 text-sm font-medium text-[#166534]">
+                                    <div wire:loading.flex wire:target="submit" class="mb-4 items-center gap-2 rounded-2xl border border-[#E98C00]/10 bg-[#E98C00]/[0.05] px-3.5 py-3 text-sm font-medium text-[#E98C00]">
                                         <svg class="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24">
                                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3"/>
                                             <path class="opacity-90" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
@@ -462,7 +462,7 @@
                                                 wire:loading.attr="disabled"
                                                 wire:loading.class="opacity-60 cursor-wait"
                                                 wire:target="previousStep"
-                                                class="inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-slate-50 px-6 py-3 text-sm font-medium text-slate-600 transition-all duration-200 hover:bg-slate-100 hover:text-slate-800 sm:w-auto">
+                                                class="inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-[#FEF9E1] px-6 py-3 text-sm font-medium text-slate-600 transition-all duration-200 hover:bg-[#FEF9E1] hover:text-slate-800 sm:w-auto">
                                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                                                 </svg>
@@ -478,7 +478,7 @@
                                                 wire:loading.attr="disabled"
                                                 wire:loading.class="opacity-75 cursor-wait"
                                                 wire:target="nextStep"
-                                                class="group inline-flex w-full cursor-pointer items-center justify-center gap-2.5 rounded-2xl bg-[#166534] px-8 py-3 text-sm font-semibold text-white transition-all duration-200 shadow-lg shadow-[#166534]/25 hover:-translate-y-0.5 hover:bg-[#14532d] hover:shadow-[#166534]/40 disabled:pointer-events-none sm:w-auto">
+                                                class="group inline-flex w-full cursor-pointer items-center justify-center gap-2.5 rounded-2xl bg-[#E98C00] px-8 py-3 text-sm font-semibold text-white transition-all duration-200 shadow-lg shadow-[#E98C00]/25 hover:-translate-y-0.5 hover:bg-[#C97A00] hover:shadow-[#E98C00]/40 disabled:pointer-events-none sm:w-auto">
                                                 {{-- Idle label + arrow --}}
                                                 <span wire:loading.remove wire:target="nextStep" class="inline-flex items-center gap-2.5">
                                                     Continue to {{ $nextLabel }}

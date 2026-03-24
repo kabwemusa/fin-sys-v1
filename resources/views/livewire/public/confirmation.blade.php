@@ -29,9 +29,9 @@
 
             <div class="p-7">
                 {{-- Reference highlight --}}
-                <div class="bg-gray-50 rounded-2xl px-5 py-4 text-center mb-5">
+                <div class="bg-[#FEF9E1] rounded-2xl px-5 py-4 text-center mb-5">
                     <p class="text-[10px] text-gray-400 uppercase tracking-wider mb-1">Reference Number</p>
-                    <p class="text-xl font-semibold text-[#1B4F72] tracking-wide">{{ $application->reference }}</p>
+                    <p class="text-xl font-semibold text-[#E98C00] tracking-wide">{{ $application->reference }}</p>
                 </div>
 
                 {{-- Thin divider --}}
@@ -45,7 +45,7 @@
                     </div>
                     <div class="flex items-center justify-between">
                         <span class="text-gray-400">Amount Requested</span>
-                        <span class="font-semibold text-[#1B4F72]">ZMW {{ number_format($application->amount_requested, 2) }}</span>
+                        <span class="font-semibold text-[#E98C00]">ZMW {{ number_format($application->amount_requested, 2) }}</span>
                     </div>
                     <div class="flex items-center justify-between">
                         <span class="text-gray-400">Submitted</span>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="flex items-center justify-between">
                         <span class="text-gray-400">Status</span>
-                        <span class="inline-flex items-center gap-1.5 bg-amber-50 text-amber-600 text-xs font-medium px-2.5 py-1 rounded-full border border-amber-100">
+                        <span class="inline-flex items-center gap-1.5 bg-[#FEF9E1] text-amber-600 text-xs font-medium px-2.5 py-1 rounded-full border border-amber-100">
                             <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse inline-block"></span>
                             {{ ucfirst($application->status) }}
                         </span>
@@ -63,7 +63,7 @@
         </div>
 
         @if (session('mail_delivery_warning'))
-            <div class="flex items-start gap-3 bg-amber-50 border border-amber-100 rounded-2xl p-4 mb-6">
+            <div class="flex items-start gap-3 bg-[#FEF9E1] border border-amber-100 rounded-2xl p-4 mb-6">
                 <svg class="w-4 h-4 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01M4.93 19h14.14c1.54 0 2.5-1.67 1.73-3L13.73 4c-.77-1.33-2.69-1.33-3.46 0L3.2 16c-.77 1.33.19 3 1.73 3z"/></svg>
                 <div>
                     <p class="text-xs font-medium text-amber-700 mb-0.5">Email follow-up needed</p>
@@ -99,7 +99,7 @@
         {{-- Actions --}}
         <div class="space-y-3">
             <a href="{{ route('login') }}"
-               class="flex items-center justify-center gap-2 w-full py-3.5 rounded-2xl text-sm font-medium bg-[#1B4F72] text-white hover:bg-[#154060] transition-all duration-200 shadow-md shadow-blue-900/20">
+               class="flex items-center justify-center gap-2 w-full py-3.5 rounded-2xl text-sm font-medium bg-[#E98C00] text-white hover:bg-[#C97A00] transition-all duration-200 shadow-md shadow-blue-900/20">
                 Sign In to Track Your Application
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>
